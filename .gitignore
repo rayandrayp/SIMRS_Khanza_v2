@@ -30,6 +30,6 @@
 /bankjateng/nbproject/private/
 /bankpapua/nbproject/private/
 /bjb/nbproject/private/
-/build
-/cache
-/dist
+build/
+cache/
+dist/
