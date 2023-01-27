@@ -50,7 +50,7 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
     private ObjectMapper mapper = new ObjectMapper();
-    private JsonNode root,root2;
+    private JsonNode root, root2;
     private JsonNode nameNode, nameNode2;
     private JsonNode response, response2;
         
@@ -122,7 +122,7 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
                     }else{
                         NoKartu.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(),20).toString());
                     }                            
-                } 
+                }  
             }
             @Override
             public void windowIconified(WindowEvent e) {}
@@ -381,7 +381,6 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
                     }
                 }        
             }else {
-                System.out.println(nameNode.path("message").asText());
                 JOptionPane.showMessageDialog(null,nameNode.path("message").asText());                
             }   
         } catch (Exception ex) {
@@ -423,7 +422,7 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
             }else{
                 System.out.println("Tgl Kunjungan : "+nameNode2.path("message").asText());
 //                JOptionPane.showMessageDialog(null,nameNode2.path("message").asText());                
-            }   
+            }
         } catch (Exception ex) {
             System.out.println("Notifikasi Peserta : "+ex);
             if(ex.toString().contains("UnknownHostException")){

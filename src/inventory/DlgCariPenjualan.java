@@ -2218,12 +2218,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     public void isCek(){
         BtnPrint.setEnabled(akses.getpenjualan_obat());
         ppCetakNota.setEnabled(akses.getpenjualan_obat());
-        if(akses.getkode().equals("Admin Utama")){
-            ppHapus.setEnabled(true);
-        }else{
-//            ppHapus.setEnabled(false);
-        ppHapus.setEnabled(akses.getpenjualan_obat());
-        } 
+        ppHapus.setEnabled(akses.getpenjualan_obat()); 
     }
     
     private void tampilAkunBayar() {         

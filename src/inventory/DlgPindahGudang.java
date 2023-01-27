@@ -1257,16 +1257,6 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }
 
     private void hapus() {
-        if(akses.getSoftDeletes()){
-            Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9) "
-                + "SELECT 'mutasibarang',NOW(),'"+akses.getkode()+"', kode_brng, jml, harga, kd_bangsaldari, kd_bangsalke, tanggal, keterangan, no_batch, no_faktur FROM mutasibarang WHERE "
-                + " kd_bangsaldari='"+kddari.getText()+"' "
-                + " and kd_bangsalke='"+kdke.getText()+"' "
-                + "  and tanggal='"+Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19)+"' "
-                + "  and kode_brng='"+kdbarang.getText()+"' "
-                + "  and no_batch='"+nobatch.getText()+"' "
-                + "  and no_faktur='"+nofaktur.getText()+"' ");
-        }
         if(Sequel.queryu2tf("delete from mutasibarang where kd_bangsaldari=? and kd_bangsalke=? and tanggal=? and kode_brng=? and no_batch=? and no_faktur=?",6,new String[]{
                 kddari.getText(),kdke.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),kdbarang.getText(),nobatch.getText(),nofaktur.getText()
             })==true){

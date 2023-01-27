@@ -116,7 +116,6 @@ public class DlgPasien extends javax.swing.JDialog {
     public DlgPasien(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        initCustomComponents();
 
         tabMode=new DefaultTableModel(null,new Object[]{
               "P","No.R.M","Nama Pasien","No.SIM/KTP","J.K.","Tmp.Lahir","Tgl.Lahir","Nama Ibu","Alamat",
@@ -1637,6 +1636,7 @@ public class DlgPasien extends javax.swing.JDialog {
         MnViaBPJSNoKartu = new javax.swing.JMenuItem();
         MnViaDukcapilNikDKI = new javax.swing.JMenuItem();
         MnViaDukcapilNikAceh = new javax.swing.JMenuItem();
+        MnViaSatuSehatNik = new javax.swing.JMenuItem();
         WindowGabungRM = new javax.swing.JDialog();
         internalFrame8 = new widget.InternalFrame();
         BtnCloseIn6 = new widget.Button();
@@ -2904,6 +2904,20 @@ public class DlgPasien extends javax.swing.JDialog {
         });
         jPopupMenu2.add(MnViaDukcapilNikAceh);
 
+        MnViaSatuSehatNik.setBackground(new java.awt.Color(255, 255, 254));
+        MnViaSatuSehatNik.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnViaSatuSehatNik.setForeground(new java.awt.Color(50, 50, 50));
+        MnViaSatuSehatNik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnViaSatuSehatNik.setText("Cek Via NIK/ID Pasien Web Servis Satu Sehat");
+        MnViaSatuSehatNik.setName("MnViaSatuSehatNik"); // NOI18N
+        MnViaSatuSehatNik.setPreferredSize(new java.awt.Dimension(290, 26));
+        MnViaSatuSehatNik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnViaSatuSehatNikActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnViaSatuSehatNik);
+
         WindowGabungRM.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowGabungRM.setModal(true);
         WindowGabungRM.setName("WindowGabungRM"); // NOI18N
@@ -3367,7 +3381,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(4, 102, 95, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2022" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -3499,7 +3513,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(TKtp);
         TKtp.setBounds(743, 132, 130, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2021" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2022" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -4651,24 +4665,7 @@ public class DlgPasien extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void initCustomComponents() {
-        MnViaSatuSehatNik = new javax.swing.JMenuItem();
-        
-        MnViaSatuSehatNik.setBackground(new java.awt.Color(255, 255, 254));
-        MnViaSatuSehatNik.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnViaSatuSehatNik.setForeground(new java.awt.Color(50, 50, 50));
-        MnViaSatuSehatNik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnViaSatuSehatNik.setText("Cek Via NIK/ID Pasien Web Servis Satu Sehat");
-        MnViaSatuSehatNik.setName("MnViaSatuSehatNik"); // NOI18N
-        MnViaSatuSehatNik.setPreferredSize(new java.awt.Dimension(290, 26));
-        MnViaSatuSehatNik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnViaSatuSehatNikActionPerformed(evt);
-            }
-        });
-        jPopupMenu2.add(MnViaSatuSehatNik);
 
-    }
 private void tbPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasienMouseClicked
         if(tabMode.getRowCount()!=0){
             try {
@@ -7081,8 +7078,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
             TUmurTh.setText(cekViaBPJS.umurumurSekarang);
             Valid.SetTgl(DTPLahir,cekViaBPJS.tglLahir);
             this.setCursor(Cursor.getDefaultCursor());
-        }
-            
+        }   
     }//GEN-LAST:event_MnViaBPJSNikActionPerformed
 
     private void MnViaBPJSNoKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaBPJSNoKartuActionPerformed
@@ -8586,6 +8582,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
             PropinsiPj.setText("PROPINSI"); 
         }
     }//GEN-LAST:event_ChkAlamatPJItemStateChanged
+
     private void MnViaSatuSehatNikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaSatuSehatNikActionPerformed
         if(TKtp.getText().trim().equals("")){
             TKtp.requestFocus();
@@ -8613,7 +8610,8 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
             EMail.setText(cekViaSatuSehat.email);
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }
+    }//GEN-LAST:event_MnViaSatuSehatNikActionPerformed
+
     /**
      * @data args the command line arguments
      */
@@ -8793,6 +8791,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private javax.swing.JMenuItem MnViaBPJSNoKartu;
     private javax.swing.JMenuItem MnViaDukcapilNikAceh;
     private javax.swing.JMenuItem MnViaDukcapilNikDKI;
+    private javax.swing.JMenuItem MnViaSatuSehatNik;
     private widget.TextBox NIP;
     private widget.TextBox NamaPasienDipilih;
     private widget.TextBox NmIbu;
@@ -8937,9 +8936,6 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.Table tbPasien2;
     private widget.Table tbPasien3;
     // End of variables declaration//GEN-END:variables
-    
-    private javax.swing.JMenuItem MnViaSatuSehatNik;
-    
     
     private void tampil() {    
         Valid.tabelKosong(tabMode);
@@ -9725,6 +9721,10 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
         kdkec="";
         kdkab="";
         kdprop="";
+        KdProp.setText("");
+        KdKab.setText("");
+        KdKec.setText("");
+        KdKel.setText("");
         autoNomor();
         TNm.requestFocus();
     }

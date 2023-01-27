@@ -539,7 +539,7 @@
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Dokter Patologi Klinis]]></text>
+				<text><![CDATA[Dokter Patologi Klinik]]></text>
 			</staticText>
 			<componentElement>
 				<reportElement x="5" y="35" width="203" height="50" isRemoveLineWhenBlank="true" uuid="3a4d4bb6-6ebd-4981-b4e7-c7a8c665459e">

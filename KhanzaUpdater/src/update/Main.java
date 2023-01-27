@@ -26,16 +26,18 @@ public static String version,URLSERVER,versionURL;
         
         if(propConfig.getProperty("AUTOUPDATESISTEM").equals("aktif"))
          {
-             System.out.println("Update versi Local :"+version +"Versi Server :"+getLatestVersion());
+//             System.out.println("Update versi Local :"+version +"Versi Server :"+getLatestVersion());
              
               try {
-            if (!Updater.getLatestVersion().equals(version) ) {
-                new UpdateInfo(Updater.getWhatsNew());
-            }
-            else
-            {
-               
-            }
+//            if (!Updater.getLatestVersion().equals(version) ) {
+                new UpdateInfo("");
+//                                new UpdateInfo(Updater.getWhatsNew());
+
+//            }
+//            else
+//            {
+//               
+//            }
             } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -86,11 +86,11 @@ public class DlgInputStok extends javax.swing.JDialog {
                 java.lang.Double.class,java.lang.Double.class,java.lang.Double.class,java.lang.String.class,
                 java.lang.String.class,java.lang.Double.class,java.lang.Double.class,java.lang.Double.class,
                 java.lang.Double.class,java.lang.Double.class,java.lang.Double.class,java.lang.Double.class
-            };
-            @Override
-            public Class getColumnClass(int columnIndex) {
-               return types [columnIndex];
-            }
+             };
+             @Override
+             public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+             }
         };
         tbDokter.setModel(tabMode);
 
@@ -247,6 +247,7 @@ public class DlgInputStok extends javax.swing.JDialog {
         label12 = new widget.Label();
         LTotal1 = new widget.Label();
         BtnCari = new widget.Button();
+        BtnCari2 = new widget.Button();
         BtnKeluar = new widget.Button();
         panelisi5 = new widget.panelisi();
         label9 = new widget.Label();
@@ -647,6 +648,24 @@ public class DlgInputStok extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnCari);
+
+        BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnCari2.setMnemonic('C');
+        BtnCari2.setText("Laporan");
+        BtnCari2.setToolTipText("Alt+C");
+        BtnCari2.setName("BtnCari2"); // NOI18N
+        BtnCari2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCari2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari2ActionPerformed(evt);
+            }
+        });
+        BtnCari2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCari2KeyPressed(evt);
+            }
+        });
+        panelisi1.add(BtnCari2);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -1186,7 +1205,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     pstampil.setString(12,"%"+TCari.getText().trim()+"%");
                     rstampil=pstampil.executeQuery();
                     getStokData();
-                    while(rstampil.next()){      
+                    while(rstampil.next()){                            
                         dp1 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[0]);
                         dp2 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[1]);
                         dp3 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[2]);
@@ -1199,7 +1218,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                        rstampil.getString("nama"),
                                        rstampil.getString("kode_sat"),
                                        rstampil.getDouble("dasar"),0,0,0,0,0,"","",dp1,dp2,dp3,dp4,dp5,dp6,go});
-                    }    
+                    }  
                 } catch (Exception e) {
                     System.out.println("Notif : "+e);
                 } finally{
@@ -1240,7 +1259,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 pstampil.setString(12,"%"+TCari.getText().trim()+"%");
                 rstampil=pstampil.executeQuery();
                 getStokData();
-                while(rstampil.next()){  
+                while(rstampil.next()){                            
                     dp1 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[0]);
                     dp2 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[1]);
                     dp3 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[2]);
@@ -1253,7 +1272,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                    rstampil.getString("nama"),
                                    rstampil.getString("kode_sat"),
                                    rstampil.getDouble("dasar"),0,0,0,0,0,"","",dp1,dp2,dp3,dp4,dp5,dp6,go});
-                }    
+                }  
             } catch (Exception e) {
                 System.out.println("Notif : "+e);
             } finally{
@@ -1391,112 +1410,302 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }//GEN-LAST:event_BtnAllKeyPressed
 
     private void ppBatch1BulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatch1BulanActionPerformed
-        try{  
-            Valid.tabelKosong(tabMode);
-            pstampil=koneksi.prepareStatement(
-                "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
-                "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
-                "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 1 MONTH) and current_date() "+
-                (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
-            try {
-                if(!TCari.getText().trim().equals("")){
-                    pstampil.setString(1,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(2,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(3,"%"+TCari.getText().trim()+"%");
-                }
-                rstampil=pstampil.executeQuery();
-                while(rstampil.next()){                            
-                    tabMode.addRow(new Object[]{
-                        "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
-                        rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
-                    });
-                }  
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rstampil!=null){
-                    rstampil.close();
-                }
-                if(pstampil!=null){
-                    pstampil.close();
-                }
-            }              
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        if(kdgudang.getText().equals("")){
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 1 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
+                }     
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
+        }else{
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "gudangbarang.stok as sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
+                    "where gudangbarang.kd_bangsal=? and data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 1 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,kdgudang.getText());
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(4,"%"+TCari.getText().trim()+"%");
+                    }else{
+                        pstampil.setString(1,kdgudang.getText());
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
+                }    
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
         }
     }//GEN-LAST:event_ppBatch1BulanActionPerformed
 
     private void ppBatch3BulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatch3BulanActionPerformed
-        try{  
-            Valid.tabelKosong(tabMode);
-            pstampil=koneksi.prepareStatement(
-                "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
-                "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
-                "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 3 MONTH) and current_date() "+
-                (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
-            try {
-                if(!TCari.getText().trim().equals("")){
-                    pstampil.setString(1,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(2,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(3,"%"+TCari.getText().trim()+"%");
-                }
-                rstampil=pstampil.executeQuery();
-                while(rstampil.next()){                            
-                    tabMode.addRow(new Object[]{
-                        "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
-                        rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
-                    });
-                }  
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rstampil!=null){
-                    rstampil.close();
-                }
-                if(pstampil!=null){
-                    pstampil.close();
-                }
-            }              
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        if(kdgudang.getText().equals("")){
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 3 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
+                }   
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
+        }else{
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "gudangbarang.stok as sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
+                    "where gudangbarang.kd_bangsal=? and data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 3 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,kdgudang.getText());
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(4,"%"+TCari.getText().trim()+"%");
+                    }else{
+                        pstampil.setString(1,kdgudang.getText());
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
+                }   
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
         }
     }//GEN-LAST:event_ppBatch3BulanActionPerformed
 
     private void ppBatch6BulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatch6BulanActionPerformed
-        try{  
-            Valid.tabelKosong(tabMode);
-            pstampil=koneksi.prepareStatement(
-                "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
-                "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
-                "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 6 MONTH) and current_date() "+
-                (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
-            try {
-                if(!TCari.getText().trim().equals("")){
-                    pstampil.setString(1,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(2,"%"+TCari.getText().trim()+"%");
-                    pstampil.setString(3,"%"+TCari.getText().trim()+"%");
-                }
-                rstampil=pstampil.executeQuery();
-                while(rstampil.next()){                            
-                    tabMode.addRow(new Object[]{
-                        "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
-                        rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
-                    });
+        if(kdgudang.getText().equals("")){
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "data_batch.sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns where data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 6 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
                 }  
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rstampil!=null){
-                    rstampil.close();
-                }
-                if(pstampil!=null){
-                    pstampil.close();
-                }
-            }              
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
+        }else{
+            try{  
+                Valid.tabelKosong(tabMode);
+                file=new File("./cache/stokopname.iyem");
+                file.createNewFile();
+                fileWriter = new FileWriter(file);
+                iyem="";
+                pstampil=koneksi.prepareStatement(
+                    "select data_batch.kode_brng,databarang.nama_brng,jenis.nama,databarang.kode_sat,data_batch."+hppfarmasi+" as dasar, "+
+                    "gudangbarang.stok as sisa,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng "+
+                    "inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
+                    "where gudangbarang.kd_bangsal=? and data_batch.tgl_beli between SUBDATE(current_date(), INTERVAL 6 MONTH) and current_date() "+
+                    (TCari.getText().trim().equals("")?"":"and (data_batch.kode_brng like ? or databarang.nama_brng like ? or jenis.nama like ?) ")+order);
+                try {
+                    if(!TCari.getText().trim().equals("")){
+                        pstampil.setString(1,kdgudang.getText());
+                        pstampil.setString(2,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(3,"%"+TCari.getText().trim()+"%");
+                        pstampil.setString(4,"%"+TCari.getText().trim()+"%");
+                    }else{
+                        pstampil.setString(1,kdgudang.getText());
+                    }
+                    rstampil=pstampil.executeQuery();
+                    while(rstampil.next()){                            
+                        tabMode.addRow(new Object[]{
+                            "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),
+                            rstampil.getDouble("dasar"),rstampil.getDouble("sisa"),0,0,0,0,rstampil.getString("no_batch"),rstampil.getString("no_faktur")
+                        });
+                        iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\""+rstampil.getString("no_batch")+"\",\"NoFaktur\":\""+rstampil.getString("no_faktur")+"\",\"Stok\":\""+rstampil.getDouble("sisa")+"\"},";
+                    }  
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rstampil!=null){
+                        rstampil.close();
+                    }
+                    if(pstampil!=null){
+                        pstampil.close();
+                    }
+                }   
+                fileWriter.write("{\"stokopname\":["+iyem.substring(0,iyem.length()-1)+"]}");
+                fileWriter.flush();
+                fileWriter.close();
+                iyem=null; 
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
         }
     }//GEN-LAST:event_ppBatch6BulanActionPerformed
+
+    private void BtnCari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari2ActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgStokOpname2 opname=new DlgStokOpname2(null,false);
+        opname.isCek(); 
+        opname.emptTeks();
+        opname.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        opname.setLocationRelativeTo(internalFrame1);
+        opname.setAlwaysOnTop(false);
+        opname.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnCari2ActionPerformed
+
+    private void BtnCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCari2KeyPressed
 
     /**
     * @param args the command line arguments
@@ -1518,6 +1727,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private widget.Button BtnAll;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
+    private widget.Button BtnCari2;
     private widget.Button BtnGudang;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
@@ -1576,7 +1786,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             try {
                 rstampil=pstampil.executeQuery();
                 getStokData();
-                while(rstampil.next()){          
+                while(rstampil.next()){                            
                     dp1 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[0]);
                     dp2 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[1]);
                     dp3 = (int) Math.round(dataStok.get(rstampil.getString("kode_brng"))[2]);

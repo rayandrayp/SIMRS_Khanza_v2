@@ -1236,13 +1236,14 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     }
                     Valid.tabelKosong(tabModeResepRacikan);
                     Valid.tabelKosong(tabModeDetailResepRacikan);
-                    dispose();
+//                    dispose(); remarked 2023-01-27
                 }else{
                     JOptionPane.showMessageDialog(null,"Terjadi kesalahan saat pemrosesan data, transaksi dibatalkan.\nPeriksa kembali data sebelum melanjutkan menyimpan..!!");
                     Sequel.RollBack();
                 }
                 Sequel.AutoComitTrue();
                 ChkJln.setSelected(true);
+                JOptionPane.showMessageDialog(null,"Proses simpan selesai...!");
             }                
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed

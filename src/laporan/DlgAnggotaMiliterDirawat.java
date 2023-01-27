@@ -47,9 +47,8 @@ public final class DlgAnggotaMiliterDirawat extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private PreparedStatement ps, ps2;
-    private ResultSet rs,rs2;
-    private String kamar;
+    private PreparedStatement ps;
+    private ResultSet rs;
     private int i=0;
     public  DlgGolonganTNI golongantni=new DlgGolonganTNI(null,false);
     public  DlgSatuanTNI satuantni=new DlgSatuanTNI(null,false);
@@ -64,7 +63,7 @@ public final class DlgAnggotaMiliterDirawat extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-         Object[] rowRwJlDr={"No.","Nama Pasien","Pangkat","NRP/NIP","Kesatuan","Diagnosa","Golongan","Jabatan","Ruangan"};
+        Object[] rowRwJlDr={"No.","Nama Pasien","Pangkat","NRP/NIP","Kesatuan","Diagnosa","Golongan","Jabatan"};
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -73,7 +72,7 @@ public final class DlgAnggotaMiliterDirawat extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(35);
@@ -91,8 +90,6 @@ public final class DlgAnggotaMiliterDirawat extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             }else if(i==7){
                 column.setPreferredWidth(150);
-            }else if(i==8){
-                column.setPreferredWidth(170);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
@@ -817,37 +814,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps.setString(14,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
                 i=1;                  
-                while(rs.next()){            
-                    kamar="-";
-                    
-                    ps2=koneksi.prepareStatement(
-                            "select kamar_inap.no_rawat, bangsal.nm_bangsal from kamar_inap " +
-                            "inner join kamar " +
-                            "inner join bangsal " +
-                            "on kamar_inap.kd_kamar = kamar.kd_kamar " +
-                            "and kamar.kd_bangsal = bangsal.kd_bangsal " +
-                            "where kamar_inap.no_rawat = ?");
-                    try {
-                        ps2.setString(1,rs.getString("no_rawat"));
-                        rs2=ps2.executeQuery();
-                        if(rs2.next()){
-                            kamar=rs2.getString("nm_bangsal");
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notif 2 : "+e);
-                    } finally{
-                        if(rs2!=null){
-                            rs2.close();
-                        }
-                        if(ps2!=null){
-                            ps2.close();
-                        }
-                    }
-                    
+                while(rs.next()){                                          
                     tabMode.addRow(new Object[]{
                         i,rs.getString("nm_pasien"),rs.getString("nama_pangkat"),rs.getString("nip"),rs.getString("nama_satuan"),
                         Sequel.cariIsi("select penyakit.nm_penyakit from penyakit inner join diagnosa_pasien on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit where diagnosa_pasien.no_rawat=?",rs.getString("no_rawat")),
-                        rs.getString("nama_golongan"),rs.getString("nama_jabatan"), kamar
+                        rs.getString("nama_golongan"),rs.getString("nama_jabatan")
                     });                
                     i++;
                 }                

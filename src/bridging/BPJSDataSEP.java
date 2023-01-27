@@ -894,6 +894,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppRiwayatPerawatan = new javax.swing.JMenuItem();
         ppSepRujukSama = new javax.swing.JMenuItem();
         ppSepRujukBeda = new javax.swing.JMenuItem();
+        ppExportDataExcel = new javax.swing.JMenuItem();
         WindowUpdatePulang = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         BtnCloseIn4 = new widget.Button();
@@ -1440,6 +1441,22 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         });
         Popup.add(ppSepRujukBeda);
 
+        ppExportDataExcel.setBackground(new java.awt.Color(255, 255, 254));
+        ppExportDataExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppExportDataExcel.setForeground(new java.awt.Color(50, 50, 50));
+        ppExportDataExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppExportDataExcel.setText("Export Data Excel");
+        ppExportDataExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppExportDataExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppExportDataExcel.setName("ppExportDataExcel"); // NOI18N
+        ppExportDataExcel.setPreferredSize(new java.awt.Dimension(300, 25));
+        ppExportDataExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppExportDataExcel(evt);
+            }
+        });
+        Popup.add(ppExportDataExcel);
+
         WindowUpdatePulang.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowUpdatePulang.setName("WindowUpdatePulang"); // NOI18N
         WindowUpdatePulang.setUndecorated(true);
@@ -1480,7 +1497,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame5.add(jLabel26);
         jLabel26.setBounds(6, 32, 70, 23);
 
-        TanggalPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022 01:51:46" }));
+        TanggalPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023 12:56:06" }));
         TanggalPulang.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalPulang.setName("TanggalPulang"); // NOI18N
         TanggalPulang.setOpaque(false);
@@ -1526,7 +1543,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame5.add(jLabel48);
         jLabel48.setBounds(291, 62, 120, 23);
 
-        TanggalKematian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalKematian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalKematian.setDisplayFormat("dd-MM-yyyy");
         TanggalKematian.setEnabled(false);
         TanggalKematian.setName("TanggalKematian"); // NOI18N
@@ -1594,7 +1611,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel30.setBounds(0, 25, 102, 23);
 
         TanggalRujukKeluar.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalRujukKeluar.setDisplayFormat("dd-MM-yyyy");
         TanggalRujukKeluar.setName("TanggalRujukKeluar"); // NOI18N
         TanggalRujukKeluar.setOpaque(false);
@@ -1777,7 +1794,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel50.setBounds(638, 55, 80, 23);
 
         TanggalKunjungRujukan.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKunjungRujukan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalKunjungRujukan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalKunjungRujukan.setDisplayFormat("dd-MM-yyyy");
         TanggalKunjungRujukan.setName("TanggalKunjungRujukan"); // NOI18N
         TanggalKunjungRujukan.setOpaque(false);
@@ -2039,7 +2056,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel20.setBounds(187, 102, 65, 23);
 
         TanggalSEP.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -2059,7 +2076,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel22.setBounds(0, 102, 90, 23);
 
         TanggalRujuk.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -2420,7 +2437,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel38.setBounds(594, 132, 40, 23);
 
         TanggalKKL.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         TanggalKKL.setDisplayFormat("dd-MM-yyyy");
         TanggalKKL.setEnabled(false);
         TanggalKKL.setName("TanggalKKL"); // NOI18N
@@ -2868,7 +2885,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2882,7 +2899,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2973,7 +2990,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         panelGlass10.add(jLabel51);
 
         DTPCariInternal.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCariInternal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        DTPCariInternal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         DTPCariInternal.setDisplayFormat("dd-MM-yyyy");
         DTPCariInternal.setName("DTPCariInternal"); // NOI18N
         DTPCariInternal.setOpaque(false);
@@ -2987,7 +3004,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         panelGlass10.add(jLabel52);
 
         DTPCariInternal2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCariInternal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2022" }));
+        DTPCariInternal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2023" }));
         DTPCariInternal2.setDisplayFormat("dd-MM-yyyy");
         DTPCariInternal2.setName("DTPCariInternal2"); // NOI18N
         DTPCariInternal2.setOpaque(false);
@@ -3178,29 +3195,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void initCustomComponent(){
-        exportSEPExcel = new javax.swing.JMenuItem();
-        
-        exportSEPExcel.setBackground(new java.awt.Color(255, 255, 254));
-        exportSEPExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        exportSEPExcel.setForeground(new java.awt.Color(50, 50, 50));
-        exportSEPExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        exportSEPExcel.setText("Export Data Excel");
-        exportSEPExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        exportSEPExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        exportSEPExcel.setName("exportSEPExcel"); // NOI18N
-        exportSEPExcel.setPreferredSize(new java.awt.Dimension(300, 25));
-        exportSEPExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    exportSEPExcelActionPerformed(evt);
-                } catch (IOException ex) {
-                    Logger.getLogger(BPJSDataSEP.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        Popup.add(exportSEPExcel);
-    }
+
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
@@ -4261,102 +4256,6 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                
     }//GEN-LAST:event_ppSEP1BtnPrintActionPerformed
 
-    private void exportSEPExcelActionPerformed(java.awt.event.ActionEvent evt) throws IOException { 
-        File theDir = new File("C:\\DataSEP\\");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        String excelFileName = "C:\\DataSEP\\datasep-"+Valid.SetTgl(DTPCari1.getSelectedItem()+"").replace("-", "")+".xls";//name of excel file
-        String sheetName = "Sheet1";//name of sheet
-        HSSFWorkbook wb = new HSSFWorkbook();
-        HSSFSheet sheet = wb.createSheet(sheetName) ;
-        
-        //Add first row
-        HSSFRow row = sheet.createRow(0);
-        HSSFCell cell00 = row.createCell(0);
-        cell00.setCellValue("Tgl.");
-        HSSFCell cell01 = row.createCell(1);
-        cell01.setCellValue("No. SEP");
-        HSSFCell cell02 = row.createCell(2);
-        cell02.setCellValue("No. RM");
-        HSSFCell cell03 = row.createCell(3);
-        cell03.setCellValue("Nama");
-        HSSFCell cell04 = row.createCell(4);
-        cell04.setCellValue("L/P");
-        HSSFCell cell05 = row.createCell(5);
-        cell05.setCellValue("Umur");
-        HSSFCell cell06 = row.createCell(6);
-        cell06.setCellValue("Tgl. Terbit SEP");
-        HSSFCell cell07 = row.createCell(7);
-        cell07.setCellValue("Tgl. Kembali SEP");
-        HSSFCell cell08 = row.createCell(8);
-        cell08.setCellValue("Angka Lambat");
-        HSSFCell cell09 = row.createCell(9);
-        cell09.setCellValue("Keterangan");
-        
-        int rowNum = 0;
-        try{
-            ps=koneksi.prepareStatement(
-                    "SELECT A.*, " +
-                    "      @rownum := @rownum + 1 as row_number " +
-                    "FROM ( " +
-                    "	SELECT b.no_sep, b.nomr, b.nama_pasien, p.jk, TIMESTAMPDIFF(YEAR, b.tanggal_lahir, CURDATE()) as tahun, b.tglsep " +
-                    "	FROM bridging_sep b " +
-                    "	INNER JOIN pasien p ON p.no_rkm_medis = b.nomr " +
-                    "	WHERE b.tglsep BETWEEN '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' " +
-                    ") A " +
-                    "cross join (select @rownum := 0) r");
-            try {
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    rowNum = Integer.valueOf(rs.getString("row_number"));
-                    HSSFRow row1 = sheet.createRow(rowNum);
-                    HSSFCell cell10 = row1.createCell(0);
-                    cell10.setCellValue(Valid.SetTgl(DTPCari1.getSelectedItem()+""));
-                    HSSFCell cell11 = row1.createCell(1);
-                    cell11.setCellValue(rs.getString("no_sep"));
-                    HSSFCell cell12 = row1.createCell(2);
-                    cell12.setCellValue(rs.getString("nomr"));
-                    HSSFCell cell13 = row1.createCell(3);
-                    cell13.setCellValue(rs.getString("nama_pasien"));
-                    HSSFCell cell14 = row1.createCell(4);
-                    cell14.setCellValue(rs.getString("jk"));
-                    HSSFCell cell15 = row1.createCell(5);
-                    cell15.setCellValue(rs.getString("tahun")+" Th");
-                    HSSFCell cell16 = row1.createCell(6);
-                    cell16.setCellValue(rs.getString("tglsep"));
-                    HSSFCell cell17 = row1.createCell(7);
-                    cell17.setCellValue("");
-                    HSSFCell cell18 = row1.createCell(8);
-                    cell18.setCellValue("");
-                    HSSFCell cell19 = row1.createCell(9);
-                    cell19.setCellValue("");
-                    rowNum =+ 1;
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : "+e);
-            } finally{
-                if(rs!=null){
-                    rs.close();
-                }   
-                if(ps!=null){
-                    ps.close();
-                }   
-            }                
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
-        }
-        
-        FileOutputStream fileOut = new FileOutputStream(excelFileName);
-
-        //write this workbook to an Outputstream.
-        wb.write(fileOut);
-        fileOut.flush();
-        fileOut.close();
-        System.out.println("Data SEP berhasil diexport di "+excelFileName);
-        JOptionPane.showMessageDialog(null,"Data SEP berhasil diexport di "+excelFileName);
-    }
-    
     private void ppSEP2BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSEP2BtnPrintActionPerformed
         if(TabRawat.getSelectedIndex()==1){
             if(tbDataSEP.getSelectedRow()!= -1){
@@ -4441,7 +4340,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     param.put("katarak","");
                 }
                 if(tbDataSEP.getValueAt(tbDataSEP.getSelectedRow(),11).toString().equalsIgnoreCase("1. ranap")) {
-                    if(JenisPelayanan.getSelectedIndex()==0){
+                if(JenisPelayanan.getSelectedIndex()==0){
                         Valid.MyReport("rptBridgingSEP7RI.jasper","report","::[ Cetak SEP ]::",param);
                     }else{
                         Valid.MyReport("rptBridgingSEP8RI.jasper","report","::[ Cetak SEP ]::",param);
@@ -4451,7 +4350,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         Valid.MyReport("rptBridgingSEP7.jasper","report","::[ Cetak SEP ]::",param);
                     }else{
                         Valid.MyReport("rptBridgingSEP8.jasper","report","::[ Cetak SEP ]::",param);
-                    }   
+                    }                
                 }                
                 this.setCursor(Cursor.getDefaultCursor());
             }else{
@@ -5568,6 +5467,111 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnRujukanKhususActionPerformed
 
+    private void ppExportDataExcel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppExportDataExcel
+        try {
+                                 
+            File theDir = new File("C:\\DataSEP\\");
+            if (!theDir.exists()){
+                theDir.mkdirs();
+            }
+            String excelFileName = "C:\\DataSEP\\datasep-"+Valid.SetTgl(DTPCari1.getSelectedItem()+"").replace("-", "")+".xls";//name of excel file
+            String sheetName = "Sheet1";//name of sheet
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet(sheetName) ;
+
+            //Add first row
+            HSSFRow row = sheet.createRow(0);
+            HSSFCell cell00 = row.createCell(0);
+            cell00.setCellValue("Tgl.");
+            HSSFCell cell01 = row.createCell(1);
+            cell01.setCellValue("No. SEP");
+            HSSFCell cell02 = row.createCell(2);
+            cell02.setCellValue("No. Kartu");
+            HSSFCell cell03 = row.createCell(3);
+            cell03.setCellValue("No. RM");
+            HSSFCell cell04 = row.createCell(4);
+            cell04.setCellValue("Nama");
+            HSSFCell cell05 = row.createCell(5);
+            cell05.setCellValue("L/P");
+            HSSFCell cell06 = row.createCell(6);
+            cell06.setCellValue("Umur");
+            HSSFCell cell07 = row.createCell(7);
+            cell07.setCellValue("Tgl. Terbit SEP");
+            HSSFCell cell08 = row.createCell(8);
+            cell08.setCellValue("Tgl. Kembali SEP");
+            HSSFCell cell09 = row.createCell(9);
+            cell09.setCellValue("Angka Lambat");
+            HSSFCell cell10 = row.createCell(10);
+            cell10.setCellValue("Keterangan");
+
+            int rowNum = 0;
+            try{
+                ps=koneksi.prepareStatement(
+                        "SELECT A.*, " +
+                        "      @rownum := @rownum + 1 as row_number " +
+                        "FROM ( " +
+                        "	SELECT b.no_sep, b.nomr, b.nama_pasien, p.jk, TIMESTAMPDIFF(YEAR, b.tanggal_lahir, CURDATE()) as tahun, b.tglsep, p.no_peserta " +
+                        "	FROM bridging_sep b " +
+                        "	INNER JOIN pasien p ON p.no_rkm_medis = b.nomr " +
+                        "	WHERE b.tglsep BETWEEN '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' " +
+                        ") A " +
+                        "cross join (select @rownum := 0) r");
+                try {
+                    rs=ps.executeQuery();
+                    while(rs.next()){
+                        rowNum = Integer.valueOf(rs.getString("row_number"));
+                        HSSFRow row1 = sheet.createRow(rowNum);
+                        HSSFCell cell010 = row1.createCell(0);
+                        cell010.setCellValue(Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                        HSSFCell cell011 = row1.createCell(1);
+                        cell011.setCellValue(rs.getString("no_sep"));
+                        HSSFCell cell012 = row1.createCell(2);
+                        cell012.setCellValue(rs.getString("no_peserta"));
+                        HSSFCell cell013 = row1.createCell(3);
+                        cell013.setCellValue(rs.getString("nomr"));
+                        HSSFCell cell014 = row1.createCell(4);
+                        cell014.setCellValue(rs.getString("nama_pasien"));
+                        HSSFCell cell015 = row1.createCell(5);
+                        cell015.setCellValue(rs.getString("jk"));
+                        HSSFCell cell016 = row1.createCell(6);
+                        cell016.setCellValue(rs.getString("tahun")+" Th");
+                        HSSFCell cell017 = row1.createCell(7);
+                        cell017.setCellValue(rs.getString("tglsep"));
+                        HSSFCell cell018 = row1.createCell(8);
+                        cell018.setCellValue("");
+                        HSSFCell cell019 = row1.createCell(9);
+                        cell019.setCellValue("");
+                        HSSFCell cell0110 = row1.createCell(10);
+                        cell0110.setCellValue("");
+                        rowNum =+ 1;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }   
+                    if(ps!=null){
+                        ps.close();
+                    }   
+                }                
+            }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+            }
+
+            FileOutputStream fileOut = new FileOutputStream(excelFileName);
+
+            //write this workbook to an Outputstream.
+            wb.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+            System.out.println("Data SEP berhasil diexport di "+excelFileName);
+            JOptionPane.showMessageDialog(null,"Data SEP berhasil diexport di "+excelFileName);
+        } catch (IOException ex) {
+            Logger.getLogger(BPJSDataSEP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ppExportDataExcel
+
     /**
     * @param args the command line arguments
     */
@@ -5777,6 +5781,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private javax.swing.JMenuItem ppDataIndukKecelakaan;
     private javax.swing.JMenuItem ppDataSEPInternal;
     private javax.swing.JMenuItem ppDetailSEPPeserta;
+    private javax.swing.JMenuItem ppExportDataExcel;
     private javax.swing.JMenuItem ppPengajuan;
     private javax.swing.JMenuItem ppPengajuan1;
     private javax.swing.JMenuItem ppPengajuan2;
@@ -5802,7 +5807,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private widget.Table tbDataSEP;
     private widget.Table tbDataSEPInternal;
     // End of variables declaration//GEN-END:variables
-    private javax.swing.JMenuItem exportSEPExcel;
+
     public void tampil() {        
         Valid.tabelKosong(tabMode);
         try{

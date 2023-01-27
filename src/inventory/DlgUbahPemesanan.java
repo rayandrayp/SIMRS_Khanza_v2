@@ -817,10 +817,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
                             if(sukses==true){
                                 Sequel.AutoComitFalse();
-                                if(akses.getSoftDeletes()) {
-                                    Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12, data_col13, data_col14, data_col15) "
-                                       + "SELECT 'pemesanan',NOW(),'"+akses.getkode()+"', no_faktur, no_order, kode_suplier, nip, tgl_pesan, tgl_faktur, tgl_tempo, total1, potongan, total2, ppn, materai, tagihan, kd_bangsal, status FROM pemesanan WHERE no_faktur = '"+NoFaktur2.getText()+"'");
-                                }
                                 if(Sequel.queryu2tf("delete from pemesanan where no_faktur=?",1,new String[]{NoFaktur2.getText()})==true){
                                     if(Sequel.menyimpantf2("pemesanan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Faktur",15,new String[]{
                                         NoFaktur.getText(),NoOrder.getText(),kdsup.getText(),kdptg.getText(),Valid.SetTgl(TglPesan.getSelectedItem()+""),

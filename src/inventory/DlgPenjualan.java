@@ -1152,7 +1152,7 @@ public class DlgPenjualan extends javax.swing.JDialog {
         panelisi3.add(BtnPtg);
         BtnPtg.setBounds(824, 40, 28, 23);
 
-        Jenisjual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jual Bebas", "Karyawan", "Beli Luar", "Rawat Jalan", "Kelas 1", "Kelas 2", "Kelas 3", "Utama/BPJS", "VIP", "VVIP" }));
+        Jenisjual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kontribusi", "Jual Bebas", "Karyawan", "Beli Luar", "Rawat Jalan", "Kelas 1", "Kelas 2", "Kelas 3", "Utama/BPJS", "VIP", "VVIP" }));
         Jenisjual.setName("Jenisjual"); // NOI18N
         Jenisjual.setPreferredSize(new java.awt.Dimension(40, 23));
         Jenisjual.addItemListener(new java.awt.event.ItemListener() {
@@ -2689,6 +2689,13 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             rs.getDouble("vvip"),0,0,0,0,0,0,"",0,rs.getDouble("stok"),rs.getDouble("dasar"),"","",""
                         });
                     } 
+                }else if(Jenisjual.getSelectedItem().equals("Kontribusi")){
+                    while(rs.next()){                              
+                        tabMode.addRow(new Object[]{
+                            "",rs.getString("kode_brng"),rs.getString("nama_brng"),rs.getString("nama"),rs.getString("kode_sat"),
+                            rs.getDouble("jualbebas"),0,0,0,0,0,0,"",0,rs.getDouble("stok"),rs.getDouble("dasar"),"","",""
+                        });
+                    } 
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);
@@ -3812,6 +3819,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(rs.next()){
                             tabMode.setValueAt(rs.getString("no_faktur"), tbObat.getSelectedRow(),17);
                             tabMode.setValueAt(rs.getString("tgl_kadaluarsa"), tbObat.getSelectedRow(),18);
+                            tabMode.setValueAt(rs.getDouble(hppfarmasi), tbObat.getSelectedRow(),15);
                             if(aktifkanbatch.equals("yes")){
                                 if(Jenisjual.getSelectedItem().equals("Karyawan")){
                                     tabMode.setValueAt(rs.getDouble("karyawan"), tbObat.getSelectedRow(),5);
@@ -3919,6 +3927,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(rs.next()){
                             tbDetailObatRacikan.setValueAt(rs.getString("no_faktur"), tbDetailObatRacikan.getSelectedRow(),19);
                             tbDetailObatRacikan.setValueAt(rs.getString("tgl_kadaluarsa"), tbDetailObatRacikan.getSelectedRow(),20);
+                            tbDetailObatRacikan.setValueAt(rs.getDouble(hppfarmasi), tbDetailObatRacikan.getSelectedRow(),17);
                             if(aktifkanbatch.equals("yes")){
                                 if(Jenisjual.getSelectedItem().equals("Karyawan")){
                                     tbDetailObatRacikan.setValueAt(rs.getDouble("karyawan"), tbDetailObatRacikan.getSelectedRow(),5);

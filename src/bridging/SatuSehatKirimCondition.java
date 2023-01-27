@@ -236,7 +236,6 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
         tbKamar.setComponentPopupMenu(jPopupMenu1);
         tbKamar.setName("tbKamar"); // NOI18N
         Scroll.setViewportView(tbKamar);
@@ -349,7 +348,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -362,7 +361,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -513,7 +512,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                                     "}," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
+                                        "\"display\": \"Diagnosa "+tbKamar.getValueAt(i,4).toString()+" selama kunjungan/dirawat dari tanggal "+tbKamar.getValueAt(i,1).toString()+" sampai "+tbKamar.getValueAt(i,8).toString()+"\"" +
                                     "}" +
                                 "}";
                         System.out.println("URL : "+link+"/Condition");
@@ -598,7 +597,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                                     "}," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbKamar.getValueAt(i,9).toString()+"\"," +
-                                        "\"display\": \"Kunjungan "+tbKamar.getValueAt(i,4).toString()+" pada tanggal "+tbKamar.getValueAt(i,1).toString()+"\"" +
+                                        "\"display\": \"Diagnosa "+tbKamar.getValueAt(i,4).toString()+" selama kunjungan/dirawat dari tanggal "+tbKamar.getValueAt(i,1).toString()+" sampai "+tbKamar.getValueAt(i,8).toString()+"\"" +
                                     "}" +
                                 "}";
                         System.out.println("URL : "+link+"/Condition/"+tbKamar.getValueAt(i,12).toString());

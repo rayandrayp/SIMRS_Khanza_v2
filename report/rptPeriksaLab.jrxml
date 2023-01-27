@@ -714,7 +714,7 @@
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Dokter Patologi Klinis]]></text>
+				<text><![CDATA[Dokter Patologi Klinik]]></text>
 			</staticText>
 			<componentElement>
 				<reportElement x="2" y="36" width="210" height="53" isRemoveLineWhenBlank="true" uuid="c7c56744-431d-4236-af9b-4ec5101eadbf">

@@ -2,8 +2,8 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>UPDATER</comment>
- <entry key="URLSERVERUPDATE">192.168.128.4/webapps/serverupdate</entry> <!--link Update -->
+ <entry key="URLSERVERUPDATE">192.168.14.27/webapps_dev/serverupdate</entry> <!--link Update -->
  <entry key="AUTOUPDATESISTEM">aktif</entry> <!--no:aktif-->
-  <entry key="DEFAULTAPLIKASIRUN">SIMRSKhanza.jar2</entry> <!--no:aktif-->
+  <entry key="DEFAULTAPLIKASIRUN">SIMRSKhanza.jar</entry> <!--no:aktif-->
     <!-- Mesin Antrian-->
 </properties>

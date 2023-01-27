@@ -267,7 +267,6 @@ public final class DlgCariBangsal extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         tampil2();
-//        tampilFilter();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -436,34 +435,6 @@ public final class DlgCariBangsal extends javax.swing.JDialog {
                 }
             }
             myObj.close();
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : "+ex);
-        }
-        LCount.setText(""+tabMode.getRowCount());
-    }
-    
-    private void tampilFilter(){
-        Valid.tabelKosong(tabMode);
-        try {
-            ps=koneksi.prepareStatement("select * from bangsal where status='1' order by nm_bangsal");
-            try {
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    if(rs.getString(1).toLowerCase().contains(TCari.getText().toLowerCase())||
-                        rs.getString(2).toLowerCase().contains(TCari.getText().toLowerCase())){
-                        tabMode.addRow(new Object[]{rs.getString(1),rs.getString(2) });
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            } finally{
-                if(rs!=null){
-                    rs.close();
-                }
-                if(ps!=null){
-                    ps.close();
-                }
-            }    
         } catch (Exception ex) {
             System.out.println("Notifikasi : "+ex);
         }

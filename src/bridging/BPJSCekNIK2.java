@@ -6693,17 +6693,7 @@ public final class BPJSCekNIK2 extends javax.swing.JDialog {
                         nosisrute="";
                     }
                 }                        
-            }else{         
-                if(akses.getSoftDeletes()){
-                    Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12, data_col13, data_col14, data_col15, data_col16, data_col17, data_col18, data_col19) "
-                        + "SELECT 'reg_periksa',NOW(),'"+akses.getkode()+"',no_reg,no_rawat,tgl_registrasi,jam_reg,kd_dokter,no_rkm_medis,kd_poli,p_jawab,almt_pj,hubunganpj,biaya_reg,stts,stts_daftar,status_lanjut,kd_pj,umurdaftar,sttsumur,status_bayar,status_poli FROM reg_periksa WHERE no_rawat = '"+TNoRw.getText()+"'");
-                    Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5) "
-                        + "SELECT 'diagnosa_pasien',NOW(),'"+akses.getkode()+"',no_rawat,kd_penyakit,status,prioritas,status_penyakit FROM diagnosa_pasien WHERE "
-                        + " no_rawat = '"+TNoRw.getText()+"'");
-                    Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12) "
-                        + "SELECT 'kamar_inap',NOW(),'"+akses.getkode()+"',no_rawat,kd_kamar, trf_kamar, diagnosa_awal, diagnosa_akhir, tgl_masuk, jam_masuk, tgl_keluar, jam_keluar, lama, ttl_biaya, stts_pulang FROM kamar_inap WHERE no_rawat = '"+TNoRw.getText()+"'");
-                
-                }
+            }else{                
                 Sequel.meghapus3("kamar_inap","no_rawat",TNoRw.getText());
                 Sequel.meghapus3("diagnosa_pasien","no_rawat",TNoRw.getText());
                 Sequel.meghapus3("rujuk_masuk","no_rawat",TNoRw.getText());
@@ -6712,17 +6702,7 @@ public final class BPJSCekNIK2 extends javax.swing.JDialog {
                     Sequel.meghapus3("pasien","no_rkm_medis",TNo.getText());
                 }
             }
-        }catch (Exception ex) {  
-            if(akses.getSoftDeletes()){
-                Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12, data_col13, data_col14, data_col15, data_col16, data_col17, data_col18, data_col19) "
-                    + "SELECT 'reg_periksa',NOW(),'"+akses.getkode()+"',no_reg,no_rawat,tgl_registrasi,jam_reg,kd_dokter,no_rkm_medis,kd_poli,p_jawab,almt_pj,hubunganpj,biaya_reg,stts,stts_daftar,status_lanjut,kd_pj,umurdaftar,sttsumur,status_bayar,status_poli FROM reg_periksa WHERE no_rawat = '"+TNoRw.getText()+"'");
-                Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5) "
-                    + "SELECT 'diagnosa_pasien',NOW(),'"+akses.getkode()+"',no_rawat,kd_penyakit,status,prioritas,status_penyakit FROM diagnosa_pasien WHERE "
-                    + " no_rawat = '"+TNoRw.getText()+"'");
-                Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12) "
-                        + "SELECT 'kamar_inap',NOW(),'"+akses.getkode()+"',no_rawat,kd_kamar, trf_kamar, diagnosa_awal, diagnosa_akhir, tgl_masuk, jam_masuk, tgl_keluar, jam_keluar, lama, ttl_biaya, stts_pulang FROM kamar_inap WHERE no_rawat = '"+TNoRw.getText()+"'");
-                
-            }          
+        }catch (Exception ex) {            
             Sequel.meghapus3("kamar_inap","no_rawat",TNoRw.getText());
             Sequel.meghapus3("diagnosa_pasien","no_rawat",TNoRw.getText());
             Sequel.meghapus3("rujuk_masuk","no_rawat",TNoRw.getText());

@@ -560,16 +560,6 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "and jam='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString()+"' "+
                 "and no_batch='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),16).toString()+"' "+
                 "and no_faktur='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),17).toString()+"' ");
-            if(akses.getSoftDeletes()){
-                Sequel.simpanDelete("INSERT INTO deleted_data (nama_tabel, deleted_at, deleted_by, data_col1, data_col2, data_col3, data_col4, data_col5, data_col6, data_col7, data_col8, data_col9, data_col10, data_col11, data_col12, data_col13, data_col14, data_col15, data_col16) " +
-                "SELECT 'detail_pemberian_obat',NOW(),'"+akses.getkode()+"',tgl_perawatan,jam,no_rawat,kode_brng,h_beli,biaya_obat,jml,embalase,tuslah,total,status,kd_bangsal,no_batch,no_faktur,pecahkronis,jumlahawal FROM detail_pemberian_obat WHERE " +
-                "no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()+"' "+
-                "and kode_brng='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),7).toString()+"' "+
-                "and tgl_perawatan='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"' "+
-                "and jam='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString()+"' "+
-                "and no_batch='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),16).toString()+"' "+
-                "and no_faktur='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),17).toString()+"' ");
-            }
             if(Sequel.queryutf("delete from detail_pemberian_obat where "+
                     "no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()+"' "+
                     "and kode_brng='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),7).toString()+"' "+
