@@ -130,7 +130,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             sqlpscariobat="select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
                           "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
                           "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total, "+
-                          "sum((detail_pemberian_obat.h_beli*detail_pemberian_obat.jml)) as totalbeli, ifnull(detail_pemberian_obat.pecahkronis, '0') as pecahkronis "+
+                          "sum((detail_pemberian_obat.h_beli*detail_pemberian_obat.jml)) as totalbeli, ifnull(detail_pemberian_obat.pecahkronis, '0') as pecahkronis, ifnull(detail_pemberian_obat.kemoterapi, '0') as kemoterapi "+
                           "from detail_pemberian_obat inner join databarang inner join jenis "+
                           "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
                           "detail_pemberian_obat.no_rawat=? group by detail_pemberian_obat.kode_brng, detail_pemberian_obat.pecahkronis order by jenis.nama",
@@ -2463,7 +2463,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             
                             boolean simpan = false;
                             if (j==1){ //jika pilih nota tanpa rincian obat
-                                if (tabModeRwJlDr.getValueAt(i,8).toString().equalsIgnoreCase("obat")){
+                                if (tabModeRwJlDr.getValueAt(i,8).toString().equalsIgnoreCase("obat")||tabModeRwJlDr.getValueAt(i,8).toString().equalsIgnoreCase("obatKemo")){
                                     if(tabModeRwJlDr.getValueAt(i,1).toString().replaceAll("\\s+","").equalsIgnoreCase("obat&bhp")){
                                         simpan = true;
                                     } else {
@@ -4219,6 +4219,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 if(detailbhp>0){
                     tabModeRwJlDr.addRow(new Object[]{true,"","Paket Obat/BHP",":",null,null,null,detailbhp,"Ralan Dokter"});
                 }
+                if (Sequel.cariInteger("select count(*) from detail_pemberian_obat where no_rawat = '"+TNoRw.getText()+"' and kemoterapi = '1'")>0){
+                    prosesCariObatKemo();
+                }
              }
              if(chkTambahan.isSelected()==true){                           
                 try {
@@ -4908,58 +4911,62 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 //embalase=0;
                 if(centangobatralan.equals("Yes")){
                     while(rscariobat.next()){
-                        //System.out.println("1. pecah kronis = "+rscariobat.getString("pecahkronis"));
-                        if (rscariobat.getString("pecahkronis").equalsIgnoreCase("1")){
-                            //add row klaim obat kronis
-                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
-                        } else {
-                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                        if (!rscariobat.getString("kemoterapi").equalsIgnoreCase("1")){
+                            //System.out.println("1. pecah kronis = "+rscariobat.getString("pecahkronis"));
+                            if (rscariobat.getString("pecahkronis").equalsIgnoreCase("1")){
+                                //add row klaim obat kronis
+                                tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                           rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                           (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            } else {
+                                tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
+                                           rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                           (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            }
+
+    //                        if (rscariobat.getString("nama").equalsIgnoreCase("KRONIS")){
+    //                            double jumlah_kronis = 7 * rscariobat.getDouble("jml")/30;
+    //                            double jumlah_nonkronis = rscariobat.getDouble("jml") - jumlah_kronis;
+    //                            //get biaya total
+    //                            double total_kronis = jumlah_kronis * rscariobat.getDouble("biaya_obat");
+    //                            double total_nonkronis = jumlah_nonkronis * rscariobat.getDouble("biaya_obat");
+    //                            //System.out.println("Kronis "+jumlah_kronis+" jumlah_obat "+jumlah_obat);
+    //                            
+    //                            //add row klaim obat kronis
+    //                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+    //                                       rscariobat.getDouble("biaya_obat"),jumlah_kronis,rscariobat.getDouble("tambahan"),
+    //                                       (total_kronis+rscariobat.getDouble("tambahan")),"Obat"});
+    //                            subttl=subttl+total_kronis+rscariobat.getDouble("tambahan");
+    //                            //add row klaim obat biasa
+    //                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
+    //                                       rscariobat.getDouble("biaya_obat"),jumlah_nonkronis,rscariobat.getDouble("tambahan"),
+    //                                       (total_nonkronis+rscariobat.getDouble("tambahan")),"Obat"});
+    //                            subttl=subttl+total_nonkronis+rscariobat.getDouble("tambahan");
+    //                        } else{
+    //                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+    //                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+    //                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+    //                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+    //                        }
                         }
-                        
-//                        if (rscariobat.getString("nama").equalsIgnoreCase("KRONIS")){
-//                            double jumlah_kronis = 7 * rscariobat.getDouble("jml")/30;
-//                            double jumlah_nonkronis = rscariobat.getDouble("jml") - jumlah_kronis;
-//                            //get biaya total
-//                            double total_kronis = jumlah_kronis * rscariobat.getDouble("biaya_obat");
-//                            double total_nonkronis = jumlah_nonkronis * rscariobat.getDouble("biaya_obat");
-//                            //System.out.println("Kronis "+jumlah_kronis+" jumlah_obat "+jumlah_obat);
-//                            
-//                            //add row klaim obat kronis
-//                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-//                                       rscariobat.getDouble("biaya_obat"),jumlah_kronis,rscariobat.getDouble("tambahan"),
-//                                       (total_kronis+rscariobat.getDouble("tambahan")),"Obat"});
-//                            subttl=subttl+total_kronis+rscariobat.getDouble("tambahan");
-//                            //add row klaim obat biasa
-//                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
-//                                       rscariobat.getDouble("biaya_obat"),jumlah_nonkronis,rscariobat.getDouble("tambahan"),
-//                                       (total_nonkronis+rscariobat.getDouble("tambahan")),"Obat"});
-//                            subttl=subttl+total_nonkronis+rscariobat.getDouble("tambahan");
-//                        } else{
-//                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-//                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-//                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-//                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
-//                        }
                     }
                 }else{
                     while(rscariobat.next()){
-                        if (rscariobat.getString("pecahkronis").equalsIgnoreCase("1")){
-                            //add row klaim obat kronis
-                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
-                        } else {
-                            tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                            subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                        if (!rscariobat.getString("kemoterapi").equalsIgnoreCase("1")){
+                            if (rscariobat.getString("pecahkronis").equalsIgnoreCase("1")){
+                                //add row klaim obat kronis
+                                tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                           rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                           (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            } else {
+                                tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ",":", //("+rscariobat.getString("nama")+")
+                                           rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                           (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            }
                         }
 //                        tabModeRwJlDr.addRow(new Object[]{false,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
 //                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
@@ -4997,6 +5004,59 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
 
+    private void prosesCariObatKemo(){
+        
+        tabModeRwJlDr.addRow(new Object[]{true,"Obat Kemoterapi",":","",null,null,null,null,"ObatKemo"});
+        
+        subttl=0;
+        obatlangsung=0;
+        
+        
+        try{      
+            pscariobat=koneksi.prepareStatement(sqlpscariobat);
+            try {
+                pscariobat.setString(1,TNoRw.getText());
+                rscariobat=pscariobat.executeQuery();
+                //embalase=0;
+                while(rscariobat.next()){
+                    //System.out.println("1. pecah kronis = "+rscariobat.getString("pecahkronis"));
+                    if (rscariobat.getString("kemoterapi").equalsIgnoreCase("1")){
+                        //add row klaim obat kronis
+                        tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                   rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                   (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"ObatKemo"});
+                        subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                    }
+                }                    
+            } catch (Exception e) {
+                System.out.println("Notifikasi : "+e); 
+            } finally{
+                if(rscariobat!=null){
+                    rscariobat.close();
+                }
+                if(pscariobat!=null){
+                    pscariobat.close();
+                }
+            }            
+        }catch(Exception e){
+            System.out.println("Notifikasi : "+e);
+        }     
+        
+        if(subttl>0){ 
+            if(tampilkan_ppnobat_ralan.equals("Yes")){
+                ppnobat=Math.round(subttl*0.11);
+                obatlangsung=obatlangsung+ppnobat;
+                if(centangobatralan.equals("Yes")){
+                    tabModeRwJlDr.addRow(new Object[]{true,"","PPN Obat",":",ppnobat,1,0,ppnobat,"ObatKemo"});
+                }else{
+                    tabModeRwJlDr.addRow(new Object[]{false,"","PPN Obat",":",ppnobat,1,0,ppnobat,"ObatKemo"});
+                }
+                tabModeRwJlDr.addRow(new Object[]{true,"",""+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObatKemo"});            
+            }else{
+                tabModeRwJlDr.addRow(new Object[]{true,"",""+Valid.SetAngka3(subttl),"",null,null,null,null,"TtlObatKemo"});            
+            }                
+        }
+    }
 
     private void isHitung() {   
         ttl=0;

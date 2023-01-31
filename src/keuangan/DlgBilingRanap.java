@@ -232,7 +232,13 @@ public class DlgBilingRanap extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
-
+    private String sqlpscariobat="select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
+                          "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
+                          "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total, "+
+                          "sum((detail_pemberian_obat.h_beli*detail_pemberian_obat.jml)) as totalbeli, ifnull(detail_pemberian_obat.pecahkronis, '0') as pecahkronis, ifnull(detail_pemberian_obat.kemoterapi, '0') as kemoterapi "+
+                          "from detail_pemberian_obat inner join databarang inner join jenis "+
+                          "on detail_pemberian_obat.kode_brng=databarang.kode_brng and databarang.kdjns=jenis.kdjns where "+
+                          "detail_pemberian_obat.no_rawat=? group by detail_pemberian_obat.kode_brng, detail_pemberian_obat.pecahkronis order by jenis.nama";
     /** Creates new form DlgBiling
      * @param parent
      * @param modal */
@@ -4711,7 +4717,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 
                 prosesCariTindakan(TNoRw.getText());
                 prosesCariOperasi(TNoRw.getText());
-                prosesCariObat(TNoRw.getText());                   
+                prosesCariObat(TNoRw.getText());    
+                if (Sequel.cariInteger("select count(*) from detail_pemberian_obat where no_rawat = '"+TNoRw.getText()+"' and kemoterapi = '1'")>0){
+                    prosesCariObatKemo();
+                }               
                 prosesResepPulang(TNoRw.getText());
                 prosesCariTambahan(TNoRw.getText());  
                 prosesCariPotongan(TNoRw.getText());     
@@ -4720,7 +4729,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     tabModeRwJlDr.addRow(new Object[]{true,"Biaya Perawatan Bayi",":","",null,null,null,null,"-"});                    
                     prosesCariTindakan(norawatbayi);   
                     prosesCariOperasi(norawatbayi);
-                    prosesCariObat(norawatbayi);  
+                    prosesCariObat(norawatbayi);
+                    if (Sequel.cariInteger("select count(*) from detail_pemberian_obat where no_rawat = '"+TNoRw.getText()+"' and kemoterapi = '1'")>0){
+                        prosesCariObatKemo();
+                    }  
                     prosesResepPulang(norawatbayi);
                     prosesCariTambahan(norawatbayi);  
                     prosesCariPotongan(norawatbayi);
@@ -5195,6 +5207,55 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(detailbhp>0){
             tabModeRwJlDr.addRow(new Object[]{true,x+". Paket Obat/BHP",":","",null,null,null,detailbhp,"Ralan Dokter"});
             x++;
+        }
+    }
+    
+    private void prosesCariObatKemo(){
+        
+        tabModeRwJlDr.addRow(new Object[]{true,"Obat Kemoterapi",":","",null,null,null,null,"ObatKemo"});
+        
+        subttl=0;
+        obatlangsung=0;
+        
+        
+        try{      
+            pscariobat=koneksi.prepareStatement(sqlpscariobat);
+            try {
+                pscariobat.setString(1,TNoRw.getText());
+                rscariobat=pscariobat.executeQuery();
+                //embalase=0;
+                while(rscariobat.next()){
+                    //System.out.println("1. pecah kronis = "+rscariobat.getString("pecahkronis"));
+                    if (rscariobat.getString("kemoterapi").equalsIgnoreCase("1")){
+                        //add row klaim obat kronis
+                        tabModeRwJlDr.addRow(new Object[]{true,"",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                   rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                   (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"ObatKemo"});
+                        subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                    }
+                }                    
+            } catch (Exception e) {
+                System.out.println("Notifikasi : "+e); 
+            } finally{
+                if(rscariobat!=null){
+                    rscariobat.close();
+                }
+                if(pscariobat!=null){
+                    pscariobat.close();
+                }
+            }            
+        }catch(Exception e){
+            System.out.println("Notifikasi : "+e);
+        }     
+        
+        if(subttl>0){ 
+            if(centangobatranap.equals("Yes")){
+                tabModeRwJlDr.addRow(new Object[]{true,"","PPN Obat",":",ppnobat,1,0,ppnobat,"ObatKemo"});
+            }else{
+                tabModeRwJlDr.addRow(new Object[]{false,"","PPN Obat",":",ppnobat,1,0,ppnobat,"ObatKemo"});
+            }
+            tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat Kemoterapi: "+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObatKemo"});
+//            tabModeRwJlDr.addRow(new Object[]{true,"",""+Valid.SetAngka3(subttl+ppnobat),"",null,null,null,null,"TtlObatKemo"});                   
         }
     }
     

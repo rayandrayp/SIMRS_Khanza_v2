@@ -1363,8 +1363,8 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-//        String excelFileName = "C:\\DataLaporanSO\\Laporan-"+ThnCari.getSelectedItem()+""+BlnCari.getSelectedItem()+".xls";//name of excel file
-        String excelFileName = "";
+        String excelFileName = "C:\\DataLaporanSO\\Laporan-"+Tgl1.getSelectedItem()+""+Tgl2.getSelectedItem()+".xls";//name of excel file
+//        String excelFileName = "";
         String sheetName = "Sheet1";//name of sheet
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet(sheetName) ;
