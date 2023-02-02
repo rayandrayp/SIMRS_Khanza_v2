@@ -211,7 +211,7 @@ public final class DlgMetodeRacik extends javax.swing.JDialog {
         label36.setName("label36"); // NOI18N
         label36.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label36);
-        label36.setBounds(510, 10, 50, 23);
+        label36.setBounds(520, 10, 40, 23);
 
         Nm.setHighlighter(null);
         Nm.setName("Nm"); // NOI18N
@@ -493,7 +493,7 @@ public final class DlgMetodeRacik extends javax.swing.JDialog {
         }else if(signa.getText().trim().equals("")){
             Valid.textKosong(signa,"Signa");
         }else{
-            Valid.editTable(tabMode,"metode_racik","kd_racik","?","nm_racik=?,kd_racik=?,signa=?",3,new String[]{
+            Valid.editTable(tabMode,"metode_racik","kd_racik","?","nm_racik=?,kd_racik=?,signa=?",4,new String[]{
                 Nm.getText(),Kd.getText(),signa.getText(),tbKamar.getValueAt(tbKamar.getSelectedRow(),1).toString()
             });
             if(tabMode.getRowCount()!=0){BtnCariActionPerformed(evt);}
