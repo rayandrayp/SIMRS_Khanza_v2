@@ -525,13 +525,23 @@
                 <Component class="widget.ComboBox" name="Kelas">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="6">
-                        <StringItem index="0" value="Kelas 1"/>
-                        <StringItem index="1" value="Kelas 2"/>
-                        <StringItem index="2" value="Kelas 3"/>
-                        <StringItem index="3" value="Kelas Utama"/>
-                        <StringItem index="4" value="Kelas VIP"/>
-                        <StringItem index="5" value="Kelas VVIP"/>
+                      <StringArray count="16">
+                        <StringItem index="0" value="KELAS I"/>
+                        <StringItem index="1" value="KELAS II"/>
+                        <StringItem index="2" value="KELAS III"/>
+                        <StringItem index="3" value="UTAMA"/>
+                        <StringItem index="4" value="VIP"/>
+                        <StringItem index="5" value="VVIP"/>
+                        <StringItem index="6" value="ICU"/>
+                        <StringItem index="7" value="ICCU"/>
+                        <StringItem index="8" value="NICU"/>
+                        <StringItem index="9" value="PICU"/>
+                        <StringItem index="10" value="IGD"/>
+                        <StringItem index="11" value="UGD"/>
+                        <StringItem index="12" value="RUANG BERSALIN"/>
+                        <StringItem index="13" value="HCU"/>
+                        <StringItem index="14" value="RUANG ISOLASI"/>
+                        <StringItem index="15" value="-"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="Kelas" noResource="true"/>

@@ -610,7 +610,7 @@ public final class AplicareKetersediaanKamar extends javax.swing.JDialog {
         FormInput.add(jLabel5);
         jLabel5.setBounds(0, 72, 112, 23);
 
-        Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kelas 1", "Kelas 2", "Kelas 3", "Kelas Utama", "Kelas VIP", "Kelas VVIP" }));
+        Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "KELAS I", "KELAS II", "KELAS III", "UTAMA", "VIP", "VVIP", "ICU", "ICCU", "NICU", "PICU", "IGD", "UGD", "RUANG BERSALIN", "HCU", "RUANG ISOLASI", "-" }));
         Kelas.setName("Kelas"); // NOI18N
         Kelas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

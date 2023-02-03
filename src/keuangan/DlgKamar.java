@@ -658,7 +658,7 @@ public final class DlgKamar extends javax.swing.JDialog {
         panelGlass4.add(jLabel5);
         jLabel5.setBounds(420, 42, 70, 23);
 
-        Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kelas 1", "Kelas 2", "Kelas 3", "Kelas Utama", "Kelas VIP", "Kelas VVIP" }));
+        Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VVIP", "VIP", "UTAMA", "KELAS I", "KELAS II", "KELAS III", "ICU", "ICCU", "NICU", "PICU", "IGD", "UGD", "RUANG BERSALIN", "HCU", "RUANG ISOLASI", "NIMCU" }));
         Kelas.setName("Kelas"); // NOI18N
         Kelas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

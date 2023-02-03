@@ -19,7 +19,6 @@ public final class akses {
     private static PreparedStatement ps,ps2;
     private static ResultSet rs,rs2;
     
-    private sekuel Sequel=new sekuel();
     private static String kode="",kdbangsal="",alamatip="",namars="",alamatrs="",kabupatenrs="",propinsirs="",kontakrs="",emailrs="",form="",namauser=""; 
     private static int jml1=0,jml2=0,lebar=0,tinggi=0;
     private static boolean softdeletes=true;
@@ -200,7 +199,8 @@ public final class akses {
             jawaban_pio_apoteker=false,surat_persetujuan_umum=false,transfer_pasien_antar_ruang=false,satu_sehat_referensi_dokter=false,satu_sehat_referensi_pasien=false,
             satu_sehat_mapping_departemen=false,satu_sehat_mapping_lokasi=false,satu_sehat_kirim_encounter=false,catatan_cek_gds=false,satu_sehat_kirim_condition=false,
             checklist_pre_operasi=false,satu_sehat_kirim_observationttv=false,signin_sebelum_anestesi=false,satu_sehat_kirim_procedure=false,operasi_per_bulan=false,
-            timeout_sebelum_insisi=false,signout_sebelum_menutup_luka=false,dapur_barang=false,dapur_opname=false,satu_sehat_mapping_vaksin=false,dapur_suplier=false;
+            timeout_sebelum_insisi=false,signout_sebelum_menutup_luka=false,dapur_barang=false,dapur_opname=false,satu_sehat_mapping_vaksin=false,dapur_suplier=false,
+            satu_sehat_kirim_Immunization=false,checklist_post_operasi=false,dapur_pembelian=false,dapur_stok_keluar=false,dapur_riwayat_barang=false,permintaan_dapur=false;
     private static boolean data_Yanmed=false;
     
     public static void setData(String user, String pass) {
@@ -1134,6 +1134,12 @@ public final class akses {
                         akses.dapur_opname=true;
                         akses.satu_sehat_mapping_vaksin=true;
                         akses.dapur_suplier=true;
+                        akses.satu_sehat_kirim_Immunization=true;
+                        akses.checklist_post_operasi=true;
+                        akses.dapur_pembelian=true;
+                        akses.dapur_stok_keluar=true;
+                        akses.dapur_riwayat_barang=true;
+                        akses.permintaan_dapur=true;
                         akses.data_Yanmed=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
@@ -2051,6 +2057,12 @@ public final class akses {
                         akses.dapur_opname=rs2.getBoolean("dapur_opname");
                         akses.satu_sehat_mapping_vaksin=rs2.getBoolean("satu_sehat_mapping_vaksin");
                         akses.dapur_suplier=rs2.getBoolean("dapur_suplier");
+                        akses.satu_sehat_kirim_Immunization=rs2.getBoolean("satu_sehat_kirim_Immunization");
+                        akses.checklist_post_operasi=rs2.getBoolean("checklist_post_operasi");
+                        akses.dapur_pembelian=rs2.getBoolean("dapur_pembelian");
+                        akses.dapur_stok_keluar=rs2.getBoolean("dapur_stok_keluar");
+                        akses.dapur_riwayat_barang=rs2.getBoolean("dapur_riwayat_barang");
+                        akses.permintaan_dapur=rs2.getBoolean("permintaan_dapur");
                         akses.data_Yanmed=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
@@ -2966,6 +2978,11 @@ public final class akses {
                         akses.dapur_opname=false;
                         akses.satu_sehat_mapping_vaksin=false;
                         akses.dapur_suplier=false;
+                        akses.satu_sehat_kirim_Immunization=false;
+                        akses.checklist_post_operasi=false;
+                        akses.dapur_pembelian=false;
+                        akses.dapur_stok_keluar=false;
+                        akses.dapur_riwayat_barang=false;
                         akses.data_Yanmed=false;
                     }
                 } catch (Exception e) {
@@ -3938,6 +3955,12 @@ public final class akses {
     public static boolean getdapur_opname(){return akses.dapur_opname;}
     public static boolean getsatu_sehat_mapping_vaksin(){return akses.satu_sehat_mapping_vaksin;}
     public static boolean getdapur_suplier(){return akses.dapur_suplier;}
+    public static boolean getsatu_sehat_kirim_Immunization(){return akses.satu_sehat_kirim_Immunization;}
+    public static boolean getchecklist_post_operasi(){return akses.checklist_post_operasi;}
+    public static boolean getdapur_pembelian(){return akses.dapur_pembelian;}
+    public static boolean getdapur_stok_keluar(){return akses.dapur_stok_keluar;}
+    public static boolean getdapur_riwayat_barang(){return akses.dapur_riwayat_barang;}
+    public static boolean getpermintaan_dapur(){return akses.permintaan_dapur;}
     public static boolean getSoftDeletes(){return akses.softdeletes;}
     public static boolean getdata_Yanmed(){return akses.data_Yanmed;}
 }   

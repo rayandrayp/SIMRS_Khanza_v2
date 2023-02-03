@@ -789,9 +789,9 @@ private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
         try{
             ps=koneksi.prepareStatement("select ipsrsbarang.kode_brng, concat(ipsrsbarang.nama_brng,' (',ipsrsbarang.jenis,')'),ipsrsbarang.kode_sat,stok, "+
-                    " ipsrsbarang.harga from ipsrsbarang where ipsrsbarang.status='1' and ipsrsbarang.kode_brng like ? or "+
-                    " ipsrsbarang.status='1' and ipsrsbarang.nama_brng like ? or "+
-                    " ipsrsbarang.status='1' and ipsrsbarang.jenis like ? order by ipsrsbarang.nama_brng");
+                    " ipsrsbarang.harga from ipsrsbarang where ipsrsbarang.status='1' and "+
+                    " (ipsrsbarang.kode_brng like ? or ipsrsbarang.nama_brng like ? or ipsrsbarang.jenis like ?)"+
+                    " order by ipsrsbarang.nama_brng");
             
             try{  
                 ps.setString(1,"%"+TCari.getText().trim()+"%");
@@ -852,7 +852,7 @@ private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     private void autoNomor() {
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_keluar,3),signed)),0) from ipsrspengeluaran where tanggal='"+Valid.SetTgl(TglKeluar.getSelectedItem()+"")+"' ",
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(ipsrspengeluaran.no_keluar,3),signed)),0) from ipsrspengeluaran where ipsrspengeluaran.tanggal='"+Valid.SetTgl(TglKeluar.getSelectedItem()+"")+"' ",
                 "SKNM"+TglKeluar.getSelectedItem().toString().substring(8,10)+TglKeluar.getSelectedItem().toString().substring(3,5)+TglKeluar.getSelectedItem().toString().substring(0,2),3,NoKeluar); 
     }
 
@@ -861,7 +861,7 @@ private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         try{
             Keterangan.setText(keterangan);
             ps=koneksi.prepareStatement("select ipsrsbarang.kode_brng, concat(ipsrsbarang.nama_brng,' (',ipsrsbarang.jenis,')'),"+
-                    " ipsrsbarang.kode_sat,stok, ipsrsbarang.harga,detail_permintaan_non_medis.jumlah "+
+                    " ipsrsbarang.kode_sat,ipsrsbarang.stok,ipsrsbarang.harga,detail_permintaan_non_medis.jumlah "+
                     " from ipsrsbarang inner join detail_permintaan_non_medis "+
                     " on ipsrsbarang.kode_brng=detail_permintaan_non_medis.kode_brng "+
                     " where detail_permintaan_non_medis.no_permintaan=? order by ipsrsbarang.nama_brng");
