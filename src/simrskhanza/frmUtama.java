@@ -8569,7 +8569,7 @@ public class frmUtama extends javax.swing.JFrame {
         LbVersion.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LbVersion.setForeground(new java.awt.Color(50, 50, 50));
         LbVersion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LbVersion.setText("Versi");
+        LbVersion.setText("Versi 2.1");
         LbVersion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LbVersion.setName("LbVersion"); // NOI18N
         LbVersion.setPreferredSize(new java.awt.Dimension(120, 23));
