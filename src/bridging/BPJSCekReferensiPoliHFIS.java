@@ -295,6 +295,7 @@ public final class BPJSCekReferensiPoliHFIS extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        System.out.println("poli "+Poli.getText());
         tampil(Poli.getText());
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
@@ -340,7 +341,7 @@ public final class BPJSCekReferensiPoliHFIS extends javax.swing.JDialog {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-	    headers.add("x-cons-id",koneksiDB.CONSIDAPIMOBILEJKN());
+	    headers.add("x-cons-id",koneksiDB.CONSIDAPIMOBILEJKN());	    
 	    utc=String.valueOf(api.GetUTCdatetimeAsString());
 	    headers.add("x-timestamp",utc);
 	    headers.add("x-signature",api.getHmac(utc));

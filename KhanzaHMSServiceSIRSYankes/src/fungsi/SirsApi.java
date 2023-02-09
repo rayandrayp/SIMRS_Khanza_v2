@@ -30,8 +30,9 @@ public class SirsApi {
     public String getHmac() {        
         try {                    
             MessageDigest md = MessageDigest.getInstance("MD5");
+            System.out.println("pass "+pass);
             byte[] hashInBytes = md.digest(pass.getBytes(StandardCharsets.UTF_8));
-
+            
             StringBuilder sb = new StringBuilder();
             for (byte b : hashInBytes) {
                 sb.append(String.format("%02x", b));
@@ -40,6 +41,7 @@ public class SirsApi {
         } catch (Exception ex) {
             System.out.println("Notifikasi : "+ex);
         }
+        System.out.println("key "+Key);
 	return Key;
     }
 

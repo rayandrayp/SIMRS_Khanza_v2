@@ -69,6 +69,7 @@ import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanPelayananInformasiObat;
 import permintaan.DlgPermintaanRadiologi;
 import permintaan.DlgPermintaanRanap;
+import rekammedis.RMChecklistPostOperasi;
 import rekammedis.RMChecklistPreOperasi;
 import rekammedis.RMDataAsuhanGizi;
 import rekammedis.RMDataCatatanCekGDS;
@@ -608,6 +609,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnSignOutSebelumMenutupLuka = new javax.swing.JMenuItem();
         MnPenilaianPreOp = new javax.swing.JMenuItem();
         MnPenilaianPreAnestesi = new javax.swing.JMenuItem();
+        MnChecklistPostOperasi = new javax.swing.JMenuItem();
         MnPenilaianFisioterapi = new javax.swing.JMenuItem();
         MnPenilaianPsikolog = new javax.swing.JMenuItem();
         MnUjiFungsiKFR = new javax.swing.JMenuItem();
@@ -1426,6 +1428,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnRMOperasi.add(MnPenilaianPreAnestesi);
+
+        MnChecklistPostOperasi.setBackground(new java.awt.Color(255, 255, 254));
+        MnChecklistPostOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnChecklistPostOperasi.setForeground(new java.awt.Color(50, 50, 50));
+        MnChecklistPostOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnChecklistPostOperasi.setText("Check List Post Operasi");
+        MnChecklistPostOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnChecklistPostOperasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnChecklistPostOperasi.setName("MnChecklistPostOperasi"); // NOI18N
+        MnChecklistPostOperasi.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnChecklistPostOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnChecklistPostOperasiActionPerformed(evt);
+            }
+        });
+        MnRMOperasi.add(MnChecklistPostOperasi);
 
         MnDataRM.add(MnRMOperasi);
 
@@ -12239,6 +12257,25 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_ppBerkasRMBtnPrintActionPerformed
 
+    private void MnChecklistPostOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnChecklistPostOperasiActionPerformed
+        if(TPasienCari.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu data pasien dengan menklik data pada table...!!!");
+            tbKasirRalan.requestFocus();
+        }else{
+            if(tbKasirRalan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMChecklistPostOperasi form=new RMChecklistPostOperasi(null,false);
+                form.isCek();
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                form.emptTeks();
+                form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnChecklistPostOperasiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -12316,6 +12353,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnCetakSuratSehat;
     private javax.swing.JMenuItem MnCetakSuratSehat1;
     private javax.swing.JMenuItem MnCetakSuratSehat2;
+    private javax.swing.JMenuItem MnChecklistPostOperasi;
     private javax.swing.JMenuItem MnChecklistPreOperasi;
     private javax.swing.JMenuItem MnCopyResep;
     private javax.swing.JMenuItem MnCopyResep2;

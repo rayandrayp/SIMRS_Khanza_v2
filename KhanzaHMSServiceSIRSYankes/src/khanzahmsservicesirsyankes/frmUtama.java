@@ -170,7 +170,7 @@ public class frmUtama extends javax.swing.JFrame {
                 TeksArea.append(jam+":"+menit+":"+detik+"\n");
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date();
-                if(menit.equals("01")&&detik.equals("01")){
+                if(menit.equals("49")&&detik.equals("21")){
                     if(jam.equals("01")&&menit.equals("01")&&detik.equals("01")){
                         TeksArea.setText("");
                     }
