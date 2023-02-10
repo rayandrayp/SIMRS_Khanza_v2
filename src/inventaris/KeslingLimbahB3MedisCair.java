@@ -40,7 +40,7 @@ import kepegawaian.DlgCariPetugas;
  *
  * @author perpustakaan
  */
-public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
+public final class KeslingLimbahB3MedisCair extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -52,14 +52,14 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
-    public KeslingLimbahB3Medis(java.awt.Frame parent, boolean modal) {
+    public KeslingLimbahB3MedisCair(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(8,1);
         setSize(628,674);
 
         tabMode=new DefaultTableModel(null,new Object[]{
-                "No.","NIP","Petugas","Tanggal","Jumlah(Kg)","Tujuan Penyerahan","Bukti No.Dokumen","Sisa di TPS(Kg)","Keterangan"
+                "No.","NIP","Petugas","Tanggal","Jumlah(L)","Tujuan Penyerahan","Bukti No.Dokumen","Sisa di TPS(L)","Keterangan"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -211,7 +211,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Limbah Padat B3 Medis Keluar TPS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Limbah Cair B3 Medis Keluar TPS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -460,7 +460,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
         FormInput.setPreferredSize(new java.awt.Dimension(70, 165));
         FormInput.setLayout(null);
 
-        jLabel3.setText("Jumlah (Kg) :");
+        jLabel3.setText("Jumlah (L) :");
         jLabel3.setName("jLabel3"); // NOI18N
         FormInput.add(jLabel3);
         jLabel3.setBounds(0, 70, 80, 23);
@@ -491,7 +491,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
         Tujuan.setBounds(415, 40, 310, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2023 10:01:52" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2023 11:18:29" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -547,7 +547,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
         FormInput.add(NmPetugas);
         NmPetugas.setBounds(204, 10, 268, 23);
 
-        jLabel15.setText("Sisa (Kg) :");
+        jLabel15.setText("Sisa (L) :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
         jLabel15.setBounds(161, 70, 70, 23);
@@ -642,7 +642,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
         }else if(NmPetugas.getText().trim().equals("")){
             Valid.textKosong(KdPetugas,"Petugas yang bertugas");
         }else{
-            if(Sequel.menyimpantf("kesling_limbah_b3medis","?,?,?,?,?,?,?","Data",7,new String[]{
+            if(Sequel.menyimpantf("kesling_limbah_b3medis_cair","?,?,?,?,?,?,?","Data",7,new String[]{
                     KdPetugas.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),
                     Jumlah.getText(),Tujuan.getText(),NoDokumen.getText(),Sisa.getText(),Keterangan.getText()
                 })==true){
@@ -674,7 +674,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()> -1){
-            Sequel.meghapus("kesling_limbah_b3medis","nip","tanggal",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            Sequel.meghapus("kesling_limbah_b3medis_cair","nip","tanggal",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
             tampil();
             emptTeks();
         }
@@ -701,7 +701,7 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
             Valid.textKosong(KdPetugas,"Petugas yang bertugas");
         }else{
             if(tbObat.getSelectedRow()> -1){
-                if(Sequel.mengedittf("kesling_limbah_b3medis","nip=? and tanggal=?","nip=?,tanggal=?,jmllimbah=?,tujuan_penyerahan=?,bukti_dokumen=?,sisa_di_tps=?,keterangan=?",9,new String[]{
+                if(Sequel.mengedittf("kesling_limbah_b3medis_cair","nip=? and tanggal=?","nip=?,tanggal=?,jmllimbah=?,tujuan_penyerahan=?,bukti_dokumen=?,sisa_di_tps=?,keterangan=?",9,new String[]{
                         KdPetugas.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),Jumlah.getText(),Tujuan.getText(),
                         NoDokumen.getText(),Sisa.getText(),Keterangan.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),3).toString()
                     })==true){
@@ -745,12 +745,12 @@ public final class KeslingLimbahB3Medis extends javax.swing.JDialog {
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             Valid.MyReportqry("rptLimbahB3Medis.jasper","report","::[ Data Limbah Padat B3 Medis Keluar TPS ]::",
-                   "select kesling_limbah_b3medis.nip,petugas.nama,kesling_limbah_b3medis.tanggal,"+
-                   "kesling_limbah_b3medis.jmllimbah,kesling_limbah_b3medis.tujuan_penyerahan,kesling_limbah_b3medis.bukti_dokumen, "+
-                   "kesling_limbah_b3medis.sisa_di_tps,kesling_limbah_b3medis.keterangan from kesling_limbah_b3medis inner join petugas on kesling_limbah_b3medis.nip=petugas.nip where "+
-                   "kesling_limbah_b3medis.tanggal between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59' and "+
-                   "(kesling_limbah_b3medis.nip like '%"+TCari.getText().trim()+"%' or petugas.nama like '%"+TCari.getText().trim()+"%' or kesling_limbah_b3medis.bukti_dokumen like '%"+TCari.getText().trim()+"%') "+
-                   "order by kesling_limbah_b3medis.tanggal",param);
+                   "select kesling_limbah_b3medis_cair.nip,petugas.nama,kesling_limbah_b3medis_cair.tanggal,"+
+                   "kesling_limbah_b3medis_cair.jmllimbah,kesling_limbah_b3medis_cair.tujuan_penyerahan,kesling_limbah_b3medis_cair.bukti_dokumen, "+
+                   "kesling_limbah_b3medis_cair.sisa_di_tps,kesling_limbah_b3medis_cair.keterangan from kesling_limbah_b3medis_cair inner join petugas on kesling_limbah_b3medis_cair.nip=petugas.nip where "+
+                   "kesling_limbah_b3medis_cair.tanggal between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59' and "+
+                   "(kesling_limbah_b3medis_cair.nip like '%"+TCari.getText().trim()+"%' or petugas.nama like '%"+TCari.getText().trim()+"%' or kesling_limbah_b3medis_cair.bukti_dokumen like '%"+TCari.getText().trim()+"%') "+
+                   "order by kesling_limbah_b3medis_cair.tanggal",param);
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -869,7 +869,7 @@ private void NmPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            KeslingLimbahB3Medis dialog = new KeslingLimbahB3Medis(new javax.swing.JFrame(), true);
+            KeslingLimbahB3MedisCair dialog = new KeslingLimbahB3MedisCair(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -928,12 +928,12 @@ private void NmPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                   "select kesling_limbah_b3medis.nip,petugas.nama,kesling_limbah_b3medis.tanggal,"+
-                   "kesling_limbah_b3medis.jmllimbah,kesling_limbah_b3medis.tujuan_penyerahan,kesling_limbah_b3medis.bukti_dokumen, "+
-                   "kesling_limbah_b3medis.sisa_di_tps,kesling_limbah_b3medis.keterangan from kesling_limbah_b3medis "+
-                   "inner join petugas on kesling_limbah_b3medis.nip=petugas.nip where "+
-                   "kesling_limbah_b3medis.tanggal between ? and ? and (kesling_limbah_b3medis.nip like ? or petugas.nama like ? or "+
-                   "kesling_limbah_b3medis.bukti_dokumen like ? ) order by kesling_limbah_b3medis.tanggal");
+                   "select kesling_limbah_b3medis_cair.nip,petugas.nama,kesling_limbah_b3medis_cair.tanggal,"+
+                   "kesling_limbah_b3medis_cair.jmllimbah,kesling_limbah_b3medis_cair.tujuan_penyerahan,kesling_limbah_b3medis_cair.bukti_dokumen, "+
+                   "kesling_limbah_b3medis_cair.sisa_di_tps,kesling_limbah_b3medis_cair.keterangan from kesling_limbah_b3medis_cair "+
+                   "inner join petugas on kesling_limbah_b3medis_cair.nip=petugas.nip where "+
+                   "kesling_limbah_b3medis_cair.tanggal between ? and ? and (kesling_limbah_b3medis_cair.nip like ? or petugas.nama like ? or "+
+                   "kesling_limbah_b3medis_cair.bukti_dokumen like ? ) order by kesling_limbah_b3medis_cair.tanggal");
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
@@ -1010,9 +1010,9 @@ private void NmPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getlimbah_b3_medis());
-        BtnHapus.setEnabled(akses.getlimbah_b3_medis());
-        BtnEdit.setEnabled(akses.getlimbah_b3_medis());
+        BtnSimpan.setEnabled(akses.getkesling_limbah_b3medis_cair());
+        BtnHapus.setEnabled(akses.getkesling_limbah_b3medis_cair());
+        BtnEdit.setEnabled(akses.getkesling_limbah_b3medis_cair());
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             btnPetugas.setEnabled(false);

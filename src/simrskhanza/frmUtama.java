@@ -598,7 +598,10 @@ import dapur.DapurInputStok;
 import dapur.DapurPembelian;
 import dapur.DapurPengeluaran;
 import dapur.DapurPermintaan;
+import dapur.DapurRBiayaHarian;
+import dapur.DapurRHPembelian;
 import dapur.DapurRiwayatBarang;
+import inventaris.KeslingLimbahB3MedisCair;
 import ipsrs.IPSRSPengajuanBarangNonMedis;
 import ipsrs.DlgSirkulasiNonMedis2;
 import ipsrs.IPSRSHibah;
@@ -1645,6 +1648,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnInfoBed1 = new javax.swing.JMenuItem();
         MnInfoBed3 = new javax.swing.JMenuItem();
         MnInfoBed5 = new javax.swing.JMenuItem();
+        MnInfoMobileJKN = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         MnKoleksiPenelitian = new javax.swing.JMenuItem();
         MnCariEbook = new javax.swing.JMenuItem();
@@ -1657,8 +1661,12 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir10 = new javax.swing.JMenuItem();
         MnRekapHadir4 = new javax.swing.JMenuItem();
         MnInfoBed4 = new javax.swing.JMenuItem();
+        MnAntrianFarmasi = new javax.swing.JMenu();
         MnRekapHadir5 = new javax.swing.JMenuItem();
         MnRekapHadir7 = new javax.swing.JMenuItem();
+        MnRekapHadir8 = new javax.swing.JMenuItem();
+        MnRekapHadir11 = new javax.swing.JMenuItem();
+        MnAntrianLaborat = new javax.swing.JMenu();
         MnInfoLaborat = new javax.swing.JMenuItem();
         MnInfoLaborat1 = new javax.swing.JMenuItem();
         MnInfoLaborat3 = new javax.swing.JMenuItem();
@@ -1878,7 +1886,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/01/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04/02/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7519,7 +7527,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapBulanan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnRekapBulanan1.setText("Pasien Kamar Inap");
         MnRekapBulanan1.setName("MnRekapBulanan1"); // NOI18N
-        MnRekapBulanan1.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnRekapBulanan1.setPreferredSize(new java.awt.Dimension(220, 30));
         MnRekapBulanan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapBulanan1ActionPerformed(evt);
@@ -7533,7 +7541,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapBulanan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnRekapBulanan3.setText("Telusur Kunjungan Pasien");
         MnRekapBulanan3.setName("MnRekapBulanan3"); // NOI18N
-        MnRekapBulanan3.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnRekapBulanan3.setPreferredSize(new java.awt.Dimension(220, 30));
         MnRekapBulanan3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapBulanan3ActionPerformed(evt);
@@ -7547,7 +7555,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapBulanan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnRekapBulanan2.setText("Penggunaan Kamar Inap");
         MnRekapBulanan2.setName("MnRekapBulanan2"); // NOI18N
-        MnRekapBulanan2.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnRekapBulanan2.setPreferredSize(new java.awt.Dimension(220, 30));
         MnRekapBulanan2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapBulanan2ActionPerformed(evt);
@@ -7561,7 +7569,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapBulanan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnRekapBulanan4.setText("Ketersediaan Stok Darah UTD");
         MnRekapBulanan4.setName("MnRekapBulanan4"); // NOI18N
-        MnRekapBulanan4.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnRekapBulanan4.setPreferredSize(new java.awt.Dimension(220, 30));
         MnRekapBulanan4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapBulanan4ActionPerformed(evt);
@@ -7584,7 +7592,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnTarif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnTarif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTarif.setName("MnTarif"); // NOI18N
-        MnTarif.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnTarif.setPreferredSize(new java.awt.Dimension(220, 30));
 
         MnSudahPulang1.setBackground(new java.awt.Color(255, 255, 254));
         MnSudahPulang1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7680,7 +7688,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnTarif1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnTarif1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTarif1.setName("MnTarif1"); // NOI18N
-        MnTarif1.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnTarif1.setPreferredSize(new java.awt.Dimension(220, 30));
 
         MnRekapHadir1.setBackground(new java.awt.Color(255, 255, 254));
         MnRekapHadir1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7766,6 +7774,20 @@ public class frmUtama extends javax.swing.JFrame {
         });
         MnTarif1.add(MnInfoBed5);
 
+        MnInfoMobileJKN.setBackground(new java.awt.Color(255, 255, 254));
+        MnInfoMobileJKN.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInfoMobileJKN.setForeground(new java.awt.Color(50, 90, 40));
+        MnInfoMobileJKN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnInfoMobileJKN.setText("Info Pasien Mobile JKN");
+        MnInfoMobileJKN.setName("MnInfoMobileJKN"); // NOI18N
+        MnInfoMobileJKN.setPreferredSize(new java.awt.Dimension(200, 30));
+        MnInfoMobileJKN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnInfoMobileJKNActionPerformed(evt);
+            }
+        });
+        MnTarif1.add(MnInfoMobileJKN);
+
         jMenu6.add(MnTarif1);
 
         jSeparator15.setBackground(new java.awt.Color(190, 220, 180));
@@ -7781,7 +7803,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnKoleksiPenelitian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnKoleksiPenelitian.setText("Koleksi Penelitian");
         MnKoleksiPenelitian.setName("MnKoleksiPenelitian"); // NOI18N
-        MnKoleksiPenelitian.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnKoleksiPenelitian.setPreferredSize(new java.awt.Dimension(220, 30));
         MnKoleksiPenelitian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnKoleksiPenelitianActionPerformed(evt);
@@ -7795,7 +7817,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnCariEbook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnCariEbook.setText("Cari Koleksi Ebook");
         MnCariEbook.setName("MnCariEbook"); // NOI18N
-        MnCariEbook.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnCariEbook.setPreferredSize(new java.awt.Dimension(220, 30));
         MnCariEbook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCariEbookActionPerformed(evt);
@@ -7809,7 +7831,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnCariInventarisPerpustakaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
         MnCariInventarisPerpustakaan.setText("Cari Inventaris Perpustakaan");
         MnCariInventarisPerpustakaan.setName("MnCariInventarisPerpustakaan"); // NOI18N
-        MnCariInventarisPerpustakaan.setPreferredSize(new java.awt.Dimension(250, 30));
+        MnCariInventarisPerpustakaan.setPreferredSize(new java.awt.Dimension(220, 30));
         MnCariInventarisPerpustakaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCariInventarisPerpustakaanActionPerformed(evt);
@@ -7837,7 +7859,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnAnjungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/family24.png"))); // NOI18N
         MnAnjungan.setText("Anjungan Registrasi Mandiri");
         MnAnjungan.setName("MnAnjungan"); // NOI18N
-        MnAnjungan.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnAnjungan.setPreferredSize(new java.awt.Dimension(205, 30));
         MnAnjungan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnAnjunganActionPerformed(evt);
@@ -7858,7 +7880,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnRekapHadir9.setText("Cetak Antrian Loket");
         MnRekapHadir9.setName("MnRekapHadir9"); // NOI18N
-        MnRekapHadir9.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir9.setPreferredSize(new java.awt.Dimension(205, 30));
         MnRekapHadir9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir9ActionPerformed(evt);
@@ -7872,7 +7894,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnRekapHadir3.setText("Antrian Loket");
         MnRekapHadir3.setName("MnRekapHadir3"); // NOI18N
-        MnRekapHadir3.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir3.setPreferredSize(new java.awt.Dimension(205, 30));
         MnRekapHadir3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir3ActionPerformed(evt);
@@ -7886,7 +7908,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnRekapHadir10.setText("Antrian Loket 2");
         MnRekapHadir10.setName("MnRekapHadir10"); // NOI18N
-        MnRekapHadir10.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir10.setPreferredSize(new java.awt.Dimension(205, 30));
         MnRekapHadir10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir10ActionPerformed(evt);
@@ -7900,7 +7922,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnRekapHadir4.setText("Antrian Unit/Poliklinik");
         MnRekapHadir4.setName("MnRekapHadir4"); // NOI18N
-        MnRekapHadir4.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir4.setPreferredSize(new java.awt.Dimension(205, 30));
         MnRekapHadir4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir4ActionPerformed(evt);
@@ -7914,7 +7936,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnInfoBed4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnInfoBed4.setText("Antrian Unit/Poliklinik 2");
         MnInfoBed4.setName("MnInfoBed4"); // NOI18N
-        MnInfoBed4.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnInfoBed4.setPreferredSize(new java.awt.Dimension(205, 30));
         MnInfoBed4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInfoBed4ActionPerformed(evt);
@@ -7922,75 +7944,127 @@ public class frmUtama extends javax.swing.JFrame {
         });
         jMenu7.add(MnInfoBed4);
 
+        MnAntrianFarmasi.setBackground(new java.awt.Color(255, 255, 254));
+        MnAntrianFarmasi.setForeground(new java.awt.Color(50, 90, 40));
+        MnAntrianFarmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
+        MnAntrianFarmasi.setText("Antrian Apotek");
+        MnAntrianFarmasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnAntrianFarmasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAntrianFarmasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnAntrianFarmasi.setName("MnAntrianFarmasi"); // NOI18N
+        MnAntrianFarmasi.setPreferredSize(new java.awt.Dimension(205, 30));
+
         MnRekapHadir5.setBackground(new java.awt.Color(255, 255, 254));
         MnRekapHadir5.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapHadir5.setForeground(new java.awt.Color(50, 90, 40));
         MnRekapHadir5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
-        MnRekapHadir5.setText("Antrian Apotek");
+        MnRekapHadir5.setText("Apotek 1");
         MnRekapHadir5.setName("MnRekapHadir5"); // NOI18N
-        MnRekapHadir5.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir5.setPreferredSize(new java.awt.Dimension(180, 30));
         MnRekapHadir5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir5ActionPerformed(evt);
             }
         });
-        jMenu7.add(MnRekapHadir5);
+        MnAntrianFarmasi.add(MnRekapHadir5);
 
         MnRekapHadir7.setBackground(new java.awt.Color(255, 255, 254));
         MnRekapHadir7.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapHadir7.setForeground(new java.awt.Color(50, 90, 40));
         MnRekapHadir7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
-        MnRekapHadir7.setText("Antrian Apotek 2");
+        MnRekapHadir7.setText("Apotek 2");
         MnRekapHadir7.setName("MnRekapHadir7"); // NOI18N
-        MnRekapHadir7.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir7.setPreferredSize(new java.awt.Dimension(180, 30));
         MnRekapHadir7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir7ActionPerformed(evt);
             }
         });
-        jMenu7.add(MnRekapHadir7);
+        MnAntrianFarmasi.add(MnRekapHadir7);
+
+        MnRekapHadir8.setBackground(new java.awt.Color(255, 255, 254));
+        MnRekapHadir8.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapHadir8.setForeground(new java.awt.Color(50, 90, 40));
+        MnRekapHadir8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
+        MnRekapHadir8.setText("Apotek 2 Racikan");
+        MnRekapHadir8.setName("MnRekapHadir8"); // NOI18N
+        MnRekapHadir8.setPreferredSize(new java.awt.Dimension(180, 30));
+        MnRekapHadir8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapHadir8ActionPerformed(evt);
+            }
+        });
+        MnAntrianFarmasi.add(MnRekapHadir8);
+
+        MnRekapHadir11.setBackground(new java.awt.Color(255, 255, 254));
+        MnRekapHadir11.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapHadir11.setForeground(new java.awt.Color(50, 90, 40));
+        MnRekapHadir11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
+        MnRekapHadir11.setText("Apotek 2 Non Racikan");
+        MnRekapHadir11.setName("MnRekapHadir11"); // NOI18N
+        MnRekapHadir11.setPreferredSize(new java.awt.Dimension(180, 30));
+        MnRekapHadir11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapHadir11ActionPerformed(evt);
+            }
+        });
+        MnAntrianFarmasi.add(MnRekapHadir11);
+
+        jMenu7.add(MnAntrianFarmasi);
+
+        MnAntrianLaborat.setBackground(new java.awt.Color(255, 255, 254));
+        MnAntrianLaborat.setForeground(new java.awt.Color(50, 90, 40));
+        MnAntrianLaborat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
+        MnAntrianLaborat.setText("Antrian Laborat");
+        MnAntrianLaborat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnAntrianLaborat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAntrianLaborat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnAntrianLaborat.setName("MnAntrianLaborat"); // NOI18N
+        MnAntrianLaborat.setPreferredSize(new java.awt.Dimension(205, 30));
 
         MnInfoLaborat.setBackground(new java.awt.Color(255, 255, 254));
         MnInfoLaborat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInfoLaborat.setForeground(new java.awt.Color(50, 90, 40));
         MnInfoLaborat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
-        MnInfoLaborat.setText("Antrian Laborat Patologi Klinis");
+        MnInfoLaborat.setText("Laborat Patologi Klinis");
         MnInfoLaborat.setName("MnInfoLaborat"); // NOI18N
-        MnInfoLaborat.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnInfoLaborat.setPreferredSize(new java.awt.Dimension(235, 30));
         MnInfoLaborat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInfoLaboratActionPerformed(evt);
             }
         });
-        jMenu7.add(MnInfoLaborat);
+        MnAntrianLaborat.add(MnInfoLaborat);
 
         MnInfoLaborat1.setBackground(new java.awt.Color(255, 255, 254));
         MnInfoLaborat1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInfoLaborat1.setForeground(new java.awt.Color(50, 90, 40));
         MnInfoLaborat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
-        MnInfoLaborat1.setText("Antrian Laborat Patologi Anatomi");
+        MnInfoLaborat1.setText("Laborat Patologi Anatomi");
         MnInfoLaborat1.setName("MnInfoLaborat1"); // NOI18N
-        MnInfoLaborat1.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnInfoLaborat1.setPreferredSize(new java.awt.Dimension(235, 30));
         MnInfoLaborat1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInfoLaborat1ActionPerformed(evt);
             }
         });
-        jMenu7.add(MnInfoLaborat1);
+        MnAntrianLaborat.add(MnInfoLaborat1);
 
         MnInfoLaborat3.setBackground(new java.awt.Color(255, 255, 254));
         MnInfoLaborat3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInfoLaborat3.setForeground(new java.awt.Color(50, 90, 40));
         MnInfoLaborat3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
-        MnInfoLaborat3.setText("Antrian Laborat Mikrobiologi & Bio Molekuler");
+        MnInfoLaborat3.setText("Laborat Mikrobiologi & Bio Molekuler");
         MnInfoLaborat3.setName("MnInfoLaborat3"); // NOI18N
-        MnInfoLaborat3.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnInfoLaborat3.setPreferredSize(new java.awt.Dimension(235, 30));
         MnInfoLaborat3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInfoLaborat3ActionPerformed(evt);
             }
         });
-        jMenu7.add(MnInfoLaborat3);
+        MnAntrianLaborat.add(MnInfoLaborat3);
+
+        jMenu7.add(MnAntrianLaborat);
 
         MnInfoLaborat2.setBackground(new java.awt.Color(255, 255, 254));
         MnInfoLaborat2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7998,7 +8072,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnInfoLaborat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         MnInfoLaborat2.setText("Antrian Radiologi");
         MnInfoLaborat2.setName("MnInfoLaborat2"); // NOI18N
-        MnInfoLaborat2.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnInfoLaborat2.setPreferredSize(new java.awt.Dimension(205, 30));
         MnInfoLaborat2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInfoLaborat2ActionPerformed(evt);
@@ -8019,7 +8093,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapHadir6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
         MnRekapHadir6.setText("Verifikasi Digital Klaim");
         MnRekapHadir6.setName("MnRekapHadir6"); // NOI18N
-        MnRekapHadir6.setPreferredSize(new java.awt.Dimension(275, 30));
+        MnRekapHadir6.setPreferredSize(new java.awt.Dimension(205, 30));
         MnRekapHadir6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapHadir6ActionPerformed(evt);
@@ -8061,521 +8135,6 @@ public class frmUtama extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void initCustomComponents() {
-        
-        btnPenggunaObatResep2 = new widget.ButtonBig();
-        btnLaporanNapza = new widget.ButtonBig();
-        
-        btnDataHAIsIDO = new widget.ButtonBig();
-        btnDataHAIsIDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnDataHAIsIDO.setText("Data HAIs IDO");
-        btnDataHAIsIDO.setIconTextGap(0);
-        btnDataHAIsIDO.setName("btnDataHAIsIDO"); // NOI18N
-        btnDataHAIsIDO.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnDataHAIsIDO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDataHAIsIDOActionPerformed(evt);
-            }
-        });
-        
-        // Laporan Yanmed
-        
-        btnYanmedRanap = new widget.ButtonBig();
-        btnYanmedRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedRanap.setText("Lap. Yanmed Ranap");
-        btnYanmedRanap.setIconTextGap(0);
-        btnYanmedRanap.setName("btnYanmedRanap"); // NOI18N
-        btnYanmedRanap.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedRanap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedRanapActionPerformed(evt);
-            }
-        });
-        btnYanmedRalan = new widget.ButtonBig();
-        btnYanmedRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedRalan.setText("Lap. Yanmed Ralan");
-        btnYanmedRalan.setIconTextGap(0);
-        btnYanmedRalan.setName("btnYanmedRalan"); // NOI18N
-        btnYanmedRalan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedRalan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedRalanActionPerformed(evt);
-            }
-        });
-        btnYanmedKebidananPerinatologi = new widget.ButtonBig();
-        btnYanmedKebidananPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedKebidananPerinatologi.setText("Lap. Yanmed Kebidanan & Perinatologi");
-        btnYanmedKebidananPerinatologi.setIconTextGap(0);
-        btnYanmedKebidananPerinatologi.setName("btnYanmedKebidananPerinatologi"); // NOI18N
-        btnYanmedKebidananPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedKebidananPerinatologi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedKebidananPerinatologiActionPerformed(evt);
-            }
-        });
-        btnYanmedGiatPembedahan = new widget.ButtonBig();
-        btnYanmedGiatPembedahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedGiatPembedahan.setText("Lap. Yanmed Giat Pembedahan");
-        btnYanmedGiatPembedahan.setIconTextGap(0);
-        btnYanmedGiatPembedahan.setName("btnYanmedGiatPembedahan"); // NOI18N
-        btnYanmedGiatPembedahan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedGiatPembedahan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedGiatPembedahanActionPerformed(evt);
-            }
-        });
-        btnYanmedPelRehabMedik = new widget.ButtonBig();
-        btnYanmedPelRehabMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedPelRehabMedik.setText("Lap. Yanmed Pelayanan Rehab Medik");
-        btnYanmedPelRehabMedik.setIconTextGap(0);
-        btnYanmedPelRehabMedik.setName("btnYanmedPelRehabMedik"); // NOI18N
-        btnYanmedPelRehabMedik.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedPelRehabMedik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedPelRehabMedikActionPerformed(evt);
-            }
-        });
-        btnYanmedGigi = new widget.ButtonBig();
-        btnYanmedGigi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedGigi.setText("Lap. Yanmed Gigi");
-        btnYanmedGigi.setIconTextGap(0);
-        btnYanmedGigi.setName("btnYanmedGigi"); // NOI18N
-        btnYanmedGigi.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedGigi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedGigiActionPerformed(evt);
-            }
-        });
-        btnYanmedMorbiditas = new widget.ButtonBig();
-        btnYanmedMorbiditas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedMorbiditas.setText("Lap. Yanmed Morbiditas");
-        btnYanmedMorbiditas.setIconTextGap(0);
-        btnYanmedMorbiditas.setName("btnYanmedMorbiditas"); // NOI18N
-        btnYanmedMorbiditas.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedMorbiditas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedMorbiditasActionPerformed(evt);
-            }
-        });
-        btnYanmedINOS = new widget.ButtonBig();
-        btnYanmedINOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedINOS.setText("Lap. Yanmed INOS");
-        btnYanmedINOS.setIconTextGap(0);
-        btnYanmedINOS.setName("btnYanmedINOS"); // NOI18N
-        btnYanmedINOS.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedINOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedINOSActionPerformed(evt);
-            }
-        });
-        btnYanmedKinerja = new widget.ButtonBig();
-        btnYanmedKinerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedKinerja.setText("Lap. Yanmed Kinerja");
-        btnYanmedKinerja.setIconTextGap(0);
-        btnYanmedKinerja.setName("btnYanmedKinerja"); // NOI18N
-        btnYanmedKinerja.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedKinerja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedKinerjaActionPerformed(evt);
-            }
-        });
-        btnYanmedPascaPersalinanKeguguran = new widget.ButtonBig();
-        btnYanmedPascaPersalinanKeguguran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedPascaPersalinanKeguguran.setText("Lap. Yanmed Pasca Persalinan & Keguguran");
-        btnYanmedPascaPersalinanKeguguran.setIconTextGap(0);
-        btnYanmedPascaPersalinanKeguguran.setName("btnYanmedPascaPersalinanKeguguran"); // NOI18N
-        btnYanmedPascaPersalinanKeguguran.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedPascaPersalinanKeguguran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedPascaPersalinanKeguguranActionPerformed(evt);
-            }
-        });
-        btnYanmedKBLamaBaru = new widget.ButtonBig();
-        btnYanmedKBLamaBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedKBLamaBaru.setText("Lap. Yanmed KB Lama & Baru");
-        btnYanmedKBLamaBaru.setIconTextGap(0);
-        btnYanmedKBLamaBaru.setName("btnYanmedKBLamaBaru"); // NOI18N
-        btnYanmedKBLamaBaru.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedKBLamaBaru.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedKBLamaBaruActionPerformed(evt);
-            }
-        });
-        btnYanmedKematian = new widget.ButtonBig();
-        btnYanmedKematian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedKematian.setText("Lap. Yanmed Kematian");
-        btnYanmedKematian.setIconTextGap(0);
-        btnYanmedKematian.setName("btnYanmedKematian"); // NOI18N
-        btnYanmedKematian.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedKematian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedKematianActionPerformed(evt);
-            }
-        });
-        btnYanmed10BesarPenyakit = new widget.ButtonBig();
-        btnYanmed10BesarPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmed10BesarPenyakit.setText("Lap. Yanmed 10 Besar Penyakit");
-        btnYanmed10BesarPenyakit.setIconTextGap(0);
-        btnYanmed10BesarPenyakit.setName("btnYanmed10BesarPenyakit"); // NOI18N
-        btnYanmed10BesarPenyakit.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmed10BesarPenyakit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmed10BesarPenyakitActionPerformed(evt);
-            }
-        });
-        btnYanmedRujukanWatlan = new widget.ButtonBig();
-        btnYanmedRujukanWatlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedRujukanWatlan.setText("Lap. Yanmed Rujukan Watlan");
-        btnYanmedRujukanWatlan.setIconTextGap(0);
-        btnYanmedRujukanWatlan.setName("btnYanmedRujukanWatlan"); // NOI18N
-        btnYanmedRujukanWatlan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedRujukanWatlan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedRujukanWatlanActionPerformed(evt);
-            }
-        });
-        btnYanmedRujukanWatnap = new widget.ButtonBig();
-        btnYanmedRujukanWatnap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedRujukanWatnap.setText("Lap. Yanmed Rujukan Watnap");
-        btnYanmedRujukanWatnap.setIconTextGap(0);
-        btnYanmedRujukanWatnap.setName("btnYanmedRujukanWatnap"); // NOI18N
-        btnYanmedRujukanWatnap.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedRujukanWatnap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedRujukanWatnapActionPerformed(evt);
-            }
-        });
-        btnYanmedPangkat = new widget.ButtonBig();
-        btnYanmedPangkat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedPangkat.setText("Lap. Yanmed Berdasarkan Kepangkatan");
-        btnYanmedPangkat.setIconTextGap(0);
-        btnYanmedPangkat.setName("btnYanmedPangkat"); // NOI18N
-        btnYanmedPangkat.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedPangkat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedPangkatActionPerformed(evt);
-            }
-        });
-        
-        //Laporan Yanmed SIRS
-        
-        btnYanmedSIRS10PenyakitRalan = new widget.ButtonBig();
-        btnYanmedSIRS10PenyakitRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRS10PenyakitRalan.setText("Lap. Yanmed SIRS RL 5.3 10 Penyakit Rawat Jalan");
-        btnYanmedSIRS10PenyakitRalan.setIconTextGap(0);
-        btnYanmedSIRS10PenyakitRalan.setName("btnYanmedSIRS10PenyakitRalan"); // NOI18N
-        btnYanmedSIRS10PenyakitRalan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRS10PenyakitRalan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRS10PenyakitRalanActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRS10PenyakitRanap = new widget.ButtonBig();
-        btnYanmedSIRS10PenyakitRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRS10PenyakitRanap.setText("Lap. Yanmed SIRS RL 5.4 10 Penyakit Rawat Inap");
-        btnYanmedSIRS10PenyakitRanap.setIconTextGap(0);
-        btnYanmedSIRS10PenyakitRanap.setName("btnYanmedSIRS10PenyakitRanap"); // NOI18N
-        btnYanmedSIRS10PenyakitRanap.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRS10PenyakitRanap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRS10PenyakitRanapActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRSCaraBayar = new widget.ButtonBig();
-        btnYanmedSIRSCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSCaraBayar.setText("Lap. Yanmed SIRS RL 3.15 Cara Bayar");
-        btnYanmedSIRSCaraBayar.setIconTextGap(0);
-        btnYanmedSIRSCaraBayar.setName("btnYanmedSIRSCaraBayar"); // NOI18N
-        btnYanmedSIRSCaraBayar.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSCaraBayar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSCaraBayarActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSGangguanJiwa = new widget.ButtonBig();
-        btnYanmedSIRSGangguanJiwa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSGangguanJiwa.setText("Lap. Yanmed SIRS RL 5.2.2 Kunjungan Gangguan Jiwa");
-        btnYanmedSIRSGangguanJiwa.setIconTextGap(0);
-        btnYanmedSIRSGangguanJiwa.setName("btnYanmedSIRSGangguanJiwa"); // NOI18N
-        btnYanmedSIRSGangguanJiwa.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSGangguanJiwa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSGangguanJiwaActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSGigiMulut = new widget.ButtonBig();
-        btnYanmedSIRSGigiMulut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSGigiMulut.setText("Lap. Yanmed SIRS RL 3.3 Gigi Mulut");
-        btnYanmedSIRSGigiMulut.setIconTextGap(0);
-        btnYanmedSIRSGigiMulut.setName("btnYanmedSIRSGigiMulut"); // NOI18N
-        btnYanmedSIRSGigiMulut.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSGigiMulut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSGigiMulutActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSIndikatorPelayanan = new widget.ButtonBig();
-        btnYanmedSIRSIndikatorPelayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSIndikatorPelayanan.setText("Lap. Yanmed SIRS RL 1.2 Indikator Pelayanan");
-        btnYanmedSIRSIndikatorPelayanan.setIconTextGap(0);
-        btnYanmedSIRSIndikatorPelayanan.setName("btnYanmedSIRSIndikatorPelayanan"); // NOI18N
-        btnYanmedSIRSIndikatorPelayanan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSIndikatorPelayanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSIndikatorPelayananActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSKetenagaan = new widget.ButtonBig();
-        btnYanmedSIRSKetenagaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSKetenagaan.setText("Lap. Yanmed SIRS RL 2 Ketenagaan");
-        btnYanmedSIRSKetenagaan.setIconTextGap(0);
-        btnYanmedSIRSKetenagaan.setName("btnYanmedSIRSKetenagaan"); // NOI18N
-        btnYanmedSIRSKetenagaan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSKetenagaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSKetenagaanActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSLaboratorium = new widget.ButtonBig();
-        btnYanmedSIRSLaboratorium.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSLaboratorium.setText("Lap. Yanmed SIRS RL 3.8 Laboratorium");
-        btnYanmedSIRSLaboratorium.setIconTextGap(0);
-        btnYanmedSIRSLaboratorium.setName("btnYanmedSIRSLaboratorium"); // NOI18N
-        btnYanmedSIRSLaboratorium.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSLaboratorium.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSLaboratoriumActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSRehabMedik = new widget.ButtonBig();
-        btnYanmedSIRSRehabMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSRehabMedik.setText("Lap. Yanmed SIRS RL 3.9 Rehab Medik");
-        btnYanmedSIRSRehabMedik.setIconTextGap(0);
-        btnYanmedSIRSRehabMedik.setName("btnYanmedSIRSRehabMedik"); // NOI18N
-        btnYanmedSIRSRehabMedik.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSRehabMedik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSRehabMedikActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPelayananKhusus = new widget.ButtonBig();
-        btnYanmedSIRSPelayananKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPelayananKhusus.setText("Lap. Yanmed SIRS RL 3.10 Pelayanan Khusus");
-        btnYanmedSIRSPelayananKhusus.setIconTextGap(0);
-        btnYanmedSIRSPelayananKhusus.setName("btnYanmedSIRSPelayananKhusus"); // NOI18N
-        btnYanmedSIRSPelayananKhusus.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPelayananKhusus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPelayananKhususActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSKesehatanJiwa = new widget.ButtonBig();
-        btnYanmedSIRSKesehatanJiwa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSKesehatanJiwa.setText("Lap. Yanmed SIRS RL 3.11 Kesehatan Jiwa");
-        btnYanmedSIRSKesehatanJiwa.setIconTextGap(0);
-        btnYanmedSIRSKesehatanJiwa.setName("btnYanmedSIRSKesehatanJiwa"); // NOI18N
-        btnYanmedSIRSKesehatanJiwa.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSKesehatanJiwa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSKesehatanJiwaActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSObatPengadaan = new widget.ButtonBig();
-        btnYanmedSIRSObatPengadaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSObatPengadaan.setText("Lap. Yanmed SIRS RL 3.13a Obat Pengadaan");
-        btnYanmedSIRSObatPengadaan.setIconTextGap(0);
-        btnYanmedSIRSObatPengadaan.setName("btnYanmedSIRSObatPengadaan"); // NOI18N
-        btnYanmedSIRSObatPengadaan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSObatPengadaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSObatPengadaanActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSObatPelayananResep = new widget.ButtonBig();
-        btnYanmedSIRSObatPelayananResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSObatPelayananResep.setText("Lap. Yanmed SIRS RL 3.13b Obat Pelayanan Resep");
-        btnYanmedSIRSObatPelayananResep.setIconTextGap(0);
-        btnYanmedSIRSObatPelayananResep.setName("btnYanmedSIRSObatPelayananResep"); // NOI18N
-        btnYanmedSIRSObatPelayananResep.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSObatPelayananResep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSObatPelayananResepActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPembedahan = new widget.ButtonBig();
-        btnYanmedSIRSPembedahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPembedahan.setText("Lap. Yanmed SIRS RL 3.14 Pembedahan");
-        btnYanmedSIRSPembedahan.setIconTextGap(0);
-        btnYanmedSIRSPembedahan.setName("btnYanmedSIRSPembedahan"); // NOI18N
-        btnYanmedSIRSPembedahan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPembedahan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPembedahanActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPengunjung = new widget.ButtonBig();
-        btnYanmedSIRSPengunjung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPengunjung.setText("Lap. Yanmed SIRS RL 5.1 Pengunjung");
-        btnYanmedSIRSPengunjung.setIconTextGap(0);
-        btnYanmedSIRSPengunjung.setName("btnYanmedSIRSPengunjung"); // NOI18N
-        btnYanmedSIRSPengunjung.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPengunjung.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPengunjungActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPenyakitRalan = new widget.ButtonBig();
-        btnYanmedSIRSPenyakitRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPenyakitRalan.setText("Lap. Yanmed SIRS RL 4B Penyakit Rawat Jalan");
-        btnYanmedSIRSPenyakitRalan.setIconTextGap(0);
-        btnYanmedSIRSPenyakitRalan.setName("btnYanmedSIRSPenyakitRalan"); // NOI18N
-        btnYanmedSIRSPenyakitRalan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPenyakitRalan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPenyakitRalanActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPenyakitRalanSebabLuar = new widget.ButtonBig();
-        btnYanmedSIRSPenyakitRalanSebabLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPenyakitRalanSebabLuar.setText("Lap. Yanmed SIRS RL 4B Penyakit Rawat Jalan Sebab Luar");
-        btnYanmedSIRSPenyakitRalanSebabLuar.setIconTextGap(0);
-        btnYanmedSIRSPenyakitRalanSebabLuar.setName("btnYanmedSIRSPenyakitRalanSebabLuar"); // NOI18N
-        btnYanmedSIRSPenyakitRalanSebabLuar.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPenyakitRalanSebabLuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPenyakitRalanSebabLuarActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPenyakitRanap = new widget.ButtonBig();
-        btnYanmedSIRSPenyakitRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPenyakitRanap.setText("Lap. Yanmed SIRS RL 4A Penyakit Rawat Inap");
-        btnYanmedSIRSPenyakitRanap.setIconTextGap(0);
-        btnYanmedSIRSPenyakitRanap.setName("btnYanmedSIRSPenyakitRanap"); // NOI18N
-        btnYanmedSIRSPenyakitRanap.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPenyakitRanap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPenyakitRanapActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSPenyakitRanapSebabLuar = new widget.ButtonBig();
-        btnYanmedSIRSPenyakitRanapSebabLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSPenyakitRanapSebabLuar.setText("Lap. Yanmed SIRS RL 4A Penyakit Rawat Inap Sebab Luar");
-        btnYanmedSIRSPenyakitRanapSebabLuar.setIconTextGap(0);
-        btnYanmedSIRSPenyakitRanapSebabLuar.setName("btnYanmedSIRSPenyakitRanapSebabLuar"); // NOI18N
-        btnYanmedSIRSPenyakitRanapSebabLuar.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSPenyakitRanapSebabLuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSPenyakitRanapSebabLuarActionPerformed(evt);
-            }
-        });
-        btnYanmedSIRSRadiologi = new widget.ButtonBig();
-        btnYanmedSIRSRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSRadiologi.setText("Lap. Yanmed SIRS RL 3.7 Radiologi");
-        btnYanmedSIRSRadiologi.setIconTextGap(0);
-        btnYanmedSIRSRadiologi.setName("btnYanmedSIRSRadiologi"); // NOI18N
-        btnYanmedSIRSRadiologi.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSRadiologi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSRadiologiActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRSRalan = new widget.ButtonBig();
-        btnYanmedSIRSRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSRalan.setText("Lap. Yanmed SIRS RL 5.2 Kunjungan Rawat Jalan");
-        btnYanmedSIRSRalan.setIconTextGap(0);
-        btnYanmedSIRSRalan.setName("btnYanmedSIRSRalan"); // NOI18N
-        btnYanmedSIRSRalan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSRalan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSRalanActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRSRanap = new widget.ButtonBig();
-        btnYanmedSIRSRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSRanap.setText("Lap. Yanmed SIRS RL 3.1 Rawat Inap");
-        btnYanmedSIRSRanap.setIconTextGap(0);
-        btnYanmedSIRSRanap.setName("btnYanmedSIRSRanap"); // NOI18N
-        btnYanmedSIRSRanap.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSRanap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSRanapActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRSRujukan = new widget.ButtonBig();
-        btnYanmedSIRSRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSRujukan.setText("Lap. Yanmed SIRS RL 3.14 Rujukan");
-        btnYanmedSIRSRujukan.setIconTextGap(0);
-        btnYanmedSIRSRujukan.setName("btnYanmedSIRSRujukan"); // NOI18N
-        btnYanmedSIRSRujukan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSRujukan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSRujukanActionPerformed(evt);
-            }
-        });
-        
-        btnYanmedSIRSTempatTidur = new widget.ButtonBig();
-        btnYanmedSIRSTempatTidur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnYanmedSIRSTempatTidur.setText("Lap. Yanmed SIRS RL 1.3 Tempat Tidur");
-        btnYanmedSIRSTempatTidur.setIconTextGap(0);
-        btnYanmedSIRSTempatTidur.setName("btnYanmedSIRSTempatTidur"); // NOI18N
-        btnYanmedSIRSTempatTidur.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnYanmedSIRSTempatTidur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnYanmedSIRSTempatTidurActionPerformed(evt);
-            }
-        });
-        
-        btnPenggunaObatResep2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/family.png"))); // NOI18N
-        btnPenggunaObatResep2.setText("Pengguna Obat/Alkes/BHP Resep Tanpa Pasien");
-        btnPenggunaObatResep2.setIconTextGap(0);
-        btnPenggunaObatResep2.setName("btnPenggunaObatResep2"); // NOI18N
-        btnPenggunaObatResep2.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnPenggunaObatResep2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPenggunaObat2ResepActionPerformed(evt);
-            }
-        });
-        
-        btnLaporanNapza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnLaporanNapza.setText("Laporan Penggunaan Narkotika & Psikotropika");
-        btnLaporanNapza.setIconTextGap(0);
-        btnLaporanNapza.setName("btnLaporanNapza"); // NOI18N
-        btnLaporanNapza.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnLaporanNapza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLaporanNarkotikaPsikotropikaActionPerformed(evt);
-            }
-        });
-        
-        
-        jSeparator8 = new javax.swing.JSeparator();
-        LbVersion = new javax.swing.JLabel();
-        
-        jSeparator8.setBackground(new java.awt.Color(235, 0, 107));
-        jSeparator8.setForeground(new java.awt.Color(235, 0, 107));
-        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(90, 130, 80)));
-        jSeparator8.setName("jSeparator8"); // NOI18N
-        jSeparator8.setOpaque(true);
-        jSeparator8.setPreferredSize(new java.awt.Dimension(1, 21));
-        internalFrame4.add(jSeparator8);
-
-        LbVersion.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        LbVersion.setForeground(new java.awt.Color(50, 50, 50));
-        LbVersion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LbVersion.setText("Versi 2.1");
-        LbVersion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        LbVersion.setName("LbVersion"); // NOI18N
-        LbVersion.setPreferredSize(new java.awt.Dimension(120, 23));
-        internalFrame4.add(LbVersion);
-    }
-    
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         DlgHome.dispose();
         System.exit(0);
@@ -14879,6 +14438,24 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnInfoLaborat3ActionPerformed
 
+    private void MnRekapHadir8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHadir8ActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.panggilUrl("antrianfarmasiracikan.php");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnRekapHadir8ActionPerformed
+
+    private void MnRekapHadir11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHadir11ActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.panggilUrl("antrianfarmasinonracikan.php");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnRekapHadir11ActionPerformed
+
+    private void MnInfoMobileJKNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInfoMobileJKNActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.panggilUrl("antrianmobilejkn.php");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnInfoMobileJKNActionPerformed
+
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -20214,6 +19791,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         aplikasi.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }
+    
     private void btnPembelianDapurActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -20272,7 +19850,555 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         form.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
+    }  
+    
+    private void btnRBiayaDapurActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DapurRBiayaHarian form=new DapurRBiayaHarian(this,false);
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
     } 
+    
+    private void btnRekapPengadaanDapurActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DapurRHPembelian form=new DapurRHPembelian(this,false);
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    } 
+    
+    private void btnLimbahB3MedisCairActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        KeslingLimbahB3MedisCair form=new KeslingLimbahB3MedisCair(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    } 
+    private void initCustomComponents() {
+        
+        btnPenggunaObatResep2 = new widget.ButtonBig();
+        btnLaporanNapza = new widget.ButtonBig();
+        
+        btnDataHAIsIDO = new widget.ButtonBig();
+        btnDataHAIsIDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnDataHAIsIDO.setText("Data HAIs IDO");
+        btnDataHAIsIDO.setIconTextGap(0);
+        btnDataHAIsIDO.setName("btnDataHAIsIDO"); // NOI18N
+        btnDataHAIsIDO.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDataHAIsIDO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDataHAIsIDOActionPerformed(evt);
+            }
+        });
+        
+        // Laporan Yanmed
+        
+        btnYanmedRanap = new widget.ButtonBig();
+        btnYanmedRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedRanap.setText("Lap. Yanmed Ranap");
+        btnYanmedRanap.setIconTextGap(0);
+        btnYanmedRanap.setName("btnYanmedRanap"); // NOI18N
+        btnYanmedRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedRanapActionPerformed(evt);
+            }
+        });
+        btnYanmedRalan = new widget.ButtonBig();
+        btnYanmedRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedRalan.setText("Lap. Yanmed Ralan");
+        btnYanmedRalan.setIconTextGap(0);
+        btnYanmedRalan.setName("btnYanmedRalan"); // NOI18N
+        btnYanmedRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedRalanActionPerformed(evt);
+            }
+        });
+        btnYanmedKebidananPerinatologi = new widget.ButtonBig();
+        btnYanmedKebidananPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedKebidananPerinatologi.setText("Lap. Yanmed Kebidanan & Perinatologi");
+        btnYanmedKebidananPerinatologi.setIconTextGap(0);
+        btnYanmedKebidananPerinatologi.setName("btnYanmedKebidananPerinatologi"); // NOI18N
+        btnYanmedKebidananPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedKebidananPerinatologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedKebidananPerinatologiActionPerformed(evt);
+            }
+        });
+        btnYanmedGiatPembedahan = new widget.ButtonBig();
+        btnYanmedGiatPembedahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedGiatPembedahan.setText("Lap. Yanmed Giat Pembedahan");
+        btnYanmedGiatPembedahan.setIconTextGap(0);
+        btnYanmedGiatPembedahan.setName("btnYanmedGiatPembedahan"); // NOI18N
+        btnYanmedGiatPembedahan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedGiatPembedahan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedGiatPembedahanActionPerformed(evt);
+            }
+        });
+        btnYanmedPelRehabMedik = new widget.ButtonBig();
+        btnYanmedPelRehabMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedPelRehabMedik.setText("Lap. Yanmed Pelayanan Rehab Medik");
+        btnYanmedPelRehabMedik.setIconTextGap(0);
+        btnYanmedPelRehabMedik.setName("btnYanmedPelRehabMedik"); // NOI18N
+        btnYanmedPelRehabMedik.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedPelRehabMedik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedPelRehabMedikActionPerformed(evt);
+            }
+        });
+        btnYanmedGigi = new widget.ButtonBig();
+        btnYanmedGigi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedGigi.setText("Lap. Yanmed Gigi");
+        btnYanmedGigi.setIconTextGap(0);
+        btnYanmedGigi.setName("btnYanmedGigi"); // NOI18N
+        btnYanmedGigi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedGigi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedGigiActionPerformed(evt);
+            }
+        });
+        btnYanmedMorbiditas = new widget.ButtonBig();
+        btnYanmedMorbiditas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedMorbiditas.setText("Lap. Yanmed Morbiditas");
+        btnYanmedMorbiditas.setIconTextGap(0);
+        btnYanmedMorbiditas.setName("btnYanmedMorbiditas"); // NOI18N
+        btnYanmedMorbiditas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedMorbiditas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedMorbiditasActionPerformed(evt);
+            }
+        });
+        btnYanmedINOS = new widget.ButtonBig();
+        btnYanmedINOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedINOS.setText("Lap. Yanmed INOS");
+        btnYanmedINOS.setIconTextGap(0);
+        btnYanmedINOS.setName("btnYanmedINOS"); // NOI18N
+        btnYanmedINOS.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedINOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedINOSActionPerformed(evt);
+            }
+        });
+        btnYanmedKinerja = new widget.ButtonBig();
+        btnYanmedKinerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedKinerja.setText("Lap. Yanmed Kinerja");
+        btnYanmedKinerja.setIconTextGap(0);
+        btnYanmedKinerja.setName("btnYanmedKinerja"); // NOI18N
+        btnYanmedKinerja.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedKinerja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedKinerjaActionPerformed(evt);
+            }
+        });
+        btnYanmedPascaPersalinanKeguguran = new widget.ButtonBig();
+        btnYanmedPascaPersalinanKeguguran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedPascaPersalinanKeguguran.setText("Lap. Yanmed Pasca Persalinan & Keguguran");
+        btnYanmedPascaPersalinanKeguguran.setIconTextGap(0);
+        btnYanmedPascaPersalinanKeguguran.setName("btnYanmedPascaPersalinanKeguguran"); // NOI18N
+        btnYanmedPascaPersalinanKeguguran.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedPascaPersalinanKeguguran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedPascaPersalinanKeguguranActionPerformed(evt);
+            }
+        });
+        btnYanmedKBLamaBaru = new widget.ButtonBig();
+        btnYanmedKBLamaBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedKBLamaBaru.setText("Lap. Yanmed KB Lama & Baru");
+        btnYanmedKBLamaBaru.setIconTextGap(0);
+        btnYanmedKBLamaBaru.setName("btnYanmedKBLamaBaru"); // NOI18N
+        btnYanmedKBLamaBaru.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedKBLamaBaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedKBLamaBaruActionPerformed(evt);
+            }
+        });
+        btnYanmedKematian = new widget.ButtonBig();
+        btnYanmedKematian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedKematian.setText("Lap. Yanmed Kematian");
+        btnYanmedKematian.setIconTextGap(0);
+        btnYanmedKematian.setName("btnYanmedKematian"); // NOI18N
+        btnYanmedKematian.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedKematian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedKematianActionPerformed(evt);
+            }
+        });
+        btnYanmed10BesarPenyakit = new widget.ButtonBig();
+        btnYanmed10BesarPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmed10BesarPenyakit.setText("Lap. Yanmed 10 Besar Penyakit");
+        btnYanmed10BesarPenyakit.setIconTextGap(0);
+        btnYanmed10BesarPenyakit.setName("btnYanmed10BesarPenyakit"); // NOI18N
+        btnYanmed10BesarPenyakit.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmed10BesarPenyakit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmed10BesarPenyakitActionPerformed(evt);
+            }
+        });
+        btnYanmedRujukanWatlan = new widget.ButtonBig();
+        btnYanmedRujukanWatlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedRujukanWatlan.setText("Lap. Yanmed Rujukan Watlan");
+        btnYanmedRujukanWatlan.setIconTextGap(0);
+        btnYanmedRujukanWatlan.setName("btnYanmedRujukanWatlan"); // NOI18N
+        btnYanmedRujukanWatlan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedRujukanWatlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedRujukanWatlanActionPerformed(evt);
+            }
+        });
+        btnYanmedRujukanWatnap = new widget.ButtonBig();
+        btnYanmedRujukanWatnap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedRujukanWatnap.setText("Lap. Yanmed Rujukan Watnap");
+        btnYanmedRujukanWatnap.setIconTextGap(0);
+        btnYanmedRujukanWatnap.setName("btnYanmedRujukanWatnap"); // NOI18N
+        btnYanmedRujukanWatnap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedRujukanWatnap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedRujukanWatnapActionPerformed(evt);
+            }
+        });
+        btnYanmedPangkat = new widget.ButtonBig();
+        btnYanmedPangkat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedPangkat.setText("Lap. Yanmed Berdasarkan Kepangkatan");
+        btnYanmedPangkat.setIconTextGap(0);
+        btnYanmedPangkat.setName("btnYanmedPangkat"); // NOI18N
+        btnYanmedPangkat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedPangkat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedPangkatActionPerformed(evt);
+            }
+        });
+        
+        //Laporan Yanmed SIRS
+        
+        btnYanmedSIRS10PenyakitRalan = new widget.ButtonBig();
+        btnYanmedSIRS10PenyakitRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRS10PenyakitRalan.setText("Lap. Yanmed SIRS RL 5.3 10 Penyakit Rawat Jalan");
+        btnYanmedSIRS10PenyakitRalan.setIconTextGap(0);
+        btnYanmedSIRS10PenyakitRalan.setName("btnYanmedSIRS10PenyakitRalan"); // NOI18N
+        btnYanmedSIRS10PenyakitRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRS10PenyakitRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRS10PenyakitRalanActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRS10PenyakitRanap = new widget.ButtonBig();
+        btnYanmedSIRS10PenyakitRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRS10PenyakitRanap.setText("Lap. Yanmed SIRS RL 5.4 10 Penyakit Rawat Inap");
+        btnYanmedSIRS10PenyakitRanap.setIconTextGap(0);
+        btnYanmedSIRS10PenyakitRanap.setName("btnYanmedSIRS10PenyakitRanap"); // NOI18N
+        btnYanmedSIRS10PenyakitRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRS10PenyakitRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRS10PenyakitRanapActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRSCaraBayar = new widget.ButtonBig();
+        btnYanmedSIRSCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSCaraBayar.setText("Lap. Yanmed SIRS RL 3.15 Cara Bayar");
+        btnYanmedSIRSCaraBayar.setIconTextGap(0);
+        btnYanmedSIRSCaraBayar.setName("btnYanmedSIRSCaraBayar"); // NOI18N
+        btnYanmedSIRSCaraBayar.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSCaraBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSCaraBayarActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSGangguanJiwa = new widget.ButtonBig();
+        btnYanmedSIRSGangguanJiwa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSGangguanJiwa.setText("Lap. Yanmed SIRS RL 5.2.2 Kunjungan Gangguan Jiwa");
+        btnYanmedSIRSGangguanJiwa.setIconTextGap(0);
+        btnYanmedSIRSGangguanJiwa.setName("btnYanmedSIRSGangguanJiwa"); // NOI18N
+        btnYanmedSIRSGangguanJiwa.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSGangguanJiwa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSGangguanJiwaActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSGigiMulut = new widget.ButtonBig();
+        btnYanmedSIRSGigiMulut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSGigiMulut.setText("Lap. Yanmed SIRS RL 3.3 Gigi Mulut");
+        btnYanmedSIRSGigiMulut.setIconTextGap(0);
+        btnYanmedSIRSGigiMulut.setName("btnYanmedSIRSGigiMulut"); // NOI18N
+        btnYanmedSIRSGigiMulut.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSGigiMulut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSGigiMulutActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSIndikatorPelayanan = new widget.ButtonBig();
+        btnYanmedSIRSIndikatorPelayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSIndikatorPelayanan.setText("Lap. Yanmed SIRS RL 1.2 Indikator Pelayanan");
+        btnYanmedSIRSIndikatorPelayanan.setIconTextGap(0);
+        btnYanmedSIRSIndikatorPelayanan.setName("btnYanmedSIRSIndikatorPelayanan"); // NOI18N
+        btnYanmedSIRSIndikatorPelayanan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSIndikatorPelayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSIndikatorPelayananActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSKetenagaan = new widget.ButtonBig();
+        btnYanmedSIRSKetenagaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSKetenagaan.setText("Lap. Yanmed SIRS RL 2 Ketenagaan");
+        btnYanmedSIRSKetenagaan.setIconTextGap(0);
+        btnYanmedSIRSKetenagaan.setName("btnYanmedSIRSKetenagaan"); // NOI18N
+        btnYanmedSIRSKetenagaan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSKetenagaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSKetenagaanActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSLaboratorium = new widget.ButtonBig();
+        btnYanmedSIRSLaboratorium.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSLaboratorium.setText("Lap. Yanmed SIRS RL 3.8 Laboratorium");
+        btnYanmedSIRSLaboratorium.setIconTextGap(0);
+        btnYanmedSIRSLaboratorium.setName("btnYanmedSIRSLaboratorium"); // NOI18N
+        btnYanmedSIRSLaboratorium.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSLaboratorium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSLaboratoriumActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSRehabMedik = new widget.ButtonBig();
+        btnYanmedSIRSRehabMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSRehabMedik.setText("Lap. Yanmed SIRS RL 3.9 Rehab Medik");
+        btnYanmedSIRSRehabMedik.setIconTextGap(0);
+        btnYanmedSIRSRehabMedik.setName("btnYanmedSIRSRehabMedik"); // NOI18N
+        btnYanmedSIRSRehabMedik.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSRehabMedik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSRehabMedikActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPelayananKhusus = new widget.ButtonBig();
+        btnYanmedSIRSPelayananKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPelayananKhusus.setText("Lap. Yanmed SIRS RL 3.10 Pelayanan Khusus");
+        btnYanmedSIRSPelayananKhusus.setIconTextGap(0);
+        btnYanmedSIRSPelayananKhusus.setName("btnYanmedSIRSPelayananKhusus"); // NOI18N
+        btnYanmedSIRSPelayananKhusus.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPelayananKhusus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPelayananKhususActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSKesehatanJiwa = new widget.ButtonBig();
+        btnYanmedSIRSKesehatanJiwa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSKesehatanJiwa.setText("Lap. Yanmed SIRS RL 3.11 Kesehatan Jiwa");
+        btnYanmedSIRSKesehatanJiwa.setIconTextGap(0);
+        btnYanmedSIRSKesehatanJiwa.setName("btnYanmedSIRSKesehatanJiwa"); // NOI18N
+        btnYanmedSIRSKesehatanJiwa.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSKesehatanJiwa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSKesehatanJiwaActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSObatPengadaan = new widget.ButtonBig();
+        btnYanmedSIRSObatPengadaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSObatPengadaan.setText("Lap. Yanmed SIRS RL 3.13a Obat Pengadaan");
+        btnYanmedSIRSObatPengadaan.setIconTextGap(0);
+        btnYanmedSIRSObatPengadaan.setName("btnYanmedSIRSObatPengadaan"); // NOI18N
+        btnYanmedSIRSObatPengadaan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSObatPengadaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSObatPengadaanActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSObatPelayananResep = new widget.ButtonBig();
+        btnYanmedSIRSObatPelayananResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSObatPelayananResep.setText("Lap. Yanmed SIRS RL 3.13b Obat Pelayanan Resep");
+        btnYanmedSIRSObatPelayananResep.setIconTextGap(0);
+        btnYanmedSIRSObatPelayananResep.setName("btnYanmedSIRSObatPelayananResep"); // NOI18N
+        btnYanmedSIRSObatPelayananResep.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSObatPelayananResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSObatPelayananResepActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPembedahan = new widget.ButtonBig();
+        btnYanmedSIRSPembedahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPembedahan.setText("Lap. Yanmed SIRS RL 3.14 Pembedahan");
+        btnYanmedSIRSPembedahan.setIconTextGap(0);
+        btnYanmedSIRSPembedahan.setName("btnYanmedSIRSPembedahan"); // NOI18N
+        btnYanmedSIRSPembedahan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPembedahan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPembedahanActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPengunjung = new widget.ButtonBig();
+        btnYanmedSIRSPengunjung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPengunjung.setText("Lap. Yanmed SIRS RL 5.1 Pengunjung");
+        btnYanmedSIRSPengunjung.setIconTextGap(0);
+        btnYanmedSIRSPengunjung.setName("btnYanmedSIRSPengunjung"); // NOI18N
+        btnYanmedSIRSPengunjung.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPengunjung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPengunjungActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPenyakitRalan = new widget.ButtonBig();
+        btnYanmedSIRSPenyakitRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPenyakitRalan.setText("Lap. Yanmed SIRS RL 4B Penyakit Rawat Jalan");
+        btnYanmedSIRSPenyakitRalan.setIconTextGap(0);
+        btnYanmedSIRSPenyakitRalan.setName("btnYanmedSIRSPenyakitRalan"); // NOI18N
+        btnYanmedSIRSPenyakitRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPenyakitRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPenyakitRalanActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPenyakitRalanSebabLuar = new widget.ButtonBig();
+        btnYanmedSIRSPenyakitRalanSebabLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPenyakitRalanSebabLuar.setText("Lap. Yanmed SIRS RL 4B Penyakit Rawat Jalan Sebab Luar");
+        btnYanmedSIRSPenyakitRalanSebabLuar.setIconTextGap(0);
+        btnYanmedSIRSPenyakitRalanSebabLuar.setName("btnYanmedSIRSPenyakitRalanSebabLuar"); // NOI18N
+        btnYanmedSIRSPenyakitRalanSebabLuar.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPenyakitRalanSebabLuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPenyakitRalanSebabLuarActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPenyakitRanap = new widget.ButtonBig();
+        btnYanmedSIRSPenyakitRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPenyakitRanap.setText("Lap. Yanmed SIRS RL 4A Penyakit Rawat Inap");
+        btnYanmedSIRSPenyakitRanap.setIconTextGap(0);
+        btnYanmedSIRSPenyakitRanap.setName("btnYanmedSIRSPenyakitRanap"); // NOI18N
+        btnYanmedSIRSPenyakitRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPenyakitRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPenyakitRanapActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSPenyakitRanapSebabLuar = new widget.ButtonBig();
+        btnYanmedSIRSPenyakitRanapSebabLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSPenyakitRanapSebabLuar.setText("Lap. Yanmed SIRS RL 4A Penyakit Rawat Inap Sebab Luar");
+        btnYanmedSIRSPenyakitRanapSebabLuar.setIconTextGap(0);
+        btnYanmedSIRSPenyakitRanapSebabLuar.setName("btnYanmedSIRSPenyakitRanapSebabLuar"); // NOI18N
+        btnYanmedSIRSPenyakitRanapSebabLuar.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSPenyakitRanapSebabLuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSPenyakitRanapSebabLuarActionPerformed(evt);
+            }
+        });
+        btnYanmedSIRSRadiologi = new widget.ButtonBig();
+        btnYanmedSIRSRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSRadiologi.setText("Lap. Yanmed SIRS RL 3.7 Radiologi");
+        btnYanmedSIRSRadiologi.setIconTextGap(0);
+        btnYanmedSIRSRadiologi.setName("btnYanmedSIRSRadiologi"); // NOI18N
+        btnYanmedSIRSRadiologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSRadiologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSRadiologiActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRSRalan = new widget.ButtonBig();
+        btnYanmedSIRSRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSRalan.setText("Lap. Yanmed SIRS RL 5.2 Kunjungan Rawat Jalan");
+        btnYanmedSIRSRalan.setIconTextGap(0);
+        btnYanmedSIRSRalan.setName("btnYanmedSIRSRalan"); // NOI18N
+        btnYanmedSIRSRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSRalanActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRSRanap = new widget.ButtonBig();
+        btnYanmedSIRSRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSRanap.setText("Lap. Yanmed SIRS RL 3.1 Rawat Inap");
+        btnYanmedSIRSRanap.setIconTextGap(0);
+        btnYanmedSIRSRanap.setName("btnYanmedSIRSRanap"); // NOI18N
+        btnYanmedSIRSRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSRanapActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRSRujukan = new widget.ButtonBig();
+        btnYanmedSIRSRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSRujukan.setText("Lap. Yanmed SIRS RL 3.14 Rujukan");
+        btnYanmedSIRSRujukan.setIconTextGap(0);
+        btnYanmedSIRSRujukan.setName("btnYanmedSIRSRujukan"); // NOI18N
+        btnYanmedSIRSRujukan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSRujukan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSRujukanActionPerformed(evt);
+            }
+        });
+        
+        btnYanmedSIRSTempatTidur = new widget.ButtonBig();
+        btnYanmedSIRSTempatTidur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnYanmedSIRSTempatTidur.setText("Lap. Yanmed SIRS RL 1.3 Tempat Tidur");
+        btnYanmedSIRSTempatTidur.setIconTextGap(0);
+        btnYanmedSIRSTempatTidur.setName("btnYanmedSIRSTempatTidur"); // NOI18N
+        btnYanmedSIRSTempatTidur.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnYanmedSIRSTempatTidur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYanmedSIRSTempatTidurActionPerformed(evt);
+            }
+        });
+        
+        btnPenggunaObatResep2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/family.png"))); // NOI18N
+        btnPenggunaObatResep2.setText("Pengguna Obat/Alkes/BHP Resep Tanpa Pasien");
+        btnPenggunaObatResep2.setIconTextGap(0);
+        btnPenggunaObatResep2.setName("btnPenggunaObatResep2"); // NOI18N
+        btnPenggunaObatResep2.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPenggunaObatResep2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPenggunaObat2ResepActionPerformed(evt);
+            }
+        });
+        
+        btnLaporanNapza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnLaporanNapza.setText("Laporan Penggunaan Narkotika & Psikotropika");
+        btnLaporanNapza.setIconTextGap(0);
+        btnLaporanNapza.setName("btnLaporanNapza"); // NOI18N
+        btnLaporanNapza.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnLaporanNapza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaporanNarkotikaPsikotropikaActionPerformed(evt);
+            }
+        });
+        
+        
+        jSeparator8 = new javax.swing.JSeparator();
+        LbVersion = new javax.swing.JLabel();
+        
+        jSeparator8.setBackground(new java.awt.Color(235, 0, 107));
+        jSeparator8.setForeground(new java.awt.Color(235, 0, 107));
+        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(90, 130, 80)));
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jSeparator8.setOpaque(true);
+        jSeparator8.setPreferredSize(new java.awt.Dimension(1, 21));
+        internalFrame4.add(jSeparator8);
+
+        LbVersion.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        LbVersion.setForeground(new java.awt.Color(50, 50, 50));
+        LbVersion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LbVersion.setText("Versi 2.1");
+        LbVersion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LbVersion.setName("LbVersion"); // NOI18N
+        LbVersion.setPreferredSize(new java.awt.Dimension(120, 23));
+        internalFrame4.add(LbVersion);
+    }
     
     private void btnDataHAIsIDOActionPerformed(java.awt.event.ActionEvent evt) {                                            
         isTutup();
@@ -20766,6 +20892,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.MenuBar MenuBar;
     private javax.swing.JMenuItem MenuKeluar;
     private javax.swing.JMenuItem MnAnjungan;
+    private javax.swing.JMenu MnAntrianFarmasi;
+    private javax.swing.JMenu MnAntrianLaborat;
     private javax.swing.JMenuItem MnBelumDatang;
     private javax.swing.JMenuItem MnBelumDatang1;
     private javax.swing.JMenuItem MnCariEbook;
@@ -20781,6 +20909,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JMenuItem MnInfoLaborat1;
     private javax.swing.JMenuItem MnInfoLaborat2;
     private javax.swing.JMenuItem MnInfoLaborat3;
+    private javax.swing.JMenuItem MnInfoMobileJKN;
     private javax.swing.JMenuItem MnKoleksiPenelitian;
     private javax.swing.JMenuItem MnLogin;
     private javax.swing.JMenuItem MnPengajuanCutiPegawai;
@@ -20792,11 +20921,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JMenuItem MnRekapHadir;
     private javax.swing.JMenuItem MnRekapHadir1;
     private javax.swing.JMenuItem MnRekapHadir10;
+    private javax.swing.JMenuItem MnRekapHadir11;
     private javax.swing.JMenuItem MnRekapHadir3;
     private javax.swing.JMenuItem MnRekapHadir4;
     private javax.swing.JMenuItem MnRekapHadir5;
     private javax.swing.JMenuItem MnRekapHadir6;
     private javax.swing.JMenuItem MnRekapHadir7;
+    private javax.swing.JMenuItem MnRekapHadir8;
     private javax.swing.JMenuItem MnRekapHadir9;
     private javax.swing.JMenuItem MnSudahPulang;
     private javax.swing.JMenuItem MnSudahPulang1;
@@ -21398,7 +21529,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS,btnKirimConditionSatuSehat,
             btnChecklistPreOperasi,btnKirimObservationTTVSatuSehat,btnSignInSebelumAnestesi,btnKirimProcedureSatuSehat,btnOperasiPerBulan,btnTimeOutSebelumInsisi,
             btnBarangDapur,btnSignOutSebelumMenutupLuka,btnOpnameDapur,btnSuplierDapur,btnMappingVaksinSatuSehat,btnKirimVaksinSatuSehat,btnPembelianDapur,
-            btnChecklistPostOperasi,btnPengeluaranDapur,btnRiwayatBarangDapur,btnPermintaanDapur;
+            btnChecklistPostOperasi,btnPengeluaranDapur,btnRiwayatBarangDapur,btnPermintaanDapur,btnRBiayaDapur,btnRekapPengadaanDapur,btnLimbahB3MedisCair;
     
     private javax.swing.JLabel LbVersion;
     private javax.swing.JSeparator jSeparator8;
@@ -22576,6 +22707,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 Panelmenu.add(btnPermintaanDapur);
                 jmlmenu++;
             }
+            
+            if(akses.getbiaya_pengadaan_dapur()==true){
+                Panelmenu.add(btnRBiayaDapur);
+                jmlmenu++;
+            }
+            
+            if(akses.getrekap_pengadaan_dapur()==true){
+                Panelmenu.add(btnRekapPengadaanDapur);
+                jmlmenu++;
+            }
         }else if(cmbMenu.getSelectedIndex()==6){ 
             jmlmenu=0;
             if(akses.getasal_hibah()==true){
@@ -22690,6 +22831,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getlimbah_b3_medis()==true){
                 Panelmenu.add(btnLimbahB3Medis);
+                jmlmenu++;
+            } 
+            
+            if(akses.getkesling_limbah_b3medis_cair()==true){
+                Panelmenu.add(btnLimbahB3MedisCair);
                 jmlmenu++;
             } 
             
@@ -27142,6 +27288,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnPermintaanDapur);
             jmlmenu++;
         }
+        
+        if(akses.getbiaya_pengadaan_dapur()==true){
+            Panelmenu.add(btnRBiayaDapur);
+            jmlmenu++;
+        }
+        
+        if(akses.getrekap_pengadaan_dapur()==true){
+            Panelmenu.add(btnRekapPengadaanDapur);
+            jmlmenu++;
+        }
 
         if(akses.getasal_hibah()==true){
             Panelmenu.add(btnAsalHibah);  
@@ -27255,6 +27411,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getlimbah_b3_medis()==true){
             Panelmenu.add(btnLimbahB3Medis);
+            jmlmenu++;
+        } 
+        
+        if(akses.getkesling_limbah_b3medis_cair()==true){
+            Panelmenu.add(btnLimbahB3MedisCair);
             jmlmenu++;
         } 
         
@@ -31681,7 +31842,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             if(btnPenggunaObatResep2.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnPenggunaObatResep2);
                 jmlmenu++;
-            }     
+            }  
             if(btnLaporanNapza.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnLaporanNapza);
                 jmlmenu++;
@@ -32094,6 +32255,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getbiaya_pengadaan_dapur()==true){
+            if(btnRBiayaDapur.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnRBiayaDapur);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getrekap_pengadaan_dapur()==true){
+            if(btnRekapPengadaanDapur.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnRekapPengadaanDapur);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getasal_hibah()==true){
             if(btnAsalHibah.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnAsalHibah);  
@@ -32251,6 +32426,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getlimbah_b3_medis()==true){
             if(btnLimbahB3Medis.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnLimbahB3Medis);
+                jmlmenu++;
+            }                
+        } 
+        
+        if(akses.getkesling_limbah_b3medis_cair()==true){
+            if(btnLimbahB3MedisCair.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnLimbahB3MedisCair);
                 jmlmenu++;
             }                
         } 
@@ -37091,7 +37273,6 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 Panelmenu.add(btnYanmedRujukanWatnap);
                 jmlmenu++;
             }
-
             if(btnYanmedSIRSIndikatorPelayanan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnYanmedSIRSIndikatorPelayanan);
                 jmlmenu++;
@@ -40801,5 +40982,29 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnPermintaanDapur.setName("btnPermintaanDapur"); 
         btnPermintaanDapur.setPreferredSize(new java.awt.Dimension(200, 90));
         btnPermintaanDapur.addActionListener(this::btnPermintaanDapurActionPerformed);
+        
+        btnRBiayaDapur = new widget.ButtonBig();
+        btnRBiayaDapur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/3558095_food_noodle_shop_street_vender_icon.png")));
+        btnRBiayaDapur.setText("Biaya Pengadaan Dapur");
+        btnRBiayaDapur.setIconTextGap(0);
+        btnRBiayaDapur.setName("btnRBiayaDapur"); 
+        btnRBiayaDapur.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnRBiayaDapur.addActionListener(this::btnRBiayaDapurActionPerformed);
+        
+        btnRekapPengadaanDapur = new widget.ButtonBig();
+        btnRekapPengadaanDapur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/3558120_corn_food_shop_street_vegetable_icon.png")));
+        btnRekapPengadaanDapur.setText("Rekap Pengadaan Dapur");
+        btnRekapPengadaanDapur.setIconTextGap(0);
+        btnRekapPengadaanDapur.setName("btnRekapPengadaanDapur"); 
+        btnRekapPengadaanDapur.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnRekapPengadaanDapur.addActionListener(this::btnRekapPengadaanDapurActionPerformed);
+        
+        btnLimbahB3MedisCair = new widget.ButtonBig();
+        btnLimbahB3MedisCair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/5958332_disease_drink water_epidemic_hydrate_infection_icon.png")));
+        btnLimbahB3MedisCair.setText("Limbah Cair B3 Medis");
+        btnLimbahB3MedisCair.setIconTextGap(0);
+        btnLimbahB3MedisCair.setName("btnLimbahB3MedisCair"); 
+        btnLimbahB3MedisCair.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnLimbahB3MedisCair.addActionListener(this::btnLimbahB3MedisCairActionPerformed);
     }
 }
