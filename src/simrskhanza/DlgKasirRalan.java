@@ -1,4 +1,5 @@
 package simrskhanza;
+import bridging.ApiBPJS;
 import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekSuplesiJasaRaharja;
 import rekammedis.RMRiwayatPerawatan;
@@ -64,6 +65,10 @@ import keuangan.Jurnal;
 import laporan.DlgBerkasRawat;
 import laporan.DlgDataInsidenKeselamatan;
 import laporan.YanmedBerkasRM;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import rekammedis.RMDataResumePasien;
 import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanPelayananInformasiObat;
@@ -142,6 +147,8 @@ import surat.SuratPulangAtasPermintaanSendiri;
 import surat.SuratSakit;
 import surat.SuratSakitPihak2;
 import surat.SuratTidakHamil;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *
@@ -188,7 +195,15 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     private boolean sukses=false;
     private Jurnal jur=new Jurnal();
     private double ttljmdokter=0,ttljmperawat=0,ttlkso=0,ttljasasarana=0,ttlbhp=0,ttlmenejemen=0,ttlpendapatan=0;
-
+    
+    private ApiBPJS api=new ApiBPJS();
+    private String link="",requestJson,URL="",utc="";
+    private HttpHeaders headers;
+    private HttpEntity requestEntity;
+    private ObjectMapper mapper = new ObjectMapper();
+    private JsonNode root;
+    private JsonNode nameNode;
+    private JsonNode response;
     /** Creates new form DlgReg
      * @param parent
      * @param modal */
@@ -7065,6 +7080,9 @@ private void MnSudahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             }else {
                 Valid.editTable(tabModekasir,"reg_periksa","no_rawat",TNoRw,"stts='Sudah'");
+//                Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," task5=curtime()");
+//                String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
+//                updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
                 if(tabModekasir.getRowCount()!=0){tampilkasir();}
             }
             
@@ -9790,6 +9808,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }else{
             Sequel.menyimpan("mutasi_berkas","'"+TNoRw.getText()+"','Sudah Diterima',now(),now(),'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00'","status='Sudah Diterima',diterima=now()","no_rawat='"+TNoRw.getText()+"'");
             Valid.editTable(tabModekasir,"reg_periksa","no_rawat",TNoRw,"stts='Berkas Diterima'");
+            //menyimpan waktu saat ini
+//            Sequel.menyimpan("record_waktulayan_bpjs","0,'"+TNoRw.getText()+"',current_date(),curtime(),'00:00:00','00:00:00','00:00:00'","no_rawat='"+TNoRw.getText()+"'");
+//            updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "4", "");
             if(tabModekasir.getRowCount()!=0){tampilkasir();}
         }
     }//GEN-LAST:event_ppBerkasDIterimaBtnPrintActionPerformed
@@ -13577,4 +13598,39 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } 
     }
+    
+//    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
+//        try {
+//            String jsonFarmasi = "";
+//            headers = new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+//            utc=String.valueOf(api.GetUTCdatetimeAsString());
+//	    headers.add("X-Timestamp",utc);
+//	    headers.add("X-Signature",api.getHmac(utc));
+//            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+//            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
+//            requestJson ="{" +
+//                          "\"kodebooking\":\""+kodebooking+"\"," +
+//                            "\"taskid\":\""+taskid+"\"," +
+//                            "\"waktu\":\""+""+"\"" + jsonFarmasi +
+//                         "}";
+//            System.out.println("JSON : "+requestJson);
+//            requestEntity = new HttpEntity(requestJson,headers);
+//            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+//            nameNode = root.path("metaData");
+//            System.out.println("code : "+nameNode.path("code").asText());
+//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+//            if(nameNode.path("code").asText().equals("200")){
+//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+//            } else {
+//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+//            }
+//        }catch (Exception ex) {
+//            System.out.println("Notifikasi Bridging Antrol : "+ex);
+//            if(ex.toString().contains("UnknownHostException")){
+//                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+//            }
+//        }
+//    }
 }

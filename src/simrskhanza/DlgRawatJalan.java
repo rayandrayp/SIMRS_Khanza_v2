@@ -5536,6 +5536,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             i=JOptionPane.showConfirmDialog(null, "Mau skalian update status pasien sudah diperiksa ????","Konfirmasi",JOptionPane.YES_NO_OPTION);
             if(i==JOptionPane.YES_OPTION){
                 Sequel.mengedit("reg_periksa","no_rawat=?","stts=?",2,new String[]{"Sudah",TNoRw.getText()});
+//                if(Sequel.cariInteger("select count(*) from record_waktulayan_bpjs where no_rawat = '"+TNoRw.getText()+"' and taskid5 <> '00:00:00'") == 0){ 
+//                    Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," task5=curtime()");
+//                    String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
+//                    updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
+//                }
             }
         } catch (Exception e) {
         }
@@ -9862,4 +9867,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnBatalActionPerformed(null);
         TabRawat.setSelectedIndex(3);
     }
+    
+//    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
+//        
+//    }
 }

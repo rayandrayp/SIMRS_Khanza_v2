@@ -11,6 +11,7 @@
  */
 
 package simrskhanza;
+import bridging.ApiBPJS;
 import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekSuplesiJasaRaharja;
 import rekammedis.RMRiwayatPerawatan;
@@ -118,6 +119,13 @@ import surat.SuratPulangAtasPermintaanSendiri;
 import surat.SuratSakit;
 import surat.SuratSakitPihak2;
 import laporan.YanmedBerkasRM;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Collections;
 
 /**
  *
@@ -145,7 +153,15 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private int i,row=0;
     private double lama=0,persenbayi=0,hargakamar=0;
     private String gabungkan="",norawatgabung="",kamaryangdigabung="",dokterranap="",bangsal="",diagnosa_akhir="",namakamar="",umur="0",sttsumur="Th",order="order by bangsal.nm_bangsal,kamar_inap.tgl_masuk,kamar_inap.jam_masuk";
-
+    
+    private ApiBPJS api=new ApiBPJS();
+    private String link="",requestJson,URL="",utc="";
+    private HttpHeaders headers;
+    private HttpEntity requestEntity;
+    private ObjectMapper mapper = new ObjectMapper();
+    private JsonNode root;
+    private JsonNode nameNode;
+    private JsonNode response;
     /** Creates new form DlgKamarInap
      * @param parent
        @param modal */
@@ -5613,6 +5629,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                         
                     Sequel.mengedit("kamar","kd_kamar='"+kdkamar.getText()+"'","status='KOSONG'");
                     WindowInputKamar.dispose();
+                    postWhatsapp(Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"),Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"));
                     emptTeks();                    
                 }                
             }
@@ -14821,5 +14838,45 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             billing.beriobat.dlgobt.tampil();
             billing.beriobat.dlgobt.setVisible(true);
         } 
+    }
+    
+    private void postWhatsapp(String no_hp, String nama){
+        try {
+            if(no_hp.substring(0, 1).equalsIgnoreCase("0")){
+                no_hp = "62" + no_hp.substring(1);
+            }
+            headers = new HttpHeaders();
+//            headers.setAccept(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            headers.setContentType(MediaType.APPLICATION_JSON);
+//            String msg = "\"asdasdasd\"";
+            String msg = "\"SELAMAT DATANG DI RST dr.SOEPRAOEN\\nYth. "+nama+"\\nTerima kasih atas kepercayaan Anda kepada Rumah Sakit Tk.II dr.Soepraoen untuk memberikan pelayanan kesehatan bagi Anda dan keluarga.\\nJika Bapak/Ibu membutuhkan bantuan , Silahkan menghubungi Customer Care RST dr.Soepraoen di:\\n          Telp : 0341-325111/325112\\n          WhatsApp  : 0811-3229-9222\\nDemi peningkatan mutu pelayanan, kami mohon kesediaan Anda untuk memberikan penilaian dan masukan melalui link di bawah ini.\\n          \\nhttps://forms.gle/NkRGZ8Me4EMQ2Nb79\\n          \\nTerima kasih\"";
+            URL = "http://192.168.9.18:9000/humas/messages/send";            
+            requestJson ="{" +
+                            "\"jid\":\""+no_hp+"@s.whatsapp.net\"," +
+                            "\"type\":\""+"number"+"\"," +
+                            "\"message\": {"+
+                                "\"text\":" + msg +
+                            "}"+
+                        "}";
+//            System.out.println("HEADER : "+headers.toString());
+//            System.out.println("URL : "+URL);
+//            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+//            nameNode = root.path("metaData");
+//            System.out.println("code : "+nameNode.path("code").asText());
+//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+//            if(nameNode.path("code").asText().equals("200")){
+//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+//            } else {
+//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+//            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Whatsapp Gateway : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
     }
 }
