@@ -5582,8 +5582,9 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                     cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem()+"','0000-00-00','00:00:00','"+TJmlHari.getText()+"','"+
                                     ttlbiaya.getText()+"','-'","No.Rawat")==true){
                                 Sequel.mengedit("reg_periksa","no_rawat='"+norawat.getText()+"'","status_lanjut='Ranap'");
-                                Sequel.mengedit("kamar","kd_kamar='"+kdkamar.getText()+"'","status='ISI'");                
-                                emptTeks();                            
+                                Sequel.mengedit("kamar","kd_kamar='"+kdkamar.getText()+"'","status='ISI'");  
+                                postWhatsapp(Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"),Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"));              
+                                emptTeks();   
                             }   
                             break;
                     }
@@ -5629,7 +5630,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                         
                     Sequel.mengedit("kamar","kd_kamar='"+kdkamar.getText()+"'","status='KOSONG'");
                     WindowInputKamar.dispose();
-                    postWhatsapp(Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"),Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"));
+//                    postWhatsapp(Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"),Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis = '"+TNoRM.getText()+"'"));
                     emptTeks();                    
                 }                
             }
@@ -11481,7 +11482,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             psanak.setString(1,tbKamIn.getValueAt(tbKamIn.getSelectedRow()-1,0).toString());
                             rs2=psanak.executeQuery();
                             if(rs2.next()){
-                                ps=koneksi.prepareStatement("select * from bridging_sep where bridging_sep.no_rawat=? order by bridging_sep.tglsep desc limit 1");
+                                ps=koneksi.prepareStatement("select * from bridging_sep where bridging_sep.no_rawat=? and jnspelayanan = '1' order by bridging_sep.tglsep desc limit 1");
                                 try {
                                     ps.setString(1,rs2.getString("no_rawat2"));
                                     rs=ps.executeQuery();
@@ -11526,7 +11527,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } 
                 }else{
                     try {
-                        ps=koneksi.prepareStatement("select * from bridging_sep where bridging_sep.no_rawat=? order by bridging_sep.tglsep desc limit 1");
+                        ps=koneksi.prepareStatement("select * from bridging_sep where bridging_sep.no_rawat=? and jnspelayanan = '1' order by bridging_sep.tglsep desc limit 1");
                         try {
                             ps.setString(1,norawat.getText());
                             rs=ps.executeQuery();

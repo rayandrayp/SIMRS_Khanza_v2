@@ -149,6 +149,7 @@ import surat.SuratSakitPihak2;
 import surat.SuratTidakHamil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Collections;
 
 /**
  *
@@ -7079,10 +7080,10 @@ private void MnSudahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(Sequel.cariInteger("bisa?",TNoRw.getText())>0){
                 JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             }else {
+                String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
                 Valid.editTable(tabModekasir,"reg_periksa","no_rawat",TNoRw,"stts='Sudah'");
-//                Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," task5=curtime()");
-//                String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
-//                updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
+//                Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," taskid5=curtime()");
+//                updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
                 if(tabModekasir.getRowCount()!=0){tampilkasir();}
             }
             
@@ -9809,8 +9810,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             Sequel.menyimpan("mutasi_berkas","'"+TNoRw.getText()+"','Sudah Diterima',now(),now(),'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00'","status='Sudah Diterima',diterima=now()","no_rawat='"+TNoRw.getText()+"'");
             Valid.editTable(tabModekasir,"reg_periksa","no_rawat",TNoRw,"stts='Berkas Diterima'");
             //menyimpan waktu saat ini
-//            Sequel.menyimpan("record_waktulayan_bpjs","0,'"+TNoRw.getText()+"',current_date(),curtime(),'00:00:00','00:00:00','00:00:00'","no_rawat='"+TNoRw.getText()+"'");
-//            updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "4", "");
+//            if(Sequel.cariInteger("select count(*) from record_waktulayan_bpjs where no_rawat='"+TNoRw.getText()+"'")==0){
+//                Sequel.menyimpan("record_waktulayan_bpjs","0,'"+TNoRw.getText()+"',current_date(),curtime(),'00:00:00','00:00:00','00:00:00'","no_rawat='"+TNoRw.getText()+"'");
+//            }
+//            updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "4", "");
+            postWhatsapp(Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis = '"+TNoRMCari.getText()+"'"),Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis = '"+TNoRMCari.getText()+"'"));
             if(tabModekasir.getRowCount()!=0){tampilkasir();}
         }
     }//GEN-LAST:event_ppBerkasDIterimaBtnPrintActionPerformed
@@ -13601,7 +13605,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     
 //    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
 //        try {
-//            String jsonFarmasi = "";
+//            String jsonFarmasi =  "";
+//            if (taskid != "4"){
+//                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
+//            }
 //            headers = new HttpHeaders();
 //            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 //            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
@@ -13613,12 +13620,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 //            requestJson ="{" +
 //                          "\"kodebooking\":\""+kodebooking+"\"," +
 //                            "\"taskid\":\""+taskid+"\"," +
-//                            "\"waktu\":\""+""+"\"" + jsonFarmasi +
+//                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
 //                         "}";
+////            System.out.println(headers);
 //            System.out.println("JSON : "+requestJson);
 //            requestEntity = new HttpEntity(requestJson,headers);
 //            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
-//            nameNode = root.path("metaData");
+//            nameNode = root.path("metadata");
 //            System.out.println("code : "+nameNode.path("code").asText());
 //            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
 //            if(nameNode.path("code").asText().equals("200")){
@@ -13633,4 +13641,43 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 //            }
 //        }
 //    }
+    private void postWhatsapp(String no_hp, String nama){
+        try {
+            if(no_hp.substring(0, 1).equalsIgnoreCase("0")){
+                no_hp = "62" + no_hp.substring(1);
+            }
+            headers = new HttpHeaders();
+//            headers.setAccept(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            headers.setContentType(MediaType.APPLICATION_JSON);
+//            String msg = "\"asdasdasd\"";
+            String msg = "\"SELAMAT DATANG DI RST dr.SOEPRAOEN\\nYth. "+nama+"\\nTerima kasih atas kepercayaan Anda kepada Rumah Sakit Tk.II dr.Soepraoen untuk memberikan pelayanan kesehatan bagi Anda dan keluarga.\\nJika Bapak/Ibu membutuhkan bantuan , Silahkan menghubungi Customer Care RST dr.Soepraoen di:\\n          Telp : 0341-325111/325112\\n          WhatsApp  : 0811-3229-9222\\nDemi peningkatan mutu pelayanan, kami mohon kesediaan Anda untuk memberikan penilaian dan masukan melalui link di bawah ini.\\n          \\nhttps://forms.gle/NkRGZ8Me4EMQ2Nb79\\n          \\nTerima kasih\"";
+            URL = "http://192.168.9.18:9000/humas/messages/send";            
+            requestJson ="{" +
+                            "\"jid\":\""+no_hp+"@s.whatsapp.net\"," +
+                            "\"type\":\""+"number"+"\"," +
+                            "\"message\": {"+
+                                "\"text\":" + msg +
+                            "}"+
+                        "}";
+//            System.out.println("HEADER : "+headers.toString());
+//            System.out.println("URL : "+URL);
+//            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+//            nameNode = root.path("metaData");
+//            System.out.println("code : "+nameNode.path("code").asText());
+//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+//            if(nameNode.path("code").asText().equals("200")){
+//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+//            } else {
+//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+//            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Whatsapp Gateway : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
 }

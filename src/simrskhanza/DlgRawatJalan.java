@@ -12,6 +12,7 @@
 
 package simrskhanza;
 
+import bridging.ApiBPJS;
 import surat.SuratKontrol;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
@@ -57,6 +58,10 @@ import kepegawaian.DlgCariPegawai;
 import keuangan.DlgJnsPerawatanRalan;
 import keuangan.Jurnal;
 import laporan.DlgBerkasRawat;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import permintaan.DlgBookingOperasi;
 import rekammedis.RMDataResumePasien;
 import permintaan.DlgPermintaanLaboratorium;
@@ -110,6 +115,8 @@ import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMUjiFungsiKFR;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  *
  * @author dosen
@@ -141,7 +148,15 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private boolean sukses=false;
     private double ttljmdokter=0,ttljmperawat=0,ttlkso=0,ttljasasarana=0,ttlbhp=0,ttlmenejemen=0,ttlpendapatan=0;
     private Jurnal jur=new Jurnal();
-
+    
+    private ApiBPJS api=new ApiBPJS();
+    private String link="",requestJson,URL="",utc="";
+    private HttpHeaders headers;
+    private HttpEntity requestEntity;
+    private ObjectMapper mapper = new ObjectMapper();
+    private JsonNode root;
+    private JsonNode nameNode;
+    private JsonNode response;
     /** Creates new form DlgPerawatan
      * @param parent
      * @param modal */
@@ -5537,9 +5552,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             if(i==JOptionPane.YES_OPTION){
                 Sequel.mengedit("reg_periksa","no_rawat=?","stts=?",2,new String[]{"Sudah",TNoRw.getText()});
 //                if(Sequel.cariInteger("select count(*) from record_waktulayan_bpjs where no_rawat = '"+TNoRw.getText()+"' and taskid5 <> '00:00:00'") == 0){ 
-//                    Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," task5=curtime()");
+//                    Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," taskid5=curtime()");
 //                    String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
-//                    updateTaskIDBPJS(Sequel.cariIsi("select kodebooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
+//                    updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
 //                }
             }
         } catch (Exception e) {
@@ -9869,6 +9884,41 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
     
 //    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
-//        
+//        try {
+//            String jsonFarmasi =  "";
+//            if (taskid != "4"){
+//                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
+//            }
+//            headers = new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+//            utc=String.valueOf(api.GetUTCdatetimeAsString());
+//	    headers.add("X-Timestamp",utc);
+//	    headers.add("X-Signature",api.getHmac(utc));
+//            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+//            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
+//            requestJson ="{" +
+//                          "\"kodebooking\":\""+kodebooking+"\"," +
+//                            "\"taskid\":\""+taskid+"\"," +
+//                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
+//                         "}";
+////            System.out.println(headers);
+//            System.out.println("JSON : "+requestJson);
+//            requestEntity = new HttpEntity(requestJson,headers);
+//            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+//            nameNode = root.path("metadata");
+//            System.out.println("code : "+nameNode.path("code").asText());
+//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+//            if(nameNode.path("code").asText().equals("200")){
+//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+//            } else {
+//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+//            }
+//        }catch (Exception ex) {
+//            System.out.println("Notifikasi Bridging Antrol : "+ex);
+//            if(ex.toString().contains("UnknownHostException")){
+//                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+//            }
+//        }
 //    }
 }
