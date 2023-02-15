@@ -1413,18 +1413,21 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 if(NoPermintaan.trim().equals("")||DiagnosaKlinis.trim().equals("")){
                     Valid.textKosong(TCari,"No.Permintaan");
                 }else{
-                    if(Sampel.equals("")||akses.getkode().equals("Admin Utama")){
-                        if((Sequel.cariInteger("select count(noorder) from permintaan_pemeriksaan_labmb where stts_bayar='Sudah' and noorder=?",NoPermintaan)+
-                                Sequel.cariInteger("select count(noorder) from permintaan_detail_permintaan_labmb where stts_bayar='Sudah' and noorder=?",NoPermintaan))>0){
-                            JOptionPane.showMessageDialog(null,"Maaf, Tidak boleh dihapus karena sudah ada tindakan yang sudah dibayar.\nSilahkan hubungi kasir...!!!!");
+                    int reply = JOptionPane.showConfirmDialog(rootPane,"Eeiiiiiits, udah bener belum data yang mau dihapus..??","Konfirmasi",JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) {
+                        if(Sampel.equals("")||akses.getkode().equals("Admin Utama")){
+                            if((Sequel.cariInteger("select count(noorder) from permintaan_pemeriksaan_labmb where stts_bayar='Sudah' and noorder=?",NoPermintaan)+
+                                    Sequel.cariInteger("select count(noorder) from permintaan_detail_permintaan_labmb where stts_bayar='Sudah' and noorder=?",NoPermintaan))>0){
+                                JOptionPane.showMessageDialog(null,"Maaf, Tidak boleh dihapus karena sudah ada tindakan yang sudah dibayar.\nSilahkan hubungi kasir...!!!!");
+                            }else{
+                                Sequel.meghapus("permintaan_labmb","noorder",NoPermintaan);
+                                TeksKosong();
+                                tampil();
+                            } 
                         }else{
-                            Sequel.meghapus("permintaan_labmb","noorder",NoPermintaan);
-                            TeksKosong();
-                            tampil();
-                        } 
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Maaf, Sudah dilakukan pengambilan sampel...!!!!");
-                    }  
+                            JOptionPane.showMessageDialog(null,"Maaf, Sudah dilakukan pengambilan sampel...!!!!");
+                        }  
+                    }
                 }
             }else{            
                 JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data permintaan...!!!!");

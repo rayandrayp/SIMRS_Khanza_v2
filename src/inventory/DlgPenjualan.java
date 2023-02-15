@@ -3793,8 +3793,15 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         } catch (Exception e) {
             BtnNota.setVisible(false);
         }
-            
+        
         BtnGudang.setEnabled(akses.getakses_depo_obat());
+        if(!akses.getkode().equals("Admin Utama")){
+            kdgudang.setText(getKodeDepo(akses.getkode()));
+            Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",nmgudang,kdgudang.getText());    
+            kdgudang.setEditable(false);
+            nmgudang.setEditable(false);
+            BtnGudang.setEnabled(false);
+        }
     }
     
     public void autoNomor(){
@@ -4229,5 +4236,34 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         } catch (Exception e) {
             Persenppn.setText("0");
         }
+    }
+    
+    public String getKodeDepo(String nip){
+        String kodeDepo = "";
+        String kodeJabatan = Sequel.cariIsi("select kd_jbtn from petugas where nip=?",nip);
+        switch(kodeJabatan) {
+            case "J051":
+                kodeDepo = "DP1";
+                break;
+            case "J052":
+                kodeDepo = "DP2";
+                break;
+            case "J053":
+                kodeDepo = "DP3";
+                break;
+            case "J054":
+                kodeDepo = "DP4";
+                break;
+            case "J055":
+                kodeDepo = "DP5";
+                break;
+            case "J057":
+                kodeDepo = "DP6";
+                break;
+            case "J056":
+                kodeDepo = "GO";
+                break;
+        }        
+        return kodeDepo;
     }
 }

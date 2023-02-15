@@ -1741,18 +1741,21 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 if(NoPermintaan.trim().equals("")||DiagnosaKlinis.trim().equals("")){
                     Valid.textKosong(TCari,"No.Permintaan");
                 }else{
-                    if(Sampel.equals("")||akses.getkode().equals("Admin Utama")){
-                        if((Sequel.cariInteger("select count(noorder) from permintaan_pemeriksaan_lab where stts_bayar='Sudah' and noorder=?",NoPermintaan)+
-                                Sequel.cariInteger("select count(noorder) from permintaan_detail_permintaan_lab where stts_bayar='Sudah' and noorder=?",NoPermintaan))>0){
-                            JOptionPane.showMessageDialog(null,"Maaf, Tidak boleh dihapus karena sudah ada tindakan yang sudah dibayar.\nSilahkan hubungi kasir...!!!!");
+                    int reply = JOptionPane.showConfirmDialog(rootPane,"Eeiiiiiits, udah bener belum data yang mau dihapus..??","Konfirmasi",JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) {
+                        if(Sampel.equals("")||akses.getkode().equals("Admin Utama")){
+                            if((Sequel.cariInteger("select count(noorder) from permintaan_pemeriksaan_lab where stts_bayar='Sudah' and noorder=?",NoPermintaan)+
+                                    Sequel.cariInteger("select count(noorder) from permintaan_detail_permintaan_lab where stts_bayar='Sudah' and noorder=?",NoPermintaan))>0){
+                                JOptionPane.showMessageDialog(null,"Maaf, Tidak boleh dihapus karena sudah ada tindakan yang sudah dibayar.\nSilahkan hubungi kasir...!!!!");
+                            }else{
+                                Sequel.meghapus("permintaan_lab","noorder",NoPermintaan);
+                                TeksKosong();
+                                tampil();
+                            } 
                         }else{
-                            Sequel.meghapus("permintaan_lab","noorder",NoPermintaan);
-                            TeksKosong();
-                            tampil();
-                        } 
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Maaf, Sudah dilakukan pengambilan sampel...!!!!");
-                    }  
+                            JOptionPane.showMessageDialog(null,"Maaf, Sudah dilakukan pengambilan sampel...!!!!");
+                        }  
+                    }
                 }
             }else{            
                 JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data permintaan...!!!!");
@@ -3892,7 +3895,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     "inner join dokter on permintaan_lab.dokter_perujuk=dokter.kd_dokter "+
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
                     "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                    "where permintaan_lab.status='ralan' and permintaan_lab.tgl_permintaan between ? and ? "+
+                    "where permintaan_lab.status='ralan' and permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.tgl_permintaan between ? and ? "+
                     (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                     "(permintaan_lab.noorder like ? or permintaan_lab.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                     "pasien.nm_pasien like ? or permintaan_lab.diagnosa_klinis like ? or dokter.nm_dokter like ? or penjab.png_jawab like ?)")+
@@ -4011,7 +4014,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 "inner join template_laboratorium on template_laboratorium.id_template=permintaan_detail_permintaan_lab.id_template "+
                 "inner join dokter on permintaan_lab.dokter_perujuk=dokter.kd_dokter "+
                 "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                "where permintaan_lab.status='ralan' and permintaan_lab.tgl_permintaan between ? and ? "+
+                "where permintaan_lab.status='ralan'  and permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.tgl_permintaan between ? and ? "+
                 (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                 "(permintaan_lab.noorder like ? or permintaan_lab.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                 "pasien.nm_pasien like ? or jns_perawatan_lab.nm_perawatan like ? or template_laboratorium.Pemeriksaan like ? or "+
@@ -4189,7 +4192,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 "left join kamar on kamar_inap.kd_kamar=kamar.kd_kamar "+
                 "left join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
                 "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                "where permintaan_lab.status='ranap' and permintaan_lab.tgl_permintaan between ? and ? "+
+                "where permintaan_lab.status='ranap' and permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.tgl_permintaan between ? and ? "+
                 (semua?"":"and dokter.nm_dokter like ? and bangsal.nm_bangsal like ? and "+
                 "(permintaan_lab.noorder like ? or permintaan_lab.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                 "pasien.nm_pasien like ? or permintaan_lab.diagnosa_klinis like ? or dokter.nm_dokter like ? or penjab.png_jawab like ? )")+
@@ -4310,7 +4313,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     "inner join template_laboratorium on template_laboratorium.id_template=permintaan_detail_permintaan_lab.id_template "+
                     "inner join dokter on permintaan_lab.dokter_perujuk=dokter.kd_dokter  "+
                     "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                    "where permintaan_lab.status='ranap' and permintaan_lab.tgl_permintaan between ? and ? "+
+                    "where permintaan_lab.status='ranap' and permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.tgl_permintaan between ? and ? "+
                     (semua?"":"and dokter.nm_dokter like ? and bangsal.nm_bangsal like ? and "+
                     "(permintaan_lab.noorder like ? or permintaan_lab.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                     "pasien.nm_pasien like ? or jns_perawatan_lab.nm_perawatan like ? or template_laboratorium.Pemeriksaan like ? or "+
@@ -4382,7 +4385,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 if (nilai_detik <= 9) {
                     nol_detik = "0";
                 }
-
+                
                 detik = nol_detik + Integer.toString(nilai_detik);
                 if(detik.equals("05")){
                     permintaanbaru=0;
