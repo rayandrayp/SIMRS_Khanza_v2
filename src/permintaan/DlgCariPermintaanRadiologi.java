@@ -2356,7 +2356,7 @@ private void tbRadiologiRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRS
                     "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                     "inner join dokter on permintaan_radiologi.dokter_perujuk=dokter.kd_dokter "+
                     "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "where permintaan_radiologi.status='ralan' and permintaan_radiologi.tgl_permintaan between ? and ? "+
+                    "where permintaan_radiologi.status='ralan' and permintaan_radiologi.jam_hasil='00:00:00' and permintaan_radiologi.tgl_permintaan between ? and ? "+
                     (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                     "(permintaan_radiologi.noorder like ? or permintaan_radiologi.no_rawat like ? or reg_periksa.no_rkm_medis like ? "+
                     "or pasien.nm_pasien like ? or permintaan_radiologi.diagnosa_klinis like ? or dokter.nm_dokter like ?) ")+
@@ -2441,7 +2441,7 @@ private void tbRadiologiRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRS
                     "permintaan_radiologi.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and "+
                     "permintaan_radiologi.noorder=permintaan_pemeriksaan_radiologi.noorder and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
                     "and permintaan_radiologi.dokter_perujuk=dokter.kd_dokter and reg_periksa.kd_poli=poliklinik.kd_poli where "+
-                    "permintaan_radiologi.status='ralan' and permintaan_radiologi.tgl_permintaan between ? and ? "+
+                    "permintaan_radiologi.status='ralan' and permintaan_radiologi.jam_hasil='00:00:00' and permintaan_radiologi.tgl_permintaan between ? and ? "+
                     (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                     "(permintaan_radiologi.noorder like ? or permintaan_radiologi.no_rawat like ? or "+
                     "reg_periksa.no_rkm_medis like ? or pasien.nm_pasien like ? or "+
