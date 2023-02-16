@@ -1310,6 +1310,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(Valid.SetAngka(tbObat.getValueAt(i,1).toString())>0){  
                             String obat_kemo = "0";                      
                             if(tbObat.getValueAt(i,0).toString().equals("true")){ //jika dicentang
+//                                obat_kemo = (tbObat.getValueAt(i,19).toString().equals("true")) ? "1":"0";
                                 //System.out.println("begin save data "+tbObat.getValueAt(i,2).toString());
                                 //System.out.println("kronis? "+tbObat.getValueAt(i,7).toString());
                                 //System.out.println("checked "+tbObat.getValueAt(i,0).toString());

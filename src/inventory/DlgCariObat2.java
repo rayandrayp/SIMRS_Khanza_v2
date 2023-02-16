@@ -1196,6 +1196,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(Valid.SetAngka(tbObat.getValueAt(i,1).toString())>0){
                             String obat_kemo = "0";
                             if(tbObat.getValueAt(i,0).toString().equals("true")){ //jika dicentang
+//                                obat_kemo = (tbObat.getValueAt(i,19).toString().equals("true")) ? "1":"0";
                                 double jumlah_obat = Double.parseDouble(tbObat.getValueAt(i,1).toString());
 //                              pscarikapasitas= koneksi.prepareStatement("select IFNULL(kapasitas,1) from databarang where kode_brng=?"); 
                                 pscarikapasitas= koneksi.prepareStatement("select CASE kapasitas WHEN 0 THEN 1 ELSE kapasitas END from databarang where kode_brng=?"); 
