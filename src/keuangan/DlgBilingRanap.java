@@ -5120,6 +5120,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
                                                (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
                                 subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            } else {
+                                tabModeRwJlDr.addRow(new Object[]{true,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                               rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                               (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
                             }
                         }
                     }
@@ -5127,6 +5132,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     while(rscariobat.next()){
                         if (!rscariobat.getString("kemoterapi").equalsIgnoreCase("1")){
                             if (rscariobat.getString("pecahkronis").equalsIgnoreCase("1")){
+                                tabModeRwJlDr.addRow(new Object[]{false,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                               rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                               (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                                subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                            } else {
                                 tabModeRwJlDr.addRow(new Object[]{false,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
                                                rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
                                                (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
