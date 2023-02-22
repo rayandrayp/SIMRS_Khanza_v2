@@ -1316,7 +1316,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
                 int row=tabMode.getRowCount();
                 for(int i=0;i<row;i++){  
-                    Sequel.menyimpan("temporary","'"+i+"','"+
+                    Sequel.menyimpan("temporary","'0','"+ //"+i+" (pengganti 0)
                                     tabMode.getValueAt(i,1).toString()+"','"+
                                     tabMode.getValueAt(i,2).toString()+"','"+
                                     tabMode.getValueAt(i,3).toString()+"','"+
@@ -1334,7 +1334,14 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 param.put("emailrs",akses.getemailrs());  
                 param.put("bangsal",nmgudang.getText());    
                 param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-                Valid.MyReportqry("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+                Valid.MyReport("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::",param);
+//                Valid.MyReportqry("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+//                Valid.MyReportqry("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::",
+//                        "select  t.temp1,t.temp2,t.temp3,t.temp4,FORMAT(t.temp5,2) AS temp5,FORMAT(ROUND(g.stok, 0),0) AS temp6 " + 
+//                        "from temporary t INNER JOIN gudangbarang g ON g.kode_brng = t.temp1 " +
+//                        "WHERE g.kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+nmgudang.getText()+"') " +
+//                        "AND g.stok > 0 AND t.temp37='"+akses.getalamatip()+"' order by t.no",param);
+                
             }
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1797,7 +1804,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     tabMode.addRow(new Object[]{
                         "",rstampil.getString("kode_brng"),rstampil.getString("nama_brng"),rstampil.getString("nama"),rstampil.getString("kode_sat"),rstampil.getDouble("dasar"),0,0,0,0,0,"","",dp1,dp2,dp3,dp4,dp5,dp6,go
                     });
-                    iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\"},";
+                    iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\",\"NoBatch\":\"\",\"NoFaktur\":\"\",\"Stok\":\"0\"},";
+//                    iyem=iyem+"{\"KodeBarang\":\""+rstampil.getString("kode_brng")+"\",\"NamaBarang\":\""+rstampil.getString("nama_brng").replaceAll("\"","")+"\",\"Kategori\":\""+rstampil.getString("nama")+"\",\"Satuan\":\""+rstampil.getString("kode_sat")+"\",\"Harga\":\""+rstampil.getString("dasar")+"\"},";
                 }  
             } catch (Exception e) {
                 System.out.println("Notif : "+e);
@@ -1893,7 +1901,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         go = (int) Math.round(dataStok.get(list.path("KodeBarang").asText())[6]);
                         
                         tabMode.addRow(new Object[]{
-                            "",list.path("KodeBarang").asText(),list.path("NamaBarang").asText(),list.path("Kategori").asText(),list.path("Satuan").asText(),list.path("Harga").asDouble(),0,0,0,0,0,"","",dp1,dp2,dp3,dp4,dp5,dp6,go
+                            "",list.path("KodeBarang").asText(),list.path("NamaBarang").asText(),list.path("Kategori").asText(),list.path("Satuan").asText(),list.path("Harga").asDouble(),list.path("Stok").asDouble(),0,0,0,0,list.path("NoBatch").asText(),list.path("NoFaktur").asText(),dp1,dp2,dp3,dp4,dp5,dp6,go
                         });
                     }
                 }

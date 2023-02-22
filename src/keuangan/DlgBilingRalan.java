@@ -4356,6 +4356,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             if(detailbhp>0){
                 tabModeRwJlDr.addRow(new Object[]{true,"","Paket Obat/BHP",":",null,null,null,detailbhp,"Ralan Dokter"});
             }
+            if (Sequel.cariInteger("select count(*) from detail_pemberian_obat where no_rawat = '"+TNoRw.getText()+"' and kemoterapi = '1'")>0){
+                prosesCariObatKemo();
+            }
         }
         if(chkTambahan.isSelected()==true){                           
             try {

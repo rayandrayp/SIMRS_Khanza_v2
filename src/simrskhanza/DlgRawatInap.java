@@ -7866,6 +7866,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         ChkInput1.setSelected(true);
         isForm2(); 
         TabRawatMouseClicked(null);
+        
+        //autofill tanda vital
+        autofillTandaVital(TNoRM.getText());
     }
     
     public void setKamar(String kamar) {
@@ -8508,5 +8511,43 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    
+    private void autofillTandaVital(String norm){
+        int i = 0;
+        try{  
+            ps4=koneksi.prepareStatement("SELECT * FROM \n" +
+            "(\n" +
+            "	SELECT tanggal, pemeriksaan_suhu, pemeriksaan_tb, pemeriksaan_bb, pemeriksaan_td,pemeriksaan_rr,pemeriksaan_nadi,pemeriksaan_gcs,pemeriksaan_spo2 FROM penilaian_awal_keperawatan_ranap WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, pemeriksaan_kebidanan_suhu, pemeriksaan_kebidanan_tb, pemeriksaan_kebidanan_bb, pemeriksaan_kebidanan_td,pemeriksaan_kebidanan_rr,pemeriksaan_kebidanan_nadi,pemeriksaan_kebidanan_gcs,pemeriksaan_kebidanan_spo2 FROM penilaian_awal_keperawatan_kebidanan_ranap WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            ") A\n" +
+            "ORDER BY tanggal DESC;"); 
+            try{
+                rs=ps4.executeQuery();
+                while(rs.next()){
+                    if(i==0){
+                        JOptionPane.showMessageDialog(null,"Mengambil data tanda vital pada tanggal "+rs.getString("tanggal"));
+                        TSuhu.setText(rs.getString("pemeriksaan_suhu"));
+                        TTinggi.setText(rs.getString("pemeriksaan_tb"));
+                        TBerat.setText(rs.getString("pemeriksaan_bb"));
+                        TTensi.setText(rs.getString("pemeriksaan_td"));
+                        TRespirasi.setText(rs.getString("pemeriksaan_rr"));
+                        TNadi.setText(rs.getString("pemeriksaan_nadi"));
+                        TGCS.setText(rs.getString("pemeriksaan_gcs"));
+                        SpO2.setText(rs.getString("pemeriksaan_spo2"));
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi autofilling : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps4!=null){
+                    ps4.close();
+                }
+            }                  
+        }catch(Exception e){
+            System.out.println("Notifikasi autofilling : "+e);
+        }
+    }
 }

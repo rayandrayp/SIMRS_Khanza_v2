@@ -674,7 +674,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             int row=tabMode.getRowCount();
             for(int r=0;r<row;r++){  
-                Sequel.menyimpan("temporary","'"+r+"','"+
+                Sequel.menyimpan("temporary","'0','"+ //"+r+"
                                 tabMode.getValueAt(r,0).toString().replaceAll("'","`")+"','"+
                                 tabMode.getValueAt(r,1).toString().replaceAll("'","`")+"','"+
                                 tabMode.getValueAt(r,2).toString().replaceAll("'","`")+"','"+

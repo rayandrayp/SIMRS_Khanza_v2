@@ -1751,7 +1751,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1765,7 +1765,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2262,10 +2262,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel18);
         jLabel18.setBounds(296, 190, 79, 23);
 
-        jLabel25.setText("L.P. (Cm) :");
+        jLabel25.setText("Lingkar Perut (Cm) :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelGlass12.add(jLabel25);
-        jLabel25.setBounds(450, 10, 90, 23);
+        jLabel25.setBounds(450, 10, 140, 23);
 
         jLabel17.setText("Tinggi Badan (Cm) :");
         jLabel17.setName("jLabel17"); // NOI18N
@@ -2577,7 +2577,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(LingkarPerut);
-        LingkarPerut.setBounds(543, 10, 55, 23);
+        LingkarPerut.setBounds(590, 10, 55, 23);
 
         Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         Btn5Soap.setMnemonic('4');
@@ -3488,7 +3488,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel23.setBounds(554, 10, 60, 23);
 
         DTPTgl.setForeground(new java.awt.Color(50, 70, 50));
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -8309,6 +8309,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         ChkInput3.setSelected(true);
         isForm4();
         TabRawatMouseClicked(null);
+        
+        //autofill tanda vital
+        autofillTandaVital(TNoRM.getText());
     }
     
     private void isForm(){
@@ -9881,6 +9884,53 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     public void emptTeks(){
         BtnBatalActionPerformed(null);
         TabRawat.setSelectedIndex(3);
+    }
+    
+    private void autofillTandaVital(String norm){
+        int i = 0;
+        try{  
+            ps4=koneksi.prepareStatement("SELECT * FROM \n" +
+            "(\n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,''  FROM penilaian_awal_keperawatan_gigi WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_kebidanan WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_mata WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan_psikiatri WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan_bayi WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            ") A\n" +
+            "ORDER BY tanggal DESC;"); 
+            try{
+                rs=ps4.executeQuery();
+                while(rs.next()){
+                    if(i==0){
+                        JOptionPane.showMessageDialog(null,"Mengambil data tanda vital pada tanggal "+rs.getString("tanggal"));
+                        TSuhu.setText(rs.getString("suhu"));
+                        TTinggi.setText(rs.getString("tb"));
+                        TBerat.setText(rs.getString("bb"));
+                        TTensi.setText(rs.getString("td"));
+                        TRespirasi.setText(rs.getString("rr"));
+                        TNadi.setText(rs.getString("nadi"));
+                        TGCS.setText(rs.getString("gcs"));
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi autofilling : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps4!=null){
+                    ps4.close();
+                }
+            }                  
+        }catch(Exception e){
+            System.out.println("Notifikasi autofilling : "+e);
+        }
     }
     
 //    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
