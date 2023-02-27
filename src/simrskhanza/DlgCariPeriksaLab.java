@@ -1907,7 +1907,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         param.put("kontakrs",akses.getkontakrs());
                         param.put("emailrs",akses.getemailrs());   
                         param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                        //System.out.println("message "+message);
+                        param.put("nosampel", Sequel.cariIsi("SELECT nosampel FROM periksa_lab_nosampel WHERE no_rawat = '"+rs.getString("no_rawat")+"' and tgl_periksa = '"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()+"' and jam = '"+rs.getString("jam")+"'"));
                         if (message == ""){
                             Valid.MyReport("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);
                         } else {
@@ -2206,6 +2206,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         param.put("propinsirs",akses.getpropinsirs());
                         param.put("kontakrs",akses.getkontakrs());
                         param.put("emailrs",akses.getemailrs());   
+                        param.put("nosampel", Sequel.cariIsi("SELECT nosampel FROM periksa_lab_nosampel WHERE no_rawat = '"+rs.getString("no_rawat")+"' and tgl_periksa = '"+tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()+"' and jam = '"+rs.getString("jam")+"'"));
                         param.put("logo",Sequel.cariGambar("select logo from setting")); 
                         if (message == ""){
                             Valid.MyReport("rptPeriksaLab2.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);

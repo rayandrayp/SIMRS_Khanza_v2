@@ -463,6 +463,8 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         NmPerujuk = new widget.TextBox();
         btnDokterPj = new widget.Button();
         TUmur = new widget.TextBox();
+        NoSampel = new widget.TextBox();
+        jLabel13 = new widget.Label();
         PanelCariUtama = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbPemeriksaan = new widget.Table();
@@ -787,7 +789,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         NmPtg.setBounds(546, 42, 249, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2022" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2023" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -959,6 +961,20 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelInput.add(TUmur);
         TUmur.setBounds(716, 12, 110, 23);
 
+        NoSampel.setName("NoSampel"); // NOI18N
+        NoSampel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoSampelKeyPressed(evt);
+            }
+        });
+        PanelInput.add(NoSampel);
+        NoSampel.setBounds(920, 70, 120, 23);
+
+        jLabel13.setText("No. Sampel :");
+        jLabel13.setName("jLabel13"); // NOI18N
+        PanelInput.add(jLabel13);
+        jLabel13.setBounds(830, 70, 90, 23);
+
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
@@ -1043,6 +1059,8 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
             Valid.textKosong(KodePerujuk,"Dokter Perujuk");
         }else if(KodePj.getText().equals("")||NmDokterPj.getText().equals("")){
             Valid.textKosong(KodePj,"Dokter Penanggung Jawab");
+        }else if(NoSampel.getText().equals("")){
+            Valid.textKosong(NoSampel,"Nomor Sampel");
         }else if(tabMode.getRowCount()==0){
             Valid.textKosong(Pemeriksaan,"Data Pemeriksaan");
         }else if(jml==0){
@@ -1486,6 +1504,10 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         tbTarifMouseClicked(evt);
     }//GEN-LAST:event_rbDewasaMouseClicked
 
+    private void NoSampelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoSampelKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoSampelKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1526,6 +1548,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox NmDokterPj;
     private widget.TextBox NmPerujuk;
     private widget.TextBox NmPtg;
+    private widget.TextBox NoSampel;
     private javax.swing.JPanel PanelCariUtama;
     private widget.PanelBiasa PanelInput;
     private widget.TextBox Pemeriksaan;
@@ -1549,6 +1572,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
+    private widget.Label jLabel13;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel3;
@@ -3135,10 +3159,16 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             if(sukses==true){
                 String message = JOptionPane.showInputDialog("Apakah ada catatan khusus?");
                 if(message != null) 
-                    Sequel.menyimpantf2("periksa_lab_pesan","?,?,?,?","Kode Pemeriksaan",4,new String[]{
-                        TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),
-                            CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem(),message
-                    });
+                Sequel.menyimpantf2("periksa_lab_pesan","?,?,?,?","Kode Pemeriksaan",4,new String[]{
+                    TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),
+                        CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem(),message//, NoSampel.getText()
+                });
+                
+                //insert no sampel
+                Sequel.menyimpantf2("periksa_lab_nosampel","?,?,?,?","Kode Pemeriksaan",4,new String[]{
+                    TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),
+                        CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem(),NoSampel.getText()
+                });
                 for(i=0;i<tbPemeriksaan.getRowCount();i++){ 
                     if((!tbPemeriksaan.getValueAt(i,6).toString().equals(""))&&tbPemeriksaan.getValueAt(i,0).toString().equals("true")){                                
                         pscariperawatan=koneksi.prepareStatement("select template_laboratorium.kd_jenis_prw from template_laboratorium where template_laboratorium.id_template=?");
