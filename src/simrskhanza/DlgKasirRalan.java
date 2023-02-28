@@ -2472,7 +2472,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnBarcode2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcode2.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode2.setText("Barcode RM");
+        MnBarcode2.setText("Label RM 360");
         MnBarcode2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBarcode2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBarcode2.setName("MnBarcode2"); // NOI18N
@@ -2489,7 +2489,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnBarcodeRM9.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcodeRM9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBarcodeRM9.setMnemonic('L');
-        MnBarcodeRM9.setText("Label Rekam Medis 10");
+        MnBarcodeRM9.setText("Label RM 3110");
         MnBarcodeRM9.setToolTipText("L");
         MnBarcodeRM9.setName("MnBarcodeRM9"); // NOI18N
         MnBarcodeRM9.setPreferredSize(new java.awt.Dimension(180, 26));
@@ -7098,10 +7098,11 @@ private void MnSudahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(Sequel.cariInteger("bisa?",TNoRw.getText())>0){
                 JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             }else {
-                String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
                 Valid.editTable(tabModekasir,"reg_periksa","no_rawat",TNoRw,"stts='Sudah'");
+//                String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"tidak ada", "non racikan","racikan"},"Pilihan Obat Pasien");
 //                Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," taskid5=curtime()");
 //                updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
+//                tambahAntreanFarmasiBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), msg_lanjut);
                 if(tabModekasir.getRowCount()!=0){tampilkasir();}
             }
             
@@ -10552,8 +10553,28 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }//GEN-LAST:event_MnPCareActionPerformed
 
     private void MnBarcode2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBarcode2ActionPerformed
-        if(TPasienCari.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+//        if(TPasienCari.getText().trim().equals("")){
+//            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+//        }else{
+//            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars",akses.getnamars());
+//            param.put("alamatrs",akses.getalamatrs());
+//            param.put("kotars",akses.getkabupatenrs());
+//            param.put("propinsirs",akses.getpropinsirs());
+//            param.put("kontakrs",akses.getkontakrs());
+//            param.put("emailrs",akses.getemailrs());
+//            param.put("no_rawat",TNoRw.getText());
+//            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+//            Valid.MyReport("rptBarcodeRawat3.jasper",param,"::[ Barcode No.RM ]::");
+//            this.setCursor(Cursor.getDefaultCursor());
+//        }
+        if(tabModekasir.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, data pasien sudah habis...!!!!");
+            TNoRMCari.requestFocus();
+        }else if(TPasienCari.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu data pasien dengan menklik data pada table...!!!");
+            tbKasirRalan.requestFocus();
         }else{
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
@@ -10563,9 +10584,15 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
-            param.put("no_rawat",TNoRw.getText());
-            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
-            Valid.MyReport("rptBarcodeRawat3.jasper",param,"::[ Barcode No.RM ]::");
+            param.put("logo",Sequel.cariGambar("select logo from setting"));
+            Valid.MyReportqry("rptBarcodeRM360.jasper","report","::[ Label Rekam Medis ]::","select pasien.no_rkm_medis, pasien.nm_pasien, pasien.no_ktp, pasien.jk, "+
+                "pasien.tmp_lahir, pasien.tgl_lahir,pasien.nm_ibu, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.gol_darah, pasien.pekerjaan,"+
+                "pasien.stts_nikah,pasien.agama,pasien.tgl_daftar,pasien.no_tlp,pasien.umur,"+
+                "pasien.pnd, pasien.keluarga, pasien.namakeluarga,penjab.png_jawab,pasien.pekerjaanpj,"+
+                "concat(pasien.alamatpj,', ',pasien.kelurahanpj,', ',pasien.kecamatanpj,', ',pasien.kabupatenpj) as alamatpj from pasien "+
+                "inner join kelurahan inner join kecamatan inner join kabupaten "+
+                "inner join penjab on pasien.kd_pj=penjab.kd_pj and pasien.kd_kel=kelurahan.kd_kel "+
+                "and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab  where pasien.no_rkm_medis='"+TNoRMCari.getText()+"' ",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnBarcode2ActionPerformed
@@ -13642,44 +13669,82 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } 
     }
     
-//    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
-//        try {
-//            String jsonFarmasi =  "";
-//            if (taskid != "4"){
-//                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
-//            }
-//            headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
-//            utc=String.valueOf(api.GetUTCdatetimeAsString());
-//	    headers.add("X-Timestamp",utc);
-//	    headers.add("X-Signature",api.getHmac(utc));
-//            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
-//            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
-//            requestJson ="{" +
-//                          "\"kodebooking\":\""+kodebooking+"\"," +
-//                            "\"taskid\":\""+taskid+"\"," +
-//                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
-//                         "}";
-////            System.out.println(headers);
-//            System.out.println("JSON : "+requestJson);
-//            requestEntity = new HttpEntity(requestJson,headers);
-//            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
-//            nameNode = root.path("metadata");
-//            System.out.println("code : "+nameNode.path("code").asText());
-//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
-//            if(nameNode.path("code").asText().equals("200")){
-//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
-//            } else {
-//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
-//            }
-//        }catch (Exception ex) {
-//            System.out.println("Notifikasi Bridging Antrol : "+ex);
-//            if(ex.toString().contains("UnknownHostException")){
-//                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
-//            }
-//        }
-//    }
+    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
+        try {
+            String jsonFarmasi =  "";
+            if (taskid != "4"){
+                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
+            }
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+            utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
+            requestJson ="{" +
+                          "\"kodebooking\":\""+kodebooking+"\"," +
+                            "\"taskid\":\""+taskid+"\"," +
+                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
+                         "}";
+//            System.out.println(headers);
+            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+            nameNode = root.path("metadata");
+            System.out.println("code : "+nameNode.path("code").asText());
+            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+            if(nameNode.path("code").asText().equals("200")){
+                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+            } else {
+                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Bridging Antrol : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
+    
+    private void tambahAntreanFarmasiBPJS(String kodebooking, String jenisObat){
+        try {
+            String nomorantrean = Sequel.cariInteger("select CONVERT(RIGHT(resep_obat.no_resep,4),signed) as urut from resep_obat where resep_obat.no_rawat='"+TNoRw.getText()+"'").toString();
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+            utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/farmasi/add";            
+            requestJson ="{" +
+                          "\"kodebooking\":\""+kodebooking+"\"," +
+                            "\"jenisresep\":\""+jenisObat+"\"," +
+                            "\"nomorantrean\":\""+nomorantrean+"\"," +
+                            "\"keterangan\":\"-\"," +
+                         "}";
+//            System.out.println(headers);
+            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+            nameNode = root.path("metadata");
+            System.out.println("code : "+nameNode.path("code").asText());
+            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+            if(nameNode.path("code").asText().equals("200")){
+                System.out.println("Tambah antrean farmasi untuk KodeBooking "+kodebooking+"  berhasil");                 
+            } else {
+                System.out.println("Tambah antrean farmasi untuk KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Bridging Antrol : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
+    
     private void postWhatsapp(String no_hp, String nama){
         try {
             if(no_hp.substring(0, 1).equalsIgnoreCase("0")){

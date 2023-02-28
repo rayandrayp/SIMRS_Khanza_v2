@@ -2579,8 +2579,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     if(j>0){                       
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText());
+                        String no_sep = Sequel.cariIsi("select no_sep from bridging_sep where no_rawat =?",TNoRw.getText());
                         if(j==1 || j==2 || j==3){
-                            Valid.panggilUrl("billing/LaporanBilling.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                            Valid.panggilUrl("billing/LaporanBilling.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&no_sep="+no_sep);
                         }else if(j==4){
                             if(piutang>0){
                                 Valid.panggilUrl("billing/LaporanBilling7.php?petugas="+akses.getkode().replaceAll(" ","_")+"&nonota="+Sequel.cariIsi("select count(reg_periksa.no_rawat) from reg_periksa "+

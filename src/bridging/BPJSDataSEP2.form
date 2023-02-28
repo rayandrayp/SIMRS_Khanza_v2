@@ -243,8 +243,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Data SEP">
-                    <Property name="tabTitle" type="java.lang.String" value="Data SEP"/>
+                  <JTabbedPaneConstraints tabName="Data SEP Rawat Jalan">
+                    <Property name="tabTitle" type="java.lang.String" value="Data SEP Rawat Jalan"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -420,6 +420,201 @@
                         <Property name="horizontalAlignment" type="int" value="2"/>
                         <Property name="text" type="java.lang.String" value="0"/>
                         <Property name="name" type="java.lang.String" value="LCount" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[50, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="widget.InternalFrame" name="internalFrame6">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="internalFrame6" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Data SEP Rawat Inap">
+                    <Property name="tabTitle" type="java.lang.String" value="Data SEP Rawat Inap"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout">
+                <Property name="horizontalGap" type="int" value="1"/>
+                <Property name="verticalGap" type="int" value="1"/>
+              </Layout>
+              <SubComponents>
+                <Container class="widget.ScrollPane" name="Scroll2">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder>
+                          <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                        </LineBorder>
+                      </Border>
+                    </Property>
+                    <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="Popup"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="Scroll2" noResource="true"/>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Center"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="widget.Table" name="tbDataSEP2">
+                      <Properties>
+                        <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
+                        <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="Popup"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="tbDataSEP2" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbDataSEP2MouseClicked"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbDataSEP2KeyPressed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="widget.panelisi" name="panelGlass11">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="panelGlass11" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[44, 44]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Last"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+                    <Property name="alignment" type="int" value="0"/>
+                    <Property name="verticalGap" type="int" value="9"/>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="widget.Label" name="jLabel23">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Tgl. SEP :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel23" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[55, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.Tanggal" name="DTPCari5">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="32" green="46" red="32" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="1">
+                            <StringItem index="0" value="28-02-2023"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
+                        <Property name="name" type="java.lang.String" value="DTPCari5" noResource="true"/>
+                        <Property name="opaque" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[95, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.Label" name="jLabel24">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="text" type="java.lang.String" value="s.d."/>
+                        <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[23, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.Tanggal" name="DTPCari6">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="32" green="46" red="32" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="1">
+                            <StringItem index="0" value="28-02-2023"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
+                        <Property name="name" type="java.lang.String" value="DTPCari6" noResource="true"/>
+                        <Property name="opaque" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[95, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.Label" name="jLabel10">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Key Word :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[70, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.TextBox" name="TCari2">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="TCari2" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[205, 23]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TCari2KeyPressed"/>
+                      </Events>
+                    </Component>
+                    <Component class="widget.Button" name="BtnCari2">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/accept.png"/>
+                        </Property>
+                        <Property name="mnemonic" type="int" value="51"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Alt+3"/>
+                        <Property name="name" type="java.lang.String" value="BtnCari2" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[28, 23]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCari2ActionPerformed"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="BtnCari2KeyPressed"/>
+                      </Events>
+                    </Component>
+                    <Component class="widget.Label" name="jLabel11">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Record :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[65, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.Label" name="LCount2">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                        <Property name="name" type="java.lang.String" value="LCount2" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[50, 23]"/>
                         </Property>

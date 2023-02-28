@@ -5553,8 +5553,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 Sequel.mengedit("reg_periksa","no_rawat=?","stts=?",2,new String[]{"Sudah",TNoRw.getText()});
 //                if(Sequel.cariInteger("select count(*) from record_waktulayan_bpjs where no_rawat = '"+TNoRw.getText()+"' and taskid5 <> '00:00:00'") == 0){ 
 //                    Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," taskid5=curtime()");
-//                    String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Tidak ada", "Non racikan","Racikan"},"Pilihan Obat Pasien");
+//                    String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"tidak ada", "non racikan","racikan"},"Pilihan Obat Pasien");
 //                    updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
+//                      tambahAntreanFarmasiBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), msg_lanjut);
 //                }
             }
         } catch (Exception e) {
@@ -9933,42 +9934,79 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-//    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
-//        try {
-//            String jsonFarmasi =  "";
-//            if (taskid != "4"){
-//                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
-//            }
-//            headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
-//            utc=String.valueOf(api.GetUTCdatetimeAsString());
-//	    headers.add("X-Timestamp",utc);
-//	    headers.add("X-Signature",api.getHmac(utc));
-//            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
-//            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
-//            requestJson ="{" +
-//                          "\"kodebooking\":\""+kodebooking+"\"," +
-//                            "\"taskid\":\""+taskid+"\"," +
-//                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
-//                         "}";
-////            System.out.println(headers);
-//            System.out.println("JSON : "+requestJson);
-//            requestEntity = new HttpEntity(requestJson,headers);
-//            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
-//            nameNode = root.path("metadata");
-//            System.out.println("code : "+nameNode.path("code").asText());
-//            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
-//            if(nameNode.path("code").asText().equals("200")){
-//                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
-//            } else {
-//                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
-//            }
-//        }catch (Exception ex) {
-//            System.out.println("Notifikasi Bridging Antrol : "+ex);
-//            if(ex.toString().contains("UnknownHostException")){
-//                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
-//            }
-//        }
-//    }
+    private void updateTaskIDBPJS(String kodebooking, String taskid, String jenisObat){
+        try {
+            String jsonFarmasi =  "";
+            if (taskid != "4"){
+                jsonFarmasi =  ",\"jenisresep\":\""+jenisObat+"\"";
+            }
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+            utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/updatewaktu";            
+            requestJson ="{" +
+                          "\"kodebooking\":\""+kodebooking+"\"," +
+                            "\"taskid\":\""+taskid+"\"," +
+                            "\"waktu\":"+utc+"000"+"" + jsonFarmasi +
+                         "}";
+//            System.out.println(headers);
+            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+            nameNode = root.path("metadata");
+            System.out.println("code : "+nameNode.path("code").asText());
+            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+            if(nameNode.path("code").asText().equals("200")){
+                System.out.println("Update waktu TaskID"+taskid+" untuk KodeBooking "+kodebooking+"  berhasil");                 
+            } else {
+                System.out.println("Update waktu KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Bridging Antrol : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
+    
+    private void tambahAntreanFarmasiBPJS(String kodebooking, String jenisObat){
+        try {
+            String nomorantrean = Sequel.cariInteger("select CONVERT(RIGHT(resep_obat.no_resep,4),signed) as urut from resep_obat where resep_obat.no_rawat='"+TNoRw.getText()+"'").toString();
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIMOBILEJKN());
+            utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIMOBILEJKN());
+            URL = "https://apijkn.bpjs-kesehatan.go.id/antreanrs/antrean/farmasi/add";            
+            requestJson ="{" +
+                          "\"kodebooking\":\""+kodebooking+"\"," +
+                            "\"jenisresep\":\""+jenisObat+"\"," +
+                            "\"nomorantrean\":\""+nomorantrean+"\"," +
+                            "\"keterangan\":\"-\"," +
+                         "}";
+//            System.out.println(headers);
+            System.out.println("JSON : "+requestJson);
+            requestEntity = new HttpEntity(requestJson,headers);
+            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+            nameNode = root.path("metadata");
+            System.out.println("code : "+nameNode.path("code").asText());
+            JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
+            if(nameNode.path("code").asText().equals("200")){
+                System.out.println("Tambah antrean farmasi untuk KodeBooking "+kodebooking+"  berhasil");                 
+            } else {
+                System.out.println("Tambah antrean farmasi untuk KodeBooking "+kodebooking+" gagal, pesan : "+nameNode.path("message"));
+            }
+        }catch (Exception ex) {
+            System.out.println("Notifikasi Bridging Antrol : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(null,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
 }
