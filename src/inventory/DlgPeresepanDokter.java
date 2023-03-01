@@ -83,7 +83,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
-                if ((colIndex==0)||(colIndex==1)||(colIndex==8)) {
+                if ((colIndex==0)||(colIndex==1)) { //||(colIndex==8) aturan pakai disable agar aturan pakai sesuai dengan table master
                     a=true;
                 }
                 return a;
@@ -149,7 +149,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = true;
-                if ((colIndex==0)||(colIndex==2)||(colIndex==3)) {
+                if ((colIndex==0)||(colIndex==2)||(colIndex==3)||(colIndex==5)) { //aturan pakai disable agar sesuai dengan master table
                     a=false;
                 }
                 return a;
@@ -770,7 +770,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2022" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2023" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -925,6 +925,11 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         Scroll1.setPreferredSize(new java.awt.Dimension(454, 90));
 
         tbObatResepRacikan.setName("tbObatResepRacikan"); // NOI18N
+        tbObatResepRacikan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbObatResepRacikanMouseClicked(evt);
+            }
+        });
         tbObatResepRacikan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbObatResepRacikanKeyPressed(evt);
@@ -1030,6 +1035,15 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             try {
                 getCekStok();
             } catch (java.lang.NullPointerException e) {
+            }
+            if(evt.getClickCount()==2){
+                i=tbResep.getSelectedColumn();
+                if(i==8){
+                    akses.setform("DlgCariObat");
+                    aturanpakai.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    aturanpakai.setLocationRelativeTo(internalFrame1);
+                    aturanpakai.setVisible(true);
+                }
             }
         }
 }//GEN-LAST:event_tbResepMouseClicked
@@ -1441,7 +1455,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                 JOptionPane.showMessageDialog(null,"Kapasitas obat masih kosong..!!!");
                             }else{
                                 tbDetailResepObatRacikan.setValueAt(Valid.SetAngka8(Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(tbDetailResepObatRacikan.getSelectedRow(),8).toString())*
-                                    (Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(tbDetailResepObatRacikan.getSelectedRow(),9).toString())/Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(tbDetailResepObatRacikan.getSelectedRow(),11).toString())),1),
+                                    (Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(tbDetailResepObatRacikan.getSelectedRow(),9).toString())/Valid.SetAngka(tbDetailResepObatRacikan.getValueAt(tbDetailResepObatRacikan.getSelectedRow(),11).toString())),2),
                                         tbDetailResepObatRacikan.getSelectedRow(),12);
                             }                                
                         }
@@ -1522,6 +1536,30 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             Valid.pindah(evt, BtnKeluar,BtnKeluar);
         }
     }//GEN-LAST:event_BtnCari1KeyPressed
+
+    private void tbObatResepRacikanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatResepRacikanMouseClicked
+        if(tbObatResepRacikan.getRowCount()!=0){
+            if(evt.getClickCount()==2){
+                i=tbObatResepRacikan.getSelectedColumn();
+                if(i==5){
+                    akses.setform("DlgCariObat");
+                    aturanpakai.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+                    aturanpakai.setLocationRelativeTo(internalFrame1);
+                    aturanpakai.setVisible(true);
+                }else if(i==3){
+                    if(tbObatResepRacikan.getValueAt(tbObatResepRacikan.getSelectedRow(),1).equals("")){
+                        JOptionPane.showMessageDialog(null,"Silahkan masukkan nama racikan..!!");
+                        tbObatResepRacikan.requestFocus();
+                    }else{
+                        metoderacik.isCek();
+                        metoderacik.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+                        metoderacik.setLocationRelativeTo(internalFrame1);
+                        metoderacik.setVisible(true);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_tbObatResepRacikanMouseClicked
 
     /**
     * @param args the command line arguments

@@ -46,8 +46,8 @@ public final class RMPenilaianAwalMedisRalanKandungan extends javax.swing.JDialo
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps,ps4;
+    private ResultSet rs,rs4;
     private int i=0;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
@@ -2796,6 +2796,8 @@ public final class RMPenilaianAwalMedisRalanKandungan extends javax.swing.JDialo
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);    
         isRawat(); 
+        //autofill tanda vital
+        autofillTandaVital(TNoRM.getText());
     }
     
     public void isCek(){
@@ -2844,6 +2846,54 @@ public final class RMPenilaianAwalMedisRalanKandungan extends javax.swing.JDialo
                tampil();
                emptTeks();
                TabRawat.setSelectedIndex(1);
+        }
+    }
+    
+    private void autofillTandaVital(String norm){
+        int i = 0;
+        try{  
+            ps4=koneksi.prepareStatement("SELECT * FROM \n" +
+            "(\n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,''  FROM penilaian_awal_keperawatan_gigi WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_kebidanan WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_mata WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan_psikiatri WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan_bayi WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            ") A\n" +
+            "ORDER BY tanggal DESC  limit 1"); 
+            try{
+                rs=ps4.executeQuery();
+                while(rs.next()){
+                    if(i==0){
+                        JOptionPane.showMessageDialog(null,"Mengambil data tanda vital pada tanggal "+rs.getString("tanggal"));
+                        Suhu.setText(rs.getString("suhu"));
+                        TB.setText(rs.getString("tb"));
+                        BB.setText(rs.getString("bb"));
+                        TD.setText(rs.getString("td"));
+                        RR.setText(rs.getString("rr"));
+                        Nadi.setText(rs.getString("nadi"));
+                        GCS.setText(rs.getString("gcs"));
+                    }
+                    i++;
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi autofilling : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps4!=null){
+                    ps4.close();
+                }
+            }                  
+        }catch(Exception e){
+            System.out.println("Notifikasi autofilling : "+e);
         }
     }
 }

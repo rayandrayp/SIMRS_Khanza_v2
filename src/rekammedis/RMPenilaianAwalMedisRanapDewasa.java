@@ -46,8 +46,8 @@ public final class RMPenilaianAwalMedisRanapDewasa extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps,ps4;
+    private ResultSet rs,rs4;
     private int i=0;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
@@ -2570,6 +2570,8 @@ public final class RMPenilaianAwalMedisRanapDewasa extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);    
         isRawat(); 
+        //autofill tanda vital
+        autofillTandaVital(TNoRM.getText());
     }
     
     public void isCek(){
@@ -2618,6 +2620,46 @@ public final class RMPenilaianAwalMedisRanapDewasa extends javax.swing.JDialog {
                tampil();
                emptTeks();
                TabRawat.setSelectedIndex(1);
+        }
+    }
+    
+    private void autofillTandaVital(String norm){
+        int i = 0;
+        try{  
+            ps4=koneksi.prepareStatement("SELECT * FROM \n" +
+            "(\n" +
+            "	SELECT tanggal, pemeriksaan_kebidanan_suhu as suhu, pemeriksaan_kebidanan_tb as tb, pemeriksaan_kebidanan_bb as bb, pemeriksaan_kebidanan_td as td,pemeriksaan_kebidanan_rr as rr,pemeriksaan_kebidanan_nadi as nadi,pemeriksaan_kebidanan_gcs as gcs FROM penilaian_awal_keperawatan_kebidanan_ranap WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            "	UNION \n" +
+            "	SELECT tanggal, pemeriksaan_suhu, pemeriksaan_tb, pemeriksaan_bb, pemeriksaan_td,pemeriksaan_rr,pemeriksaan_nadi,pemeriksaan_gcs FROM penilaian_awal_keperawatan_ranap WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
+            ") A\n" +
+            "ORDER BY tanggal DESC limit 1"); 
+            try{
+                rs=ps4.executeQuery();
+                while(rs.next()){
+                    if(i==0){
+                        JOptionPane.showMessageDialog(null,"Mengambil data tanda vital pada tanggal "+rs.getString("tanggal"));
+                        Suhu.setText(rs.getString("suhu"));
+                        TB.setText(rs.getString("tb"));
+                        BB.setText(rs.getString("bb"));
+                        TD.setText(rs.getString("td"));
+                        RR.setText(rs.getString("rr"));
+                        Nadi.setText(rs.getString("nadi"));
+                        GCS.setText(rs.getString("gcs"));
+                    }
+                    i++;
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi autofilling : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps4!=null){
+                    ps4.close();
+                }
+            }                  
+        }catch(Exception e){
+            System.out.println("Notifikasi autofilling : "+e);
         }
     }
 }

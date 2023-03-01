@@ -9904,7 +9904,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             "	UNION \n" +
             "	SELECT tanggal, suhu, tb, bb, td,rr,nadi,gcs FROM penilaian_awal_keperawatan_ralan_bayi WHERE no_rawat IN (SELECT no_rawat FROM reg_periksa WHERE no_rkm_medis = '"+norm+"')\n" +
             ") A\n" +
-            "ORDER BY tanggal DESC;"); 
+            "ORDER BY tanggal DESC limit 1;"); 
             try{
                 rs=ps4.executeQuery();
                 while(rs.next()){
@@ -9918,6 +9918,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         TNadi.setText(rs.getString("nadi"));
                         TGCS.setText(rs.getString("gcs"));
                     }
+                    i++;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi autofilling : "+e);
