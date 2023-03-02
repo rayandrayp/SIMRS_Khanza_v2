@@ -104,6 +104,7 @@ import rekammedis.RMPenilaianPreAnastesi;
 import rekammedis.RMPenilaianPreOperasi;
 import rekammedis.RMPenilaianPsikologi;
 import rekammedis.RMPenilaianTambahanGeriatri;
+import rekammedis.RMRekonsiliasiObat;
 import rekammedis.RMRiwayatPerawatan;
 import rekammedis.RMSignInSebelumAnastesi;
 import rekammedis.RMSignOutSebelumMenutupLuka;
@@ -148,7 +149,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private boolean sukses=false;
     private double ttljmdokter=0,ttljmperawat=0,ttlkso=0,ttljasasarana=0,ttlbhp=0,ttlmenejemen=0,ttlpendapatan=0;
     private Jurnal jur=new Jurnal();
-    
+
     private ApiBPJS api=new ApiBPJS();
     private String link="",requestJson,URL="",utc="";
     private HttpHeaders headers;
@@ -1583,6 +1584,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnMonitoringAsuhanGizi = new widget.Button();
         BtnKonselingFarmasi = new widget.Button();
         BtnInformasiObat = new widget.Button();
+        BtnRekonsiliasiObat = new widget.Button();
         BtnTransferAntarRuang = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1751,7 +1753,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1765,7 +1767,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2262,10 +2264,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel18);
         jLabel18.setBounds(296, 190, 79, 23);
 
-        jLabel25.setText("Lingkar Perut (Cm) :");
+        jLabel25.setText("L.P. (Cm) :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelGlass12.add(jLabel25);
-        jLabel25.setBounds(450, 10, 140, 23);
+        jLabel25.setBounds(450, 10, 90, 23);
 
         jLabel17.setText("Tinggi Badan (Cm) :");
         jLabel17.setName("jLabel17"); // NOI18N
@@ -2577,7 +2579,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(LingkarPerut);
-        LingkarPerut.setBounds(590, 10, 55, 23);
+        LingkarPerut.setBounds(543, 10, 55, 23);
 
         Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         Btn5Soap.setMnemonic('4');
@@ -3488,7 +3490,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel23.setBounds(554, 10, 60, 23);
 
         DTPTgl.setForeground(new java.awt.Color(50, 70, 50));
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-02-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -4622,6 +4624,23 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         FormMenu.add(BtnInformasiObat);
 
+        BtnRekonsiliasiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnRekonsiliasiObat.setText("Rekonsiliasi Obat");
+        BtnRekonsiliasiObat.setFocusPainted(false);
+        BtnRekonsiliasiObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnRekonsiliasiObat.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnRekonsiliasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnRekonsiliasiObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnRekonsiliasiObat.setName("BtnRekonsiliasiObat"); // NOI18N
+        BtnRekonsiliasiObat.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnRekonsiliasiObat.setRoundRect(false);
+        BtnRekonsiliasiObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRekonsiliasiObatActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnRekonsiliasiObat);
+
         BtnTransferAntarRuang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnTransferAntarRuang.setText("Transfer Antar Ruang");
         BtnTransferAntarRuang.setFocusPainted(false);
@@ -5551,12 +5570,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             i=JOptionPane.showConfirmDialog(null, "Mau skalian update status pasien sudah diperiksa ????","Konfirmasi",JOptionPane.YES_NO_OPTION);
             if(i==JOptionPane.YES_OPTION){
                 Sequel.mengedit("reg_periksa","no_rawat=?","stts=?",2,new String[]{"Sudah",TNoRw.getText()});
-//                if(Sequel.cariInteger("select count(*) from record_waktulayan_bpjs where no_rawat = '"+TNoRw.getText()+"' and taskid5 <> '00:00:00'") == 0){ 
-//                    Sequel.mengedit("record_waktulayan_bpjs","no_rawat='"+TNoRw.getText()+"'"," taskid5=curtime()");
-//                    String msg_lanjut = (String)JOptionPane.showInputDialog(null,"Silahkan pilih tindak lanjut untuk obat pasien.!","Pilih Obat Pasien",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"tidak ada", "non racikan","racikan"},"Pilihan Obat Pasien");
-//                    updateTaskIDBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), "5", msg_lanjut);
-//                      tambahAntreanFarmasiBPJS(Sequel.cariIsi("select nobooking from referensi_mobilejkn_bpjs where no_rawat = '"+TNoRw.getText()+"'"), msg_lanjut);
-//                }
             }
         } catch (Exception e) {
         }
@@ -7686,6 +7699,23 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_BtnChecklistPostOperasiActionPerformed
 
+    private void BtnRekonsiliasiObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRekonsiliasiObatActionPerformed
+        if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRekonsiliasiObat form=new RMRekonsiliasiObat(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnRekonsiliasiObatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -7756,6 +7786,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnPermintaanLab;
     private widget.Button BtnPermintaanRad;
     private widget.Button BtnPrint;
+    private widget.Button BtnRekonsiliasiObat;
     private widget.Button BtnResepLuar;
     private widget.Button BtnResepObat;
     private widget.Button BtnResume;
@@ -8606,6 +8637,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
         BtnChecklistPostOperasi.setVisible(akses.getchecklist_post_operasi()); 
         if(akses.getchecklist_post_operasi()==true){
+            tinggi=tinggi+24;
+        }
+        BtnRekonsiliasiObat.setVisible(akses.getrekonsiliasi_obat()); 
+        if(akses.getrekonsiliasi_obat()==true){
             tinggi=tinggi+24;
         }
         FormMenu.setPreferredSize(new Dimension(195,(tinggi+10)));

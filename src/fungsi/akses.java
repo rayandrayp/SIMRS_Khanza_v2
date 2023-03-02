@@ -201,11 +201,12 @@ public final class akses {
             checklist_pre_operasi=false,satu_sehat_kirim_observationttv=false,signin_sebelum_anestesi=false,satu_sehat_kirim_procedure=false,operasi_per_bulan=false,
             timeout_sebelum_insisi=false,signout_sebelum_menutup_luka=false,dapur_barang=false,dapur_opname=false,satu_sehat_mapping_vaksin=false,dapur_suplier=false,
             satu_sehat_kirim_Immunization=false,checklist_post_operasi=false,dapur_pembelian=false,dapur_stok_keluar=false,dapur_riwayat_barang=false,permintaan_dapur=false,
-            rekonsiliasi_obat=false,biaya_pengadaan_dapur=false,rekap_pengadaan_dapur=false,kesling_limbah_b3medis_cair=false;
+            rekonsiliasi_obat=false,biaya_pengadaan_dapur=false,rekap_pengadaan_dapur=false,kesling_limbah_b3medis_cair=false,grafik_limbahb3cair_pertanggal=false,
+            grafik_limbahb3cair_perbulan=false,rekap_biaya_registrasi=false,konfirmasi_rekonsiliasi_obat=false;
     private static boolean data_Yanmed=false;
     
     public static void setData(String user, String pass) {
-       try {                
+        try {        
                 ps=koneksi.prepareStatement("select * from admin where admin.usere=AES_ENCRYPT(?,'nur') and admin.passworde=AES_ENCRYPT(?,'windi')");               
                 ps2=koneksi.prepareStatement("select * from user where user.id_user=AES_ENCRYPT(?,'nur') and user.password=AES_ENCRYPT(?,'windi')");
                 try {
@@ -1145,6 +1146,10 @@ public final class akses {
                         akses.biaya_pengadaan_dapur=true;
                         akses.rekap_pengadaan_dapur=true;
                         akses.kesling_limbah_b3medis_cair=true;
+                        akses.grafik_limbahb3cair_pertanggal=true;
+                        akses.grafik_limbahb3cair_perbulan=true;
+                        akses.rekap_biaya_registrasi=true;
+                        akses.konfirmasi_rekonsiliasi_obat=true;
                         akses.data_Yanmed=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
@@ -2072,6 +2077,10 @@ public final class akses {
                         akses.biaya_pengadaan_dapur=rs2.getBoolean("biaya_pengadaan_dapur");
                         akses.rekap_pengadaan_dapur=rs2.getBoolean("rekap_pengadaan_dapur");
                         akses.kesling_limbah_b3medis_cair=rs2.getBoolean("kesling_limbah_b3medis_cair");
+                        akses.grafik_limbahb3cair_pertanggal=rs2.getBoolean("grafik_limbahb3cair_pertanggal");
+                        akses.grafik_limbahb3cair_perbulan=rs2.getBoolean("grafik_limbahb3cair_perbulan");
+                        akses.rekap_biaya_registrasi=rs2.getBoolean("rekap_biaya_registrasi");
+                        akses.konfirmasi_rekonsiliasi_obat=rs2.getBoolean("konfirmasi_rekonsiliasi_obat");
                         akses.data_Yanmed=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
@@ -2997,6 +3006,10 @@ public final class akses {
                         akses.biaya_pengadaan_dapur=false;
                         akses.rekap_pengadaan_dapur=false;
                         akses.kesling_limbah_b3medis_cair=false;
+                        akses.grafik_limbahb3cair_pertanggal=false;
+                        akses.grafik_limbahb3cair_perbulan=false;
+                        akses.rekap_biaya_registrasi=false;
+                        akses.konfirmasi_rekonsiliasi_obat=false;
                         akses.data_Yanmed=false;
                     }
                 } catch (Exception e) {
@@ -3979,6 +3992,10 @@ public final class akses {
     public static boolean getbiaya_pengadaan_dapur(){return akses.biaya_pengadaan_dapur;}
     public static boolean getrekap_pengadaan_dapur(){return akses.rekap_pengadaan_dapur;}
     public static boolean getkesling_limbah_b3medis_cair(){return akses.kesling_limbah_b3medis_cair;}
+    public static boolean getgrafik_limbahb3cair_pertanggal(){return akses.grafik_limbahb3cair_pertanggal;}
+    public static boolean getgrafik_limbahb3cair_perbulan(){return akses.grafik_limbahb3cair_perbulan;}
+    public static boolean getrekap_biaya_registrasi(){return akses.rekap_biaya_registrasi;}
+    public static boolean getkonfirmasi_rekonsiliasi_obat(){return akses.konfirmasi_rekonsiliasi_obat;}
     public static boolean getSoftDeletes(){return akses.softdeletes;}
     public static boolean getdata_Yanmed(){return akses.data_Yanmed;}
 }   
