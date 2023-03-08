@@ -709,7 +709,7 @@ public class DlgCariReturBeli extends javax.swing.JDialog {
             Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             int row=tabMode.getRowCount();
             for(i=0;i<row;i++){  
-                Sequel.menyimpan("temporary","'"+i+"','"+
+                Sequel.menyimpan("temporary","'0','"+
                                 tabMode.getValueAt(i,0).toString()+"','"+
                                 tabMode.getValueAt(i,1).toString()+"','"+
                                 tabMode.getValueAt(i,2).toString()+"','"+
@@ -722,9 +722,9 @@ public class DlgCariReturBeli extends javax.swing.JDialog {
                                 tabMode.getValueAt(i,9).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Retur Beli"); 
             }
             i++;
-            Sequel.menyimpan("temporary","'"+i+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Retur Beli"); 
+            Sequel.menyimpan("temporary","'0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Retur Beli"); 
             i++;
-            Sequel.menyimpan("temporary","'"+i+"','Jumlah Total :','','','','','','','',' ','"+LTotal.getText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Retur Beli"); 
+            Sequel.menyimpan("temporary","'0','Jumlah Total :','','','','','','','',' ','"+LTotal.getText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Retur Beli"); 
             
             Map<String, Object> param = new HashMap<>();  
                 param.put("namars",akses.getnamars());

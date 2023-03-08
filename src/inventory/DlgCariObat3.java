@@ -847,7 +847,7 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                 while(rspasien.next()){
                     Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
                     for(i=0;i<tbObat.getRowCount();i++){
-                        Sequel.menyimpan("temporary","'"+i+"','"+
+                        Sequel.menyimpan("temporary","'0','"+
                                 tbObat.getValueAt(i,2).toString()+"','"+
                                 tbObat.getValueAt(i,3).toString()+"','"+
                                 tbObat.getValueAt(i,4).toString()+"','"+

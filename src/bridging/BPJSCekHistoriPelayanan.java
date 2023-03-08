@@ -29,6 +29,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -53,7 +54,8 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
     private JsonNode root, root2;
     private JsonNode nameNode, nameNode2;
     private JsonNode response, response2;
-        
+    HashMap<String, String> rujukanKhusus = new HashMap<>();
+    
     /** Creates new form DlgKamar
      * @param parent
      * @param modal */
@@ -344,15 +346,17 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
     private widget.Table tbKamar;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil(String nomorrujukan) {
+    public void tampil(String nokartu) {
         Valid.tabelKosong(tabMode);
         //bagian data rujukan
-        getRujukanRS(nomorrujukan);
-        getRujukanPCare(nomorrujukan);
+        getRujukanRS(nokartu);
+        getRujukanPCare(nokartu);
+        getRujukanKhusus(nokartu);
         
         //bagian data history rujukan
         try {
-            String tglKunjungan = this.getTglKunjungan(nomorrujukan);
+//            String tglKunjungan = this.getTglKunjungan(nokartu);
+            String tglKunjungan = "";
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 	    headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
@@ -361,7 +365,7 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
 	    headers.add("X-Signature",api.getHmac(utc));
             headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
 	    requestEntity = new HttpEntity(headers);
-            URL = link+"/monitoring/HistoriPelayanan/NoKartu/"+nomorrujukan+"/tglMulai/"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"/tglAkhir/"+Valid.SetTgl(DTPCari2.getSelectedItem()+"");	
+            URL = link+"/monitoring/HistoriPelayanan/NoKartu/"+nokartu+"/tglMulai/"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"/tglAkhir/"+Valid.SetTgl(DTPCari2.getSelectedItem()+"");	
 	    root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
             nameNode = root.path("metaData");
             if(nameNode.path("code").asText().equals("200")){
@@ -371,6 +375,7 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
                 if(response.isArray()){
                     i=1;
                     for(JsonNode list:response){
+                        tglKunjungan = (rujukanKhusus.get(list.path("noRujukan").asText()) == null) ? "" : rujukanKhusus.get(list.path("noRujukan").asText());
                         tabMode.addRow(new Object[]{
                             i+".",list.path("diagnosa").asText(),list.path("jnsPelayanan").asText().replaceAll("1","Rawat Inap").replaceAll("2","Rawat Jalan"),
                             list.path("kelasRawat").asText(),list.path("namaPeserta").asText(),list.path("noKartu").asText(),list.path("noSep").asText(),
@@ -399,38 +404,38 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
         this.NoKartu.setText(Kartu);
     }
     
-    public String getTglKunjungan(String nomorkartu){
-        String tglKunjungan = "";
-        try {
-            URL = link+"/Rujukan/Peserta/"+nomorkartu;
-            headers= new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
-            utc=String.valueOf(api.GetUTCdatetimeAsString());
-            headers.add("X-Timestamp",utc);
-            headers.add("X-Signature",api.getHmac(utc));
-            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
-            requestEntity = new HttpEntity(headers);
-            root2 = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
-            nameNode2 = root2.path("metaData");
-            System.out.println("URL : "+URL);
-            System.out.println("code "+ nameNode2.path("code").asText());
-            if(nameNode2.path("code").asText().equals("200")){
-                response2 = mapper.readTree(api.Decrypt(root2.path("response").asText(),utc)).path("rujukan");
-                tglKunjungan = response2.path("tglKunjungan").asText();
-                System.out.println("tglKunjungan " +tglKunjungan);
-            }else{
-                System.out.println("Tgl Kunjungan : "+nameNode2.path("message").asText());
-//                JOptionPane.showMessageDialog(null,nameNode2.path("message").asText());                
-            }
-        } catch (Exception ex) {
-            System.out.println("Notifikasi Peserta : "+ex);
-            if(ex.toString().contains("UnknownHostException")){
-                JOptionPane.showMessageDialog(rootPane,"Koneksi ke server BPJS terputus...!");
-            }
-        }
-        return tglKunjungan;
-    }
+//    public String getTglKunjungan(String nomorkartu){
+//        String tglKunjungan = "";
+//        try {
+//            URL = link+"/Rujukan/Peserta/"+nomorkartu;
+//            headers= new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_JSON);
+//            headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
+//            utc=String.valueOf(api.GetUTCdatetimeAsString());
+//            headers.add("X-Timestamp",utc);
+//            headers.add("X-Signature",api.getHmac(utc));
+//            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
+//            requestEntity = new HttpEntity(headers);
+//            root2 = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
+//            nameNode2 = root2.path("metaData");
+//            System.out.println("URL : "+URL);
+//            System.out.println("code "+ nameNode2.path("code").asText());
+//            if(nameNode2.path("code").asText().equals("200")){
+//                response2 = mapper.readTree(api.Decrypt(root2.path("response").asText(),utc)).path("rujukan");
+//                tglKunjungan = response2.path("tglKunjungan").asText();
+//                System.out.println("tglKunjungan " +tglKunjungan);
+//            }else{
+//                System.out.println("Tgl Kunjungan : "+nameNode2.path("message").asText());
+////                JOptionPane.showMessageDialog(null,nameNode2.path("message").asText());                
+//            }
+//        } catch (Exception ex) {
+//            System.out.println("Notifikasi Peserta : "+ex);
+//            if(ex.toString().contains("UnknownHostException")){
+//                JOptionPane.showMessageDialog(rootPane,"Koneksi ke server BPJS terputus...!");
+//            }
+//        }
+//        return tglKunjungan;
+//    }
     
     public void getRujukanRS(String nomorkartu){
         try {
@@ -521,4 +526,55 @@ public final class BPJSCekHistoriPelayanan extends javax.swing.JDialog {
         }
     }
     
+    public void getRujukanKhusus(String nomorkartu){
+        Date today = new Date(); // Fri Jun 17 14:54:28 PDT 2016 
+        Calendar cal = Calendar.getInstance(); 
+        cal.setTime(today); 
+        int month = 0;
+        int year = 0;
+        String month_str = "";
+        for(int i = 0; i < 4; i++){
+            month = cal.get(Calendar.MONTH) + 1;
+            year = cal.get(Calendar.YEAR);
+            System.out.println(month+" "+year);
+            month_str = (month<10)? "0"+String.valueOf(month) : String.valueOf(month);
+            getDataRujukanKhusus(nomorkartu,month_str,String.valueOf(year));
+            cal.add(Calendar.MONTH, -1);
+        }
+
+    }
+    
+    public void getDataRujukanKhusus(String nomorkartu, String bulan, String tahun){
+        try {
+            URL = link+"/Rujukan/Khusus/List/Bulan/"+bulan+"/Tahun/"+tahun;
+            headers= new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+	    headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
+	    utc=String.valueOf(api.GetUTCdatetimeAsString());
+	    headers.add("X-Timestamp",utc);
+	    headers.add("X-Signature",api.getHmac(utc));
+            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
+	    requestEntity = new HttpEntity(headers);
+	    root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
+            nameNode = root.path("metaData");
+            System.out.println("URL : "+URL);
+            if(nameNode.path("code").asText().equals("200")){
+                response = mapper.readTree(api.Decrypt(root.path("response").asText(),utc)).path("rujukan");
+                if(response.isArray()){
+                    for(JsonNode list:response){
+                        if(list.path("nokapst").asText().equalsIgnoreCase(nomorkartu)){
+                            rujukanKhusus.put(list.path("norujukan").asText(), list.path("tglrujukan_awal").asText());
+                        }
+                    }
+                } 
+            }else {
+                System.out.println("Rujukan Khusus : "+nameNode.path("message").asText());             
+            }   
+        } catch (Exception ex) {
+            System.out.println("Notifikasi Peserta : "+ex);
+            if(ex.toString().contains("UnknownHostException")){
+                JOptionPane.showMessageDialog(rootPane,"Koneksi ke server BPJS terputus...!");
+            }
+        }
+    }
 }

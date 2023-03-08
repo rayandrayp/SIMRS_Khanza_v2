@@ -121,19 +121,19 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampil("riwayat");
                     }
                 }
                 @Override
                 public void removeUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampil("riwayat");
                     }
                 }
                 @Override
                 public void changedUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil();
+                        tampil("riwayat");
                     }
                 }
             });
@@ -332,12 +332,8 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         label10 = new widget.Label();
         LCount = new widget.Label();
-        label13 = new widget.Label();
-        LTotalBeli = new widget.Label();
         label12 = new widget.Label();
         LTotal = new widget.Label();
-        label14 = new widget.Label();
-        LTotal2 = new widget.Label();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         panelBiasa1 = new widget.PanelBiasa();
@@ -761,18 +757,7 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(40, 30));
         panelisi1.add(LCount);
 
-        label13.setText("Real :");
-        label13.setName("label13"); // NOI18N
-        label13.setPreferredSize(new java.awt.Dimension(45, 30));
-        panelisi1.add(label13);
-
-        LTotalBeli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LTotalBeli.setText("0");
-        LTotalBeli.setName("LTotalBeli"); // NOI18N
-        LTotalBeli.setPreferredSize(new java.awt.Dimension(100, 30));
-        panelisi1.add(LTotalBeli);
-
-        label12.setText("Hilang :");
+        label12.setText("Total : ");
         label12.setName("label12"); // NOI18N
         label12.setPreferredSize(new java.awt.Dimension(50, 30));
         panelisi1.add(label12);
@@ -782,17 +767,6 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
         LTotal.setName("LTotal"); // NOI18N
         LTotal.setPreferredSize(new java.awt.Dimension(85, 30));
         panelisi1.add(LTotal);
-
-        label14.setText("Lebih :");
-        label14.setName("label14"); // NOI18N
-        label14.setPreferredSize(new java.awt.Dimension(50, 30));
-        panelisi1.add(label14);
-
-        LTotal2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LTotal2.setText("0");
-        LTotal2.setName("LTotal2"); // NOI18N
-        LTotal2.setPreferredSize(new java.awt.Dimension(85, 30));
-        panelisi1.add(LTotal2);
 
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1010,7 +984,15 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampil();
+        String opsi = (String)JOptionPane.showInputDialog(null,"Silahkan pilih jenis sumber stok!","Jenis",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Riwayat Transaksi Obat", "Stok Opname"},"Jenis");
+        switch (opsi) {
+              case "Riwayat Transaksi Obat":
+                    tampil("riwayat");
+                    break;
+              case "Stok Opname":
+                    tampil("stokopname");
+                    break;
+        }
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -1022,23 +1004,11 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void tbKamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKamarMouseClicked
-        if(tbKamar.getRowCount()!=0){
-            try {
-                getData();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
+        
 }//GEN-LAST:event_tbKamarMouseClicked
 
     private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
-        if(tbKamar.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
-                try {
-                    getData();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
+        
 }//GEN-LAST:event_tbKamarKeyPressed
 
     private void Kd2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Kd2KeyPressed
@@ -1063,7 +1033,7 @@ public final class DlgStokOpname2 extends javax.swing.JDialog {
         kdkategori.setText("");
         KdGudang.setText("");
         NmGudang.setText("");
-        tampil();
+        tampil("riwayat");
     }//GEN-LAST:event_BtnAllActionPerformed
 
 private void KeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeteranganKeyPressed
@@ -1179,8 +1149,6 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
     private widget.TextBox Keterangan;
     private widget.Label LCount;
     private widget.Label LTotal;
-    private widget.Label LTotal2;
-    private widget.Label LTotalBeli;
     private widget.TextBox Lebih;
     private widget.TextBox NmGudang;
     private widget.TextBox Nmbar;
@@ -1204,8 +1172,6 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
     private widget.Label label10;
     private widget.Label label11;
     private widget.Label label12;
-    private widget.Label label13;
-    private widget.Label label14;
     private widget.Label label17;
     private widget.Label label18;
     private widget.Label label19;
@@ -1233,74 +1199,30 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
     private widget.Table tbKamar;
     // End of variables declaration//GEN-END:variables
 
-    private void tampil() {
+    private void tampil(String jenis) {
         Valid.tabelKosong(tabMode);
         total=0;
         totalreal=0;
         totallebih=0;
-        int i = 1;
-        try{    
-            sql_cond_golongan=(!nmgolongan.getText().equals("")) ? " AND d.kode_golongan = (SELECT kode FROM golongan_barang WHERE nama = '"+nmgolongan.getText().toString()+"') " : "";
-            sql_cond_kategori=(!nmkategori.getText().equals("")) ? " AND d.kode_kategori = (SELECT kode FROM kategori_barang WHERE nama = '"+nmkategori.getText().toString()+"') " : "";
-            sql_cond_jenis=(!nmjns.getText().equals("")) ? " AND d.kdjns = (SELECT kdjns FROM jenis WHERE nama = '"+nmjns.getText().toString()+"') " : "";
-            
-            
-            pstampil=koneksi.prepareStatement(
-                    "SELECT d.nama_brng, k.satuan, ifnull(d.expire,'') as expire,d.h_beli,d.kode_brng " +
-                    "FROM databarang d  " +
-                    "INNER JOIN kodesatuan k ON k.kode_sat = d.kode_sat " +
-                    "WHERE d.`status`='1' AND d.kode_brng NOT IN ('','B000009066','B000009374') "+
-                    sql_cond_golongan +
-                    sql_cond_kategori +
-                    sql_cond_jenis +
-                    "ORDER BY d.nama_brng asc");               
-            try {     
-                rstampil=pstampil.executeQuery();
-                while(rstampil.next()){     
-//                    System.out.println("tanggal "+tanggal);
-//                    System.out.println("kode barang "+rstampil.getString("kode_brng"));
-                    
-                    stok_awal=Sequel.cariIsiAngka2("SELECT stok_awal FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ?  " +
-                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal ASC, jam ASC LIMIT 1",
-                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                    
-                    masuk=Sequel.cariIsiAngka2("SELECT SUM(masuk) AS masuk FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND posisi <> 'Opname' AND tanggal BETWEEN ? AND ? "+
-                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ",
-                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                    
-                    keluar=Sequel.cariIsiAngka2("SELECT SUM(keluar) AS keluar FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ? "+
-                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ",
-                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                            
-                    sisa=Sequel.cariIsiAngka2("SELECT stok_akhir FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ?  " +
-                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal DESC, jam DESC LIMIT 1",
-                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                    
-                    jumlah=sisa*rstampil.getDouble("h_beli");
-                    Object[] row={"NO.","NAMA MATKES","SATUAN","ED","HARGA","STOK AWAL","MASUK","KELUAR","SISA","JUMLAH"};
-                    tabMode.addRow(new Object[]{
-                        i,rstampil.getString("nama_brng"),rstampil.getString("satuan"),rstampil.getString("expire"),Valid.SetAngka4(rstampil.getDouble("h_beli")),
-                        Valid.SetAngka(stok_awal), Valid.SetAngka(masuk), Valid.SetAngka(keluar), Valid.SetAngka(sisa), Valid.SetAngka4(jumlah)
-                    });
-                    i++;
-                }
-            } catch (Exception e) {
-               System.out.println("Notif Opname : "+e);
-            }finally{
-                if(rstampil!=null){
-                    rstampil.close();
-                }
-                if(pstampil!=null){
-                    pstampil.close();
-                }
-            }
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
-        }
+        
+        //fornas kering
+        tabMode.addRow(new Object[]{"","FORNAS KERING","","","","","","","",""});
+        getData(jenis," AND d.kode_kategori = 'K01' AND d.kode_sat in ('TAB','CAP','SAC') ");
+        //fornas basah
+        tabMode.addRow(new Object[]{"","FORNAS BASAH","","","","","","","",""});
+        getData(jenis," AND d.kode_kategori = 'K01' AND d.kode_sat in ('AMP','AMP2','VL','SAL','CRM','SYR') ");
+        //nonfornas kering
+        tabMode.addRow(new Object[]{"","NON FORNAS KERING","","","","","","","",""});
+        getData(jenis," AND d.kode_kategori = 'K02' AND d.kode_sat in ('TAB','CAP','SAC') ");
+        //nonfornas basah
+        tabMode.addRow(new Object[]{"","NON FORNAS BASAH","","","","","","","",""});
+        getData(jenis," AND d.kode_kategori = 'K02' AND d.kode_sat in ('AMP','AMP2','VL','SAL','CRM','SYR') ");
+        //tidak diatas
+        tabMode.addRow(new Object[]{"","TIDAK SEMUANYA","","","","","","","",""});
+        getData(jenis," AND d.kode_sat not in ('TAB','CAP','SAC','AMP','AMP2','VL','SAL','CRM','SYR') ");
+        
         LCount.setText(""+tabMode.getRowCount());
-        LTotalBeli.setText(df2.format(totalreal));
         LTotal.setText(df2.format(total));
-        LTotal2.setText(df2.format(totallebih));
     }
 
     public void emptTeks() {
@@ -1321,28 +1243,8 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
         Stok.requestFocus();
     }
 
-    private void getData() {
-        int row=tbKamar.getSelectedRow();
-        if(row!= -1){
-            Kdbar.setText(tbKamar.getValueAt(row,0).toString());
-            Kd2.setText(tbKamar.getValueAt(row,0).toString());
-            Nmbar.setText(tbKamar.getValueAt(row,1).toString());
-            Stok.setText(tbKamar.getValueAt(row,5).toString());
-            Real.setText(tbKamar.getValueAt(row,6).toString());            
-            Selisih.setText(tbKamar.getValueAt(row,7).toString());        
-            Lebih.setText(tbKamar.getValueAt(row,8).toString());      
-            TotalReal.setText(tbKamar.getValueAt(row,9).toString());          
-            Nominal.setText(tbKamar.getValueAt(row,10).toString());   
-            NomiLebih.setText(tbKamar.getValueAt(row,11).toString());            
-            Keterangan.setText(tbKamar.getValueAt(row,12).toString());   
-            kdgudang.setText(tbKamar.getValueAt(row,13).toString());   
-            nmgudang.setText(tbKamar.getValueAt(row,14).toString());   
-            nobatch.setText(tbKamar.getValueAt(row,15).toString());  
-            nofaktur.setText(tbKamar.getValueAt(row,16).toString());      
-            Valid.SetTgl(Tanggal,tbKamar.getValueAt(row,4).toString());
-        }
-    }
-
+    
+    
     public JTextField getTextField(){
         return Stok;
     }
@@ -1363,7 +1265,7 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-        String excelFileName = "C:\\DataLaporanSO\\Laporan-"+Tgl1.getSelectedItem()+""+Tgl2.getSelectedItem()+".xls";//name of excel file
+        String excelFileName = "C:\\DataLaporanSO\\Laporan-"+Tgl1.getSelectedItem()+"_"+Tgl2.getSelectedItem()+".xls";//name of excel file
 //        String excelFileName = "";
         String sheetName = "Sheet1";//name of sheet
         HSSFWorkbook wb = new HSSFWorkbook();
@@ -1426,5 +1328,81 @@ private void StokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Stok
         fileOut.close();
         System.out.println("Data Stok Opname berhasil diexport di "+excelFileName);
         JOptionPane.showMessageDialog(null,"Data Stok Opname berhasil diexport di "+excelFileName);
+    }
+    
+    private void getData(String jenis, String filter){
+        int i = 1;
+        try{    
+            sql_cond_golongan=(!nmgolongan.getText().equals("")) ? " AND d.kode_golongan = (SELECT kode FROM golongan_barang WHERE nama = '"+nmgolongan.getText().toString()+"') " : "";
+            sql_cond_kategori=(!nmkategori.getText().equals("")) ? " AND d.kode_kategori = (SELECT kode FROM kategori_barang WHERE nama = '"+nmkategori.getText().toString()+"') " : "";
+            sql_cond_jenis=(!nmjns.getText().equals("")) ? " AND d.kdjns = (SELECT kdjns FROM jenis WHERE nama = '"+nmjns.getText().toString()+"') " : "";
+            
+            pstampil=koneksi.prepareStatement(
+                    "SELECT d.nama_brng, k.satuan, ifnull(d.expire,'') as expire,d.h_beli,d.kode_brng " +
+                    "FROM databarang d  " +
+                    "INNER JOIN kodesatuan k ON k.kode_sat = d.kode_sat " +
+                    "WHERE d.`status`='1' AND d.kode_brng NOT IN ('','B000009066','B000009374') "+
+                    sql_cond_golongan +
+                    sql_cond_kategori +
+                    sql_cond_jenis + filter +
+                    " ORDER BY d.nama_brng asc"); 
+            try {     
+                rstampil=pstampil.executeQuery();
+                while(rstampil.next()){     
+//                    System.out.println("tanggal "+tanggal);
+//                    System.out.println("kode barang "+rstampil.getString("kode_brng"));
+                    
+//                    stok_awal=Sequel.cariIsiAngka2("SELECT stok_awal FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ?  " +
+//                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal ASC, jam ASC LIMIT 1",
+//                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
+                    
+                    if (jenis == "riwayat"){
+                        stok_awal=Sequel.cariIsiAngka("SELECT stok_akhir FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal < '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"'  " +
+                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal DESC, jam DESC LIMIT 1");
+                    }else{
+                        stok_awal=Sequel.cariIsiAngka("SELECT opname.real FROM opname WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal < '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"'  " +
+                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal DESC LIMIT 1");
+                    }
+                    
+                    masuk=Sequel.cariIsiAngka2("SELECT SUM(masuk) AS masuk FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND posisi <> 'Opname' AND tanggal BETWEEN ? AND ? "+
+                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ",
+                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
+                    
+                    keluar=Sequel.cariIsiAngka2("SELECT SUM(keluar) AS keluar FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ? "+
+                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ",
+                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
+                            
+                    sisa=Sequel.cariIsiAngka2("SELECT stok_akhir FROM riwayat_barang_medis WHERE kode_brng = '"+rstampil.getString("kode_brng")+"' AND tanggal BETWEEN ? AND ?  " +
+                            "AND kd_bangsal = (SELECT kd_bangsal FROM bangsal WHERE nm_bangsal = '"+NmGudang.getText().toString()+"') ORDER BY tanggal DESC, jam DESC LIMIT 1",
+                            Valid.SetTgl(Tgl1.getSelectedItem()+""),Valid.SetTgl(Tgl2.getSelectedItem()+""));
+                    
+                    if(sisa == 0){
+                        sisa = (stok_awal+masuk)-keluar;
+                    }
+                    
+                    jumlah=sisa*rstampil.getDouble("h_beli");
+                    Object[] row={"NO.","NAMA MATKES","SATUAN","ED","HARGA","STOK AWAL","MASUK","KELUAR","SISA","JUMLAH"};
+                    tabMode.addRow(new Object[]{
+                        i,rstampil.getString("nama_brng"),rstampil.getString("satuan"),rstampil.getString("expire"),Valid.SetAngka4(rstampil.getDouble("h_beli")),
+                        Valid.SetAngka(stok_awal), Valid.SetAngka(masuk), Valid.SetAngka(keluar), Valid.SetAngka(sisa), Valid.SetAngka4(jumlah)
+                    });
+                    i++;
+                    
+                }
+            } catch (Exception e) {
+               System.out.println("Notif Opname : "+e);
+            }finally{
+                if(rstampil!=null){
+                    rstampil.close();
+                }
+                if(pstampil!=null){
+                    pstampil.close();
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Notifikasi : "+e);
+        }
+        
+        total += jumlah;
     }
 }

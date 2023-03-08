@@ -117,25 +117,25 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 	<detail>
 		<band height="103" splitType="Stretch">
 			<line>
-				<reportElement x="1" y="0" width="172" height="1" forecolor="#006666" uuid="bfac2b83-5bcf-42e8-965b-41eb63ae73b4"/>
+				<reportElement x="-4" y="-4" width="179" height="1" forecolor="#006666" uuid="bfac2b83-5bcf-42e8-965b-41eb63ae73b4"/>
 				<graphicElement>
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="1" y="26" width="172" height="1" forecolor="#006666" uuid="da55b514-f035-47b9-985f-d81b342f501d"/>
+				<reportElement x="-3" y="22" width="178" height="1" forecolor="#006666" uuid="da55b514-f035-47b9-985f-d81b342f501d"/>
 				<graphicElement>
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line direction="BottomUp">
-				<reportElement x="0" y="0" width="1" height="103" forecolor="#006666" uuid="527c5020-b3c3-45df-9b4c-872c544eb1c0"/>
+				<reportElement x="-4" y="-4" width="1" height="107" forecolor="#006666" uuid="527c5020-b3c3-45df-9b4c-872c544eb1c0"/>
 				<graphicElement>
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="39" width="24" height="9" uuid="947a7837-0ddf-485f-a146-8c2ae1b02fed">
+				<reportElement x="-3" y="35" width="24" height="9" uuid="947a7837-0ddf-485f-a146-8c2ae1b02fed">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -145,19 +145,19 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<text><![CDATA[No.RM]]></text>
 			</staticText>
 			<line>
-				<reportElement x="1" y="102" width="172" height="1" forecolor="#006666" uuid="6823fd83-1fed-406c-8ef9-e753c8de0289"/>
+				<reportElement x="-4" y="102" width="180" height="1" forecolor="#006666" uuid="6823fd83-1fed-406c-8ef9-e753c8de0289"/>
 				<graphicElement>
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line direction="BottomUp">
-				<reportElement x="173" y="0" width="1" height="103" forecolor="#006666" uuid="e49d6eb7-4daa-49b4-8e11-572bf523c858"/>
+				<reportElement x="175" y="-4" width="1" height="107" forecolor="#006666" uuid="e49d6eb7-4daa-49b4-8e11-572bf523c858"/>
 				<graphicElement>
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="49" width="24" height="11" uuid="be77c39a-889d-43de-8c92-200543fc47ec">
+				<reportElement x="-3" y="45" width="24" height="11" uuid="be77c39a-889d-43de-8c92-200543fc47ec">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -167,7 +167,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="26" y="2" width="147" height="12" uuid="db9bf673-20e6-45c5-a75a-51645ffe5574"/>
+				<reportElement x="22" y="-3" width="153" height="12" uuid="db9bf673-20e6-45c5-a75a-51645ffe5574"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -175,11 +175,11 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="1" y="1" width="25" height="25" uuid="54b052c0-839c-4e2e-8ecd-cfa69f62d87d"/>
+				<reportElement x="-3" y="-3" width="25" height="25" uuid="54b052c0-839c-4e2e-8ecd-cfa69f62d87d"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="26" y="39" width="4" height="9" uuid="d733f8fd-d812-460d-947c-499aae15dbf1"/>
+				<reportElement x="20" y="35" width="4" height="9" uuid="d733f8fd-d812-460d-947c-499aae15dbf1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>
@@ -187,7 +187,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="49" width="4" height="11" uuid="9573b663-b672-4a58-b426-a4841187ecb1"/>
+				<reportElement x="20" y="45" width="4" height="11" uuid="9573b663-b672-4a58-b426-a4841187ecb1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -195,7 +195,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="30" y="39" width="60" height="9" uuid="feaeb97b-80c4-45a6-acbd-4939e01d555d"/>
+				<reportElement x="24" y="35" width="60" height="9" uuid="feaeb97b-80c4-45a6-acbd-4939e01d555d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>
@@ -203,7 +203,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="30" y="49" width="141" height="11" uuid="f0a7cf57-da71-4ac8-b8d5-e48ff6a8b2a7"/>
+				<reportElement x="24" y="45" width="151" height="11" uuid="f0a7cf57-da71-4ac8-b8d5-e48ff6a8b2a7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -211,7 +211,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{nm_pasien}+" / "+$F{jk}+" / "+$F{umurdaftar}+" "+$F{sttsumur}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="27" width="81" height="11" uuid="c6a3b836-42a5-4e0d-95d2-ec427df939ef"/>
+				<reportElement x="94" y="23" width="81" height="11" uuid="c6a3b836-42a5-4e0d-95d2-ec427df939ef"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>
@@ -219,21 +219,21 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA["NIK: "+$F{no_ktp}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="1" y="63" width="173" height="1" forecolor="#006666" uuid="df88c9e5-397d-4e52-b845-812998ee8534"/>
+				<reportElement x="-3" y="57" width="178" height="1" forecolor="#006666" uuid="df88c9e5-397d-4e52-b845-812998ee8534"/>
 				<graphicElement>
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
-			<textField>
-				<reportElement x="3" y="85" width="169" height="17" uuid="aa6dd22f-82b3-468c-b282-cdd8aaecf4ac"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="-3" y="79" width="178" height="23" uuid="aa6dd22f-82b3-468c-b282-cdd8aaecf4ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
+					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{aturan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="64" width="117" height="12" uuid="14e059c8-3da3-40d4-be1d-127b9d14cd55"/>
+				<reportElement x="-3" y="58" width="117" height="12" uuid="14e059c8-3da3-40d4-be1d-127b9d14cd55"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -241,7 +241,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{nama_brng}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="64" width="52" height="12" uuid="ccca55cd-f9d3-4808-a241-ab0a3744e4b8"/>
+				<reportElement x="123" y="58" width="52" height="12" uuid="ccca55cd-f9d3-4808-a241-ab0a3744e4b8"/>
 				<textElement textAlignment="Right">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -249,7 +249,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{jml}+" "+$F{satuan}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="100" y="39" width="71" height="9" uuid="d966cdb1-fb4a-4c72-80f7-95dadcb37426"/>
+				<reportElement x="104" y="35" width="71" height="9" uuid="d966cdb1-fb4a-4c72-80f7-95dadcb37426"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>
@@ -257,7 +257,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA["Tgl.Lahir : "+$F{tgl_lahir}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="3" y="27" width="67" height="11" uuid="0c00d40e-ff57-415f-9877-bb432f7423c3">
+				<reportElement x="-3" y="23" width="67" height="11" uuid="0c00d40e-ff57-415f-9877-bb432f7423c3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -267,7 +267,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{tgl_perawatan}+" "+$F{jam}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm:ss">
-				<reportElement x="25" y="15" width="148" height="10" uuid="b415c6c5-0f7b-4c60-80ac-73843aa73e9d">
+				<reportElement x="22" y="9" width="153" height="13" uuid="b415c6c5-0f7b-4c60-80ac-73843aa73e9d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -277,7 +277,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA["INSTALASI FARMASI"+" "+$F{nm_bangsal}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="76" width="117" height="9" uuid="4bc8dca3-af36-46aa-8c33-9e5de5b404a6"/>
+				<reportElement x="-3" y="70" width="117" height="9" uuid="4bc8dca3-af36-46aa-8c33-9e5de5b404a6"/>
 				<textElement>
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>
@@ -285,7 +285,7 @@ and kodesatuan.kode_sat=databarang.kode_sat and detail_pemberian_obat.kd_bangsal
 				<textFieldExpression><![CDATA[$F{exp_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="76" width="52" height="9" uuid="8d58d457-199f-4344-8f81-91408b38118a"/>
+				<reportElement x="123" y="70" width="52" height="9" uuid="8d58d457-199f-4344-8f81-91408b38118a"/>
 				<textElement textAlignment="Right">
 					<font fontName="Tahoma" size="7"/>
 					<paragraph lineSpacing="Single"/>

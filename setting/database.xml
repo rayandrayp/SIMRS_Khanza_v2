@@ -3,15 +3,15 @@
 <properties>
     <comment>KhanzaHMS</comment> 
     <entry key="HOST">N0x2tQBUn3cCifiGfk7t9g==</entry>
-    <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
+    <entry key="DATABASE">0WUcWBC5kQYbdITuDMbZrw==</entry>
     <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
     <entry key="USER">ZZ/qSxzC+RSj+TnV8bolQg==</entry>
     <entry key="PAS">iId5lc4qLuXFIBjN9rcaeQ==</entry>
     <entry key="CARICEPAT">nonaktif</entry>
-    <entry key="HOSTHYBRIDWEB">MNg7pMgLhqI8agp/9plgbg==</entry>
+    <entry key="HOSTHYBRIDWEB">5k7+C7EnUw9nUv2Nix+DBA==</entry>
     <entry key="USERHYBRIDWEB">AqOU3p5RZEIAk8HazTrV+Q==</entry>
     <entry key="PASHYBRIDWEB">6MvhY15aP7fw8zHqqFvg6AUbi5oPbTMhIdYlLgrVLC8=</entry>
-    <entry key="HYBRIDWEB">webapps</entry>
+    <entry key="HYBRIDWEB">webapps_dev2</entry>
     <entry key="PORTWEB">80</entry>
     <entry key="AKTIFKANWARNARALAN">no</entry>
     <entry key="ANTRIAN">player</entry>
@@ -60,9 +60,9 @@
     <entry key="URLAPISISRUTE">https://api.sisrute.kemkes.go.id</entry>
     <entry key="IDSISRUTE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="PASSSISRUTE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="URLAPISIRS">https://sirs.yankes.kemkes.go.id/sirsservice/</entry>
-    <entry key="IDSIRS">04nW1cr3mbcdKBhMkeKULg==</entry> <!-- 3573022 -->
-    <entry key="PASSSIRS">BYptJvsq544HinWKjX8VTA==</entry> 
+    <entry key="URLAPISIRS">https://sirs.kemkes.go.id/fo/index.php/Fasyankes</entry>
+    <entry key="IDSIRS">jhPSu1xlQkh+stLFrcin5w==</entry>
+    <entry key="PASSSIRS">BYptJvsq544HinWKjX8VTA==</entry>
     <entry key="URLAPISITT">http://sirs.yankes.kemkes.go.id/sirsservice/sitbtraining/sitb/senddata</entry>
     <entry key="IDSITT">Fm2U09DVwzqY2V8sl5jUCA==</entry>
     <entry key="PASSSITT">ri7lfclUM11skv5F+NuUUg==</entry>
@@ -142,8 +142,4 @@
     <entry key="PORTVANSLAB">nioxtijcpDaKSUiUiP5FAg==</entry>
     <entry key="USERVANSLAB">kMR3WfAwUK6MbhCyydxa0g==</entry>
     <entry key="PASVANSLAB">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="URLORTHANC">http://localhost</entry>
-    <entry key="PORTORTHANC">4xOkFa6gxM9Bc/dkpEtJ+A==</entry>
-    <entry key="USERORTHANC">V9bi0P2HgAq8Nn8lUyS6/A==</entry>
-    <entry key="PASSORTHANC">V9bi0P2HgAq8Nn8lUyS6/A==</entry>
 </properties>

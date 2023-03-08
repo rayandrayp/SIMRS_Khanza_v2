@@ -580,7 +580,7 @@ public final class DlgCariPPNObat extends javax.swing.JDialog {
                 Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             
                 for(int r=0;r<tabMode3.getRowCount();r++){ 
-                        Sequel.menyimpan("temporary","'"+i+"','"+
+                        Sequel.menyimpan("temporary","'0','"+
                                     tabMode3.getValueAt(r,0).toString()+"','"+
                                     tabMode3.getValueAt(r,1).toString()+"','"+
                                     tabMode3.getValueAt(r,2).toString()+"','"+

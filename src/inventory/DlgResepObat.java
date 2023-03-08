@@ -1611,17 +1611,44 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     "resep_obat.tgl_perawatan=obat_racikan.tgl_perawatan and " +
                     "resep_obat.jam=obat_racikan.jam where resep_obat.no_resep=? and obat_racikan.aturan_pakai<>''",NoResep.getText())>0){
                 Valid.MyReportqry("rptItemResep2.jasper","report","::[ Aturan Pakai Obat ]::",
-                    "select resep_obat.no_resep,resep_obat.tgl_perawatan,resep_obat.jam,pasien.tgl_lahir," +
-                    "resep_obat.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,obat_racikan.nama_racik," +
-                    "obat_racikan.aturan_pakai,obat_racikan.jml_dr,metode_racik.nm_racik,pasien.jk,reg_periksa.umurdaftar,reg_periksa.sttsumur " +
-                    "from resep_obat inner join reg_periksa inner join pasien inner join " +
-                    "obat_racikan inner join metode_racik on resep_obat.no_rawat=reg_periksa.no_rawat " +
-                    "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
-                    "and obat_racikan.kd_racik=metode_racik.kd_racik " +
-                    "and resep_obat.no_rawat=obat_racikan.no_rawat and " +
-                    "resep_obat.tgl_perawatan=obat_racikan.tgl_perawatan and " +
-                    "resep_obat.jam=obat_racikan.jam and resep_obat.no_rawat=obat_racikan.no_rawat "+
-                    "where resep_obat.no_resep='"+NoResep.getText()+"'",param);
+                    "SELECT  resep_obat.no_resep " +
+                    "       ,resep_obat.tgl_perawatan " +
+                    "       ,resep_obat.jam " +
+                    "       ,pasien.tgl_lahir " +
+                    "       ,resep_obat.no_rawat " +
+                    "       ,pasien.no_rkm_medis " +
+                    "       ,pasien.nm_pasien " +
+                    "       ,obat_racikan.nama_racik " +
+                    "       ,obat_racikan.aturan_pakai " +
+                    "       ,obat_racikan.jml_dr " +
+                    "       ,metode_racik.nm_racik " +
+                    "       ,pasien.jk " +
+                    "       ,reg_periksa.umurdaftar " +
+                    "       ,reg_periksa.sttsumur " +
+                    "       ,pasien.no_ktp " +
+                    "       ,bangsal.nm_bangsal " +
+                    "FROM resep_obat " +
+                    "INNER JOIN reg_periksa " +
+                    "INNER JOIN pasien " +
+                    "INNER JOIN obat_racikan " +
+                    "INNER JOIN metode_racik " +
+                    "INNER JOIN detail_pemberian_obat " +
+                    "INNER JOIN bangsal " +
+                    "ON resep_obat.no_rawat = reg_periksa.no_rawat AND reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND obat_racikan.kd_racik = metode_racik.kd_racik AND resep_obat.no_rawat = obat_racikan.no_rawat AND resep_obat.tgl_perawatan = obat_racikan.tgl_perawatan AND resep_obat.jam = obat_racikan.jam AND resep_obat.no_rawat = obat_racikan.no_rawat AND resep_obat.no_rawat = detail_pemberian_obat.no_rawat AND resep_obat.tgl_perawatan = detail_pemberian_obat.tgl_perawatan AND resep_obat.jam = detail_pemberian_obat.jam AND detail_pemberian_obat.kd_bangsal = bangsal.kd_bangsal "+
+                    "where resep_obat.no_resep='"+NoResep.getText()+"'  GROUP BY resep_obat.no_resep",param);
+                
+//                Valid.MyReportqry("rptItemResep2.jasper","report","::[ Aturan Pakai Obat ]::",
+//                    "select resep_obat.no_resep,resep_obat.tgl_perawatan,resep_obat.jam,pasien.tgl_lahir," +
+//                    "resep_obat.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,obat_racikan.nama_racik," +
+//                    "obat_racikan.aturan_pakai,obat_racikan.jml_dr,metode_racik.nm_racik,pasien.jk,reg_periksa.umurdaftar,reg_periksa.sttsumur " +
+//                    "from resep_obat inner join reg_periksa inner join pasien inner join " +
+//                    "obat_racikan inner join metode_racik on resep_obat.no_rawat=reg_periksa.no_rawat " +
+//                    "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
+//                    "and obat_racikan.kd_racik=metode_racik.kd_racik " +
+//                    "and resep_obat.no_rawat=obat_racikan.no_rawat and " +
+//                    "resep_obat.tgl_perawatan=obat_racikan.tgl_perawatan and " +
+//                    "resep_obat.jam=obat_racikan.jam and resep_obat.no_rawat=obat_racikan.no_rawat "+
+//                    "where resep_obat.no_resep='"+NoResep.getText()+"'",param);
             }                
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1986,7 +2013,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             rs2=ps2.executeQuery();
                             total=0;
                             while(rs2.next()){
-                                rincianobat=" \n   "+rs2.getString("nama_brng")+""+rincianobat;
+                                rincianobat="     "+rs2.getString("nama_brng")+""+rincianobat;
 //                                rincianobat=rs2.getString("nama_brng")+" "+rs2.getString("jml")+","+rincianobat;
                             }                                
                         } catch (Exception e) {
@@ -2056,7 +2083,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("peresep",NmDokter.getText());
             param.put("noresep",NoResep.getText());
             finger=Sequel.cariIsi("select sha1(sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDokter.getText());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+NmDokter.getText()+"\nID "+(finger.equals("")?KdDokter.getText():finger)+"\n"+DTPBeri.getSelectedItem());  
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+" Ditandatangani secara elektronik oleh "+NmDokter.getText()+" ID "+(finger.equals("")?KdDokter.getText():finger)+" "+DTPBeri.getSelectedItem());  
             param.put("nik",Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis=?",TNoRm.getText()));
             param.put("norawat",TNoRw.getText());
             param.put("pasien",TPasien.getText());
@@ -2329,7 +2356,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 
             param.put("noresep",NoResep.getText());
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDokter.getText());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+NmDokter.getText()+"\nID "+(finger.equals("")?KdDokter.getText():finger)+"\n"+DTPBeri.getSelectedItem());  
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+" Ditandatangani secara elektronik oleh "+NmDokter.getText()+" ID "+(finger.equals("")?KdDokter.getText():finger)+" "+DTPBeri.getSelectedItem());  
             param.put("jam",cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
             param.put("photo","http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/penyerahanresep/"+Sequel.cariIsi("select bukti_penyerahan_resep_obat.photo from bukti_penyerahan_resep_obat where bukti_penyerahan_resep_obat.no_resep=?",NoResep.getText()));
@@ -2795,7 +2822,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ps=koneksi.prepareStatement("select bukti_penyerahan_resep_obat.photo from bukti_penyerahan_resep_obat where bukti_penyerahan_resep_obat.no_resep=?");
                 try {
                     ps.setString(1,NoResep.getText());
-                    System.out.println("ps "+ps);
+//                    System.out.println("ps "+ps);
                     rs=ps.executeQuery();
                     if(rs.next()){
                         if(rs.getString("photo").equals("")||rs.getString("photo").equals("-")){
